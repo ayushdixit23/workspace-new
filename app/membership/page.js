@@ -314,6 +314,7 @@ const Sample5 = () => {
 							memid: membershipId,
 							razorpay_signature: response?.razorpay_signature,
 							status: true,
+							period: monthprice ? "month" : "year"
 						}
 						const resp = await membershipFinalise({
 							id,
