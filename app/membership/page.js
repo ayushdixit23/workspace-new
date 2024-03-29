@@ -110,7 +110,7 @@ const Sample5 = () => {
 			popular: true,
 			price: {
 				month: `₹499`,
-				year: `₹35700`,
+				year: `₹5390`,
 			},
 			mid: process.env.NEXT_PUBLIC_PLUS,
 			"Badges": "Available",
@@ -151,7 +151,7 @@ const Sample5 = () => {
 			popular: true,
 			price: {
 				month: `₹1999`,
-				year: `₹35700`,
+				year: `₹21590`,
 			},
 			mid: process.env.NEXT_PUBLIC_PRO,
 			"Badges": "Available",
@@ -192,7 +192,7 @@ const Sample5 = () => {
 			popular: true,
 			price: {
 				month: `₹3499`,
-				year: `₹35700`,
+				year: `₹37790`,
 			},
 			mid: process.env.NEXT_PUBLIC_PREMIUM,
 			"Badges": "Available",
@@ -404,7 +404,7 @@ const Sample5 = () => {
 								</button>
 							</div>
 						</div>
-						{/* <div className="px-2 py-2 bg-[#F2F4F7] md:m-auto mt-5 md:mt-10 space-x-1 flex justify-center items-center rounded-lg">
+						<div className="px-2 py-2 bg-[#F2F4F7] md:m-auto mt-5 md:mt-10 space-x-1 flex justify-center items-center rounded-lg">
 							<button
 								onClick={() => setMonthPrice(true)}
 								className={`py-2 px-2 md:px-1.5 sm:px-3.5 drop-shadow-md hover:bg-white text-[#667085] hover:text-black rounded-md
@@ -419,7 +419,7 @@ const Sample5 = () => {
 							>
 								Annual billing
 							</button>
-						</div> */}
+						</div>
 					</div>
 
 					<div className="md:max-w-[1280px] max-w-[500px] flex justify-center items-center w-full mx-auto dark:bg-[#1d212a] p-4 dark:text-white  bg-[#f9f9f9] px-4 relative shadow-lg shadow-white-500/5 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 ring-1 ring-[#f4f4f452] rounded-2xl">
