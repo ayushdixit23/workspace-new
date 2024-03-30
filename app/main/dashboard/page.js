@@ -47,6 +47,10 @@ function Dashboard() {
     location: "",
     id: "",
     age: "",
+    returningvisitor: "",
+    newvisitor: "",
+    uniquemembers: "",
+    activemembers: "",
   });
 
   useEffect(() => {
@@ -67,6 +71,10 @@ function Dashboard() {
         id: analyticsdata?.commerged[0].id,
         location: analyticsdata?.commerged[0].location,
         age: analyticsdata?.commerged[0].agerange,
+        returningvisitor: analyticsdata?.commerged[0]?.returningvisitor,
+        newvisitor: analyticsdata?.commerged[0]?.newvisitor,
+        uniquemembers: analyticsdata?.commerged[0]?.uniquemembers,
+        activemembers: analyticsdata?.commerged[0]?.activemembers,
       });
       setLoading(false);
     }
@@ -192,6 +200,7 @@ function Dashboard() {
                   <div className={`${comchange == 1 ? null : "hidden"}`}>
                     <Member
                       state={state}
+
                       memberships={memberships}
                       data={analyticsdata?.commerged?.length}
                     />
@@ -203,6 +212,7 @@ function Dashboard() {
                     memberships={memberships}
                     member={state.totalmembers}
                     ages={state.age}
+
                     data={analyticsdata?.commerged.length}
                   />
                 </div>

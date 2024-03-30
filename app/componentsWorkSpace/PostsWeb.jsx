@@ -50,7 +50,7 @@ const PostsWeb = ({ d, setPostid, setOpen, open, dispatch, postDeletion }) => {
 							{d?.video ? (
 								<video
 									src={d?.dps}
-									className="object-contain bg-black max-h-[50px] min-w-[50px] w-[50px] h-[50px] cursor-pointer flex justify-center items-center rounded-md ring-1 ring-white"
+									className="object-contain bg-black min-w-[50px] w-[50px] h-[50px] cursor-pointer flex justify-center items-center rounded-md ring-1 ring-white"
 									alt="video"
 								/>
 							) : (

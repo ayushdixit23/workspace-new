@@ -60,12 +60,12 @@ function Communitybox({ data, id, index, handleDelete }) {
               alt="dp"
               height={100}
               width={100}
-              className="h-14 w-14 cursor-pointer border border-[#f1f1f1] flex justify-center items-center rounded-[24px] ring-1 ring-white"
+              className="h-14 min-w-14 cursor-pointer border border-[#f1f1f1] object-cover  flex justify-center items-center rounded-[24px] ring-1 ring-white"
             />
 
 
             <div>
-              <div className="md:w-36 sm:max-md:w-24 text-[#1d1f2c] dark:text-white font-semibold">
+              <div className="w-64 sm:max-md:w-52 text-[#1d1f2c] dark:text-white font-semibold">
                 {data?.c?.title}
               </div>
               <div className="sm:hidden text-[12px] font-medium">

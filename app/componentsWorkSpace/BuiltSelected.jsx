@@ -30,7 +30,11 @@ const BuiltSelected = ({ data, state, setState, type }) => {
 										paidmember: d?.paidmember,
 										id: d?.id,
 										age: d?.agerange,
-										location: d?.location
+										location: d?.location,
+										returningvisitor: d?.returningvisitor,
+										newvisitor: d?.newvisitor,
+										uniquemembers: d?.uniquemembers,
+										activemembers: d?.activemembers,
 									})
 									setToggle(false)
 								}

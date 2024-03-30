@@ -47,9 +47,9 @@ const Storedata = ({ getorderdata, sales }) => {
           </div>
             :
             <div className="h-full w-full rounded-xl">
-              <div className="flex flex-col justify-center items-center h-full">
-                <div className="text-2xl font-semibold pn:max-sm:text-xl px-2 dark:text-white">Verification Process Underway</div>
-                <Image src={verify} alt="image" className="max-w-[250px]" />
+              <div className="flex flex-col justify-center items-center p-3 h-full">
+                <div className="text-2xl font-semibold text-center mt-5 pn:max-sm:text-lg px-2 dark:text-white">Verification Process Underway</div>
+                <Image src={verify} alt="image" className="max-w-[210px]" />
                 <div className="text-sm">Status : In review</div>
                 <div className="flex flex-col text-center max-w-[85%] text-sm sm:max-w-[50%] pt-9 justify-center items-center">We appreciate your patience as we work to verify your account. It Normally takes upto 24 hours.
                   Thank you for your understanding and cooperation during this process.</div>

@@ -171,7 +171,7 @@ const page = () => {
     }
   }, [data])
 
-  if (loading) {  
+  if (loading) {
     return (
       <>
         <div className="fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md">
@@ -347,6 +347,10 @@ const page = () => {
                     <div className="text-sm">
                       To be eligible for creating a store or uploading products, users must first establish a community presence by creating and contributing at least one post in the community."
                     </div>}
+                  {(count.com > 1 || count.post > 1 && !comData.store) &&
+                    <div className="text-sm">
+                      "Great news! You're ready to start adding products to your store."
+                    </div>}
 
                   <div className="flex text-sm flex-col gap-3">
                     {
@@ -362,19 +366,24 @@ const page = () => {
 
                             <div className="text-sm">
                               <div className="flex justify-between items-center">
-                                <div>Product Name</div>
-                                <div>sales(by quantity.)</div>
+                                <div className="font-semibold text-[17px]">Product Name</div>
+                                <div className="font-semibold text-[17px]">sales <span className="text-sm font-normal">(by quantity.)</span></div>
                               </div>
+                              <div className="h-[1px] w-full bg-gray-500 my-2"></div>
                               {data?.earningStats?.final.map((d) => (
                                 < div className="flex mt-2 justify-between items-center">
-                                  <div>{d?.name}</div>
+                                  <div>{d?.name.length > 10 ? `${d?.name.slice(0, 10)}...` : d?.name}</div>
                                   <div>{d?.itemsold}</div>
                                 </div>
                               ))}
 
                             </div>
 
-                          </> : <div className="flex justify-center items-center text-xl py-10 px-2 font-bold">No Products Available</div>) :
+                          </> : <div className="flex justify-center items-center text-xl px-2 font-bold">
+                            <button onClick={() => {
+                              router.push("/main/store")
+                            }} className="bg-[#2D9AFF] text-white p-2 text-center font-semibold px-5 text-sm rounded-lg">Create Products</button>
+                          </div>) :
 
                         <> {
                           count.com < 1 || count.post < 1 ? <div className="flex text-sm flex-col gap-3">
@@ -407,8 +416,7 @@ const page = () => {
                             <div className="flex justify-center items-center mt-4">
                               <button onClick={() => {
                                 router.push("/main/store")
-                              }} className="bg-[#2D9AFF] text-white p-2 text-center font-semibold px-5 text-sm rounded-lg">Get Ready !!
-                                <br />to Create your Store</button>
+                              }} className="bg-[#2D9AFF] text-white p-2 text-center font-semibold px-5 text-sm rounded-lg">Create Store</button>
                             </div>
                         }</>
                     }
@@ -427,8 +435,12 @@ const page = () => {
 
                     </div>}
                   </div>
-                  {(state1.members < 150 || state1.engagementrate < 10 || state1.topics < 3) && < div className="text-sm">
+                  {(state1.members < 150 || state1.engagementrate < 10) && < div className="text-sm">
                     To create a topic, meet criteria: 150 members, 10% engagement.
+                  </div>
+                  }
+                  {(state1.members > 150 && state1.engagementrate > 10 && state1.topics < 3) && < div className="text-sm">
+                    Congratulations 🎉, you can create a topic now !
                   </div>
                   }
                   <div className="flex text-sm flex-col gap-3">
@@ -444,10 +456,11 @@ const page = () => {
 
                         <div className="text-sm">
                           <div className="flex justify-between items-center">
-                            <div>Topics</div>
-                            <div>Members</div>
-                            <div>Earnings</div>
+                            <div className="font-semibold text-[17px]">Topics</div>
+                            <div className="font-semibold text-[17px]">Members</div>
+                            <div className="font-semibold text-[17px]">Earnings</div>
                           </div>
+                          <div className="h-[1px] w-full bg-gray-500 my-2"></div>
                           {
                             state1.topic.map((d, i) => (
                               <div className="flex mt-1 justify-between items-center">
@@ -505,8 +518,7 @@ const page = () => {
                               Cookies.set("comedta", JSON.stringify(tosetCookie))
                               Cookies.set("cmdyd", encryptaes(state1.id))
                               router.push("/main/community/editCommunity?topics=true")
-                            }} className="bg-[#2D9AFF] text-white p-2 text-center font-semibold px-5 text-sm rounded-lg">Get Ready !!
-                              <br />to Create your first Topic</button>}
+                            }} className="bg-[#2D9AFF] text-white p-2 text-center font-semibold px-5 text-sm rounded-lg">Create Topic!</button>}
                           </div>
                         </div>}
                       </>
@@ -636,7 +648,7 @@ const page = () => {
 
             </div>
           </div>
-        </div>
+        </div >
       </div >
     </>
   );

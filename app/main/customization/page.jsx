@@ -11,9 +11,8 @@ import React from 'react'
 const page = () => {
 	const { id } = getData()
 	return (
-
 		<>
-			<div className='sm:h-full h-auto bg-white sm:rounded-xl dark:bg-[#273142] flex flex-col'>
+			<div className='sm:h-[82vh] h-auto bg-white sm:rounded-xl dark:bg-[#273142] flex flex-col'>
 				<div className='flex justify-between border-b px-4 sm:px-7  dark:border-[#3d4654] items-center w-full'>
 					<div className='pt-4 pb-2  w-full font-medium text-[#4880FF]'>Prosite Templates</div>
 				</div>
@@ -26,18 +25,18 @@ const page = () => {
 						<div className='flex justify-center items-center w-full'>
 							<div className='grid grid-cols-2 sm:grid-cols-3 gap-4 md:grid-cols-4 w-full'>
 
-								<div className="max-w-[275px] flex flex-col bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-									<Image className="rounded-t-lg max-w-[275px] h-[150px] w-full object-contain bg-black" src={t1} alt="" />
-									<div className="p-2 flex pn:max-sm:flex-col justify-between items-center px-2">
-										<div className='font-semibold pn:max-sm:'>Basic layout</div>
+								<div className="pm:max-pp:max-w-[275px] flex flex-col bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain bg-black" src={t1} alt="" />
+									<div className="p-2 flex justify-between items-center px-2">
+										<div className='font-semibold '>Basic layout</div>
 										<a target='_blank' href={`https://prosite.grovyo.com/lwozxip?id=${encodeURIComponent(id)}&temp=1`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 											Use
 										</a>
 									</div>
 								</div >
 
-								<div className="max-w-[275px] bg-white border flex flex-col border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-									<Image className="rounded-t-lg max-w-[275px] h-[150px] w-full object-contain bg-black" src={t2} alt="" />
+								<div className="pm:max-pp:max-w-[275px] bg-white border flex flex-col border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain bg-black" src={t2} alt="" />
 
 									<div className="p-2 flex justify-between px-2 items-center">
 										<div className='font-semibold'>Text</div>
@@ -47,8 +46,8 @@ const page = () => {
 										</a>
 									</div>
 								</div>
-								<div className="max-w-[275px] bg-white border flex flex-col border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-									<Image className="rounded-t-lg max-w-[275px] h-[150px] w-full object-contain bg-black" src={t3} alt="" />
+								<div className="pm:max-pp:max-w-[275px] bg-white border flex flex-col border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain bg-black" src={t3} alt="" />
 
 									<div className="p-2 flex justify-between px-2 items-center">
 										<div className='font-semibold'>Text</div>
@@ -58,8 +57,8 @@ const page = () => {
 										</a>
 									</div>
 								</div>
-								<div className="max-w-[275px] bg-white border flex flex-col border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-									<Image className="rounded-t-lg max-w-[275px] h-[150px] w-full object-contain bg-black" src={t4} alt="" />
+								<div className="pm:max-pp:max-w-[275px] bg-white border flex flex-col border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain bg-black" src={t4} alt="" />
 
 									<div className="p-2 flex justify-between px-2 items-center">
 										<div className='font-semibold'>Text</div>
@@ -69,8 +68,8 @@ const page = () => {
 										</a>
 									</div>
 								</div>
-								<div className="max-w-[275px] bg-white border flex flex-col border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-									<Image className="rounded-t-lg max-w-[275px] h-[150px] w-full object-contain bg-black" src={t5} alt="" />
+								<div className="pm:max-pp:max-w-[275px] bg-white border flex flex-col border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain bg-black" src={t5} alt="" />
 
 									<div className="p-2 flex justify-between px-2 items-center">
 										<div className='font-semibold'>Text</div>

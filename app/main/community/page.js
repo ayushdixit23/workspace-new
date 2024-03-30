@@ -29,7 +29,7 @@ function page() {
   const [deletecom] = useDeleteCommunityMutation();
   const handleDelete = async ({ dat, comid, index }) => {
     try {
-     
+
       const res = await deletecom({
         id,
         comid
@@ -91,27 +91,27 @@ function page() {
             </div>
             {comdata?.merged.length < 5 && <> {
               comdata?.merged?.length >= 2 && memberships === "Free" ?
-              <div className="sm:h-[60px] h-[40px] sm:w-[230px] w-[150px] relative flex justify-center items-center">
-              <Lottie
-              animationData={Flow}
-              width={200}
-              height={200}
-              loop={true}
-            />
-             <div onClick={() => setPop(true)} className="py-2 vs:max-pp:text-[12px] flex justify-center items-center gap-1 px-2.5 sm:px-5 font-medium absolute text-black rounded-xl ">
-                Create community
-                <FaCrown />
-              </div> 
-            </div> : 
+                <div className="sm:h-[60px] h-[40px] pp:w-[230px] w-[150px] relative flex justify-center items-center">
+                  <Lottie
+                    animationData={Flow}
+                    width={200}
+                    height={200}
+                    loop={true}
+                  />
+                  <div onClick={() => setPop(true)} className="py-2 vs:max-pp:text-[12px] flex justify-center items-center gap-1 px-2.5 sm:px-5 font-medium absolute text-black rounded-xl ">
+                    Create community
+                    <FaCrown />
+                  </div>
+                </div> :
                 <Link
                   href="/main/community/createCommunity"
                   className="py-2 vs:max-sm:text-[12px] flex justify-center items-center gap-1 border light:border-[#f1f1f1] px-2.5 sm:px-5 font-medium bg-white text-black rounded-xl dark:bg-[#323d4e] dark:text-white"
                 >
                   Create community
-                  <GoPlus className="tex"/>
+                  <GoPlus className="tex" />
                 </Link>
-               
-            
+
+
             }</>}
 
           </div>

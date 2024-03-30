@@ -127,7 +127,7 @@ export default function Store() {
     });
     toast.success("Product Deleted!");
     await refetch();
-    
+
   };
 
   const createCheck = () => {
@@ -244,9 +244,9 @@ export default function Store() {
         )}
 
       {checkstore?.exist && checkstore?.isverified === false ? (
-        <div className="h-full w-full rounded-xl ">
+        <div className="pn:max-sm:h-[70vh] h-[80vh] w-full rounded-xl ">
           <div className="flex flex-col justify-center items-center h-full">
-            <div className="text-2xl font-semibold pn:max-sm:text-xl px-2 dark:text-white">
+            <div className="md:text-2xl font-semibold pn:max-sm:text-lg sm:text-xl px-2 dark:text-white">
               Verification Process Underway
             </div>
             <Image src={verify} alt="image" className="max-w-[250px]" />
@@ -267,22 +267,22 @@ export default function Store() {
               </div>
 
               {memberships === "Free" &&
-              productdata?.collections?.length >= 1 ? (
-                 <div className="sm:h-[60px] h-[40px] sm:w-[230px] w-[150px] relative flex justify-center items-center">
-              <Lottie
-              animationData={Flow}
-              width={200}
-              height={200}
-              loop={true}
-            />
-           <div
-                  onClick={() => setPop(true)}
-                  className="py-2 flex justify-center items-center absolute gap-1 vs:max-pp:text-[12px] px-2.5 sm:px-5 font-medium text-black rounded-xl"
-                >
-                  {checkstore?.exist ? "Create Collection" : "Create Store"}
-                  <FaCrown />
-                </div>  
-            </div>
+                productdata?.collections?.length >= 1 ? (
+                <div className="sm:h-[60px] h-[40px] pp:w-[230px] w-[150px] relative flex justify-center items-center">
+                  <Lottie
+                    animationData={Flow}
+                    width={200}
+                    height={200}
+                    loop={true}
+                  />
+                  <div
+                    onClick={() => setPop(true)}
+                    className="py-2 flex justify-center items-center absolute gap-1 vs:max-pp:text-[12px] px-2.5 sm:px-5 font-medium text-black rounded-xl"
+                  >
+                    {checkstore?.exist ? "Create Collection" : "Create Store"}
+                    <FaCrown />
+                  </div>
+                </div>
               ) : checkstore?.validToCreateStore ? (
                 <Link
                   href={`/main/store?q=${checkstore?.q}`}
@@ -475,7 +475,7 @@ export default function Store() {
                             </div>
                             <div className="flex cursor-pointer justify-center items-center gap-2">
                               {memberships === "Free" &&
-                              d.products?.length >= 5 ? (
+                                d.products?.length >= 5 ? (
                                 <div
                                   onClick={() => {
                                     setPop(true);
