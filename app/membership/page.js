@@ -302,7 +302,6 @@ const Sample5 = () => {
 		try {
 
 			const res = await axios.post(`https://work.grovyo.xyz/api/v1/membershipbuy/${id}/${data.mid}`, { amount: amounttosend })
-
 			console.log(res.data)
 			const membershipId = res.data.memid
 			if (res.data.success) {
