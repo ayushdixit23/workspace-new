@@ -293,8 +293,8 @@ const Sample5 = () => {
 	const buyMembership = async (data) => {
 		console.log(data.mid)
 		try {
-			// const res = await axios.post(`https://work.grovyo.xyz/api/v1/membershipbuy/${id}/${data.mid}`, { amount: monthprice ? data.price.month : data.price.year })
-			const res = await axios.post(`http://192.168.84.86:7190/api/v1/membershipbuy/${id}/${data.mid}`, { amount: data.price.month })
+			const res = await axios.post(`https://work.grovyo.xyz/api/v1/membershipbuy/${id}/${data.mid}`, { amount: monthprice ? data.price.month : data.price.year })
+			// const res = await axios.post(`http://192.168.84.86:7190/api/v1/membershipbuy/${id}/${data.mid}`, { amount: data.price.month })
 			console.log(res.data)
 			const membershipId = res.data.memid
 			if (res.data.success) {

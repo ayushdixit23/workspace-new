@@ -20,7 +20,7 @@ const page = () => {
 	const decomid = path.split("/").pop()
 	const { id } = getData()
 	const comid = decryptaes(decomid)
-	const [open, setOpen] = useState(true)
+	const [open, setOpen] = useState(false)
 	const [topicId, setTopicId] = useState("")
 	const [loading, setLoading] = useState(false)
 	const [postid, setPostid] = useState(null)
