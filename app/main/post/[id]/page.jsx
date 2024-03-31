@@ -3,7 +3,7 @@ import { useDeleteCommunityMutation, useDeletePostsMutation, useGetAllPostQuery 
 import { formatISOStringToDMY, formatNumber, getData } from '@/app/utilsHelper/Useful'
 import { decryptaes } from '@/app/utilsHelper/security'
 import { usePathname } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GoPlus } from 'react-icons/go'
 import { BiUpArrowAlt } from 'react-icons/bi'
 import CreatePost from '../../community/CreatePost'
@@ -13,18 +13,26 @@ import { useDispatch } from 'react-redux'
 import PostsWeb from '@/app/componentsWorkSpace/PostsWeb'
 import toast from 'react-hot-toast'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
+import Cookies from 'js-cookie'
 
 const page = () => {
 	const path = usePathname()
 	const decomid = path.split("/").pop()
 	const { id } = getData()
 	const comid = decryptaes(decomid)
-	const [open, setOpen] = useState(false)
+	const [open, setOpen] = useState(true)
+	const [topicId, setTopicId] = useState("")
 	const [loading, setLoading] = useState(false)
 	const [postid, setPostid] = useState(null)
 	const dispatch = useDispatch()
 	const { data, refetch, isLoading } = useGetAllPostQuery({ comid }, { skip: !comid })
 	const [deletePost] = useDeletePostsMutation()
+
+	useEffect(() => {
+		const a = Cookies.get("topic")
+		const b = decryptaes(a)
+		setTopicId(b)
+	}, [])
 
 	const postDeletion = async () => {
 		try {
@@ -70,7 +78,7 @@ const page = () => {
 	return (
 		<>
 			{
-				open && <CreatePost id={id} comid={comid} open={open} setOpen={setOpen} refetch={refetch} />
+				open && <CreatePost id={id} topicId={topicId} comid={comid} open={open} setOpen={setOpen} refetch={refetch} />
 			}
 
 			<div className={`${open ? "pn:max-sm:hidden " : null}`}>
@@ -89,7 +97,7 @@ const page = () => {
 
 				{/* web */}
 
-				<div className='pn:max-sm:hidden min-h-[70vh] '>
+				<div className='pn:max-sm:hidden min-h-[70vh] overflow-x-scroll no-scrollbar '>
 					{
 						mergedData?.length > 0 ? <div className="bg-white dark:bg-[#273142] rounded-xl h-full sm:p-2 w-full">
 

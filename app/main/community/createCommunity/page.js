@@ -391,8 +391,8 @@ function page() {
         </div>
       </div>
 
-      <div suppressHydrationWarning className="grid pn:max-sm:text-sm grid-cols-1 p-3 dark:bg-[#273142] bg-white w-full">
-        <div className="flex justify-center sm:max-h-[80vh] sm:overflow-y-scroll sm:no-scrollbar w-full items-center ">
+      <div suppressHydrationWarning className="grid pn:max-sm:text-sm grid-cols-1 p-3 h-full lg:h-[83vh] dark:bg-[#273142] bg-white w-full">
+        <div className="flex justify-center sm:overflow-y-scroll sm:no-scrollbar sm:max-h-[85vh] lg:h-full  w-full items-center ">
           <div className="sm:w-[85%] w-full md:w-[75%]">
             <div className="flex flex-col justify-center items-center">
               <label
@@ -436,7 +436,7 @@ function page() {
                 className="hidden"
               />
             </div>
-            <div className="w-full grid sm:grid-cols-2 gap-7">
+            <div className="w-full grid sm:grid-cols-2 mt-2 gap-7">
               <div className="flex flex-col w-full gap-5">
                 <div className="flex flex-col gap-1">
                   <div className="text-[#606060] dark:text-white font-semibold text-sm">Community Name</div>

@@ -72,8 +72,8 @@ export const communityApi = Api.injectEndpoints({
       }),
     }),
     createPost: builder.mutation({
-      query: ({ id, comid, data }) => ({
-        url: `/postanything/${id}/${comid}`,
+      query: ({ id, comid, topicid, data }) => ({
+        url: `/postanything/${id}/${comid}/${topicid}`,
         method: "POST",
         body: data
       })

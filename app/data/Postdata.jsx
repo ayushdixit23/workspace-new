@@ -247,8 +247,8 @@ const Postdata = ({ analyticsdata, state }) => {
           //   </table>
           // </div>
           <div className="max-h-[300px] overflow-y-scroll no-scrollbar dark:text-white dark:border-2 dark:border-[#313d4f] dark:bg-[#273142] bg-white rounded-xl sm:p-2  w-full">
-            <Table className="text-sm">
-              <TableHeader className="dark:text-white dark:text-sm">
+            <Table className="text-sm hover:bg-none">
+              <TableHeader className="dark:text-white hover:bg-none dark:text-sm">
                 <TableRow>
                   <TableHead className="w-[180px]">Posts</TableHead>
                   {/* <TableHead className="text-center">Title</TableHead> */}

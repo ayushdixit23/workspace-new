@@ -11,15 +11,15 @@ const Member = ({ state, data, memberships }) => {
       {data > 0 ? (
         <div className="p-2 text-[#323743] pn:max-sm:h-[240px] relative text-sm dark:text-white flex flex-col font-medium">
           {/* {memberships === "Free" && <BlurredComponent />} */}
-          <div className="flex justify-between items-center dark:hover:bg-[#1F2937] hover:bg-[#f9f9f9] py-2 px-2 rounded-xl w-full">
+          <div className="flex justify-between items-center group dark:hover:bg-[#1F2937] hover:bg-[#f9f9f9] py-2 px-2 rounded-xl w-full">
             <div className="font-medium">Joined Members</div>
             <div className="flex justify-center items-center gap-2">
               <div>{totalmembers}</div>
               <div
                 onClick={() => {
-                  setMore(true);
+                  setMore(!more);
                 }}
-                className="text-[#688ffc] hover:text-[#5572c0]"
+                className="text-[#688ffc] hidden group-hover:block group-hover:duration-1000 hover:text-[#5572c0]"
               >
                 more info
               </div>
@@ -45,7 +45,7 @@ const Member = ({ state, data, memberships }) => {
               {memberships === "Free" ? < FaCrown className="bg-[#FFEB33] text-[#323d4e] rounded-full h-[25px] p-1.5 w-[25px] " /> : <div>{paidmember}</div>}
             </div>
           </div>
-          <div className="flex justify-between items-center mt-2 dark:hover:bg-[#1F2937] hover:bg-[#f9f9f9] py-2 px-2 rounded-xl w-full">
+          <div className="flex justify-between items-center mt-2 group dark:hover:bg-[#1F2937] hover:bg-[#f9f9f9] py-2 px-2 rounded-xl w-full">
             <div className="font-medium">Visitors</div>
 
             <div className="flex justify-center items-center gap-2">
@@ -53,9 +53,9 @@ const Member = ({ state, data, memberships }) => {
               <div>{visitors}</div>{" "}
               <div
                 onClick={() => {
-                  setMores(true);
+                  setMores(!mores);
                 }}
-                className="text-[#688ffc] hover:text-[#5572c0]"
+                className="text-[#688ffc] hidden group-hover:block group-hover:duration-1000 hover:text-[#5572c0]"
               >
                 more info
               </div>{" "}

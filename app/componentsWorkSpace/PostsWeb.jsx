@@ -19,6 +19,9 @@ const PostsWeb = ({ d, setPostid, setOpen, open, dispatch, postDeletion }) => {
 		}
 	}
 
+
+	console.log(d)
+
 	const dataToSave = {
 		id: d?.post?._id,
 		title: d?.post.title,

@@ -331,10 +331,10 @@ const page = () => {
 
             <div className="w-full sm:bg-white mb-[60px] sm:mb-0 dark:bg-[#273142] rounded-xl p-3">
               <div className="flex sm:flex-row flex-col justify-between items-center">
-                <div className="text-[#666666] dark:text-white pn:max-sm:text-center font-medium">
+                {/* <div className="text-[#666666] dark:text-white pn:max-sm:text-center font-medium">
                   You haven't met the criteria to apply for monetisation tool
                   access.
-                </div>
+                </div> */}
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 my-3 ">
                 <div className="flex flex-col gap-3 bg-white dark:bg-[#273142] dark:border-[#3d4654] dark:border shadow-sm py-4 px-3 rounded-xl sm:max-w-[450px]">
@@ -345,11 +345,11 @@ const page = () => {
                   </div>
                   {(count.com < 1 || count.post < 1 || !comData.store) &&
                     <div className="text-sm">
-                      To be eligible for creating a store or uploading products, users must first establish a community presence by creating and contributing at least one post in the community."
+                      Interested in selling products? Start by creating a community and posting something!
                     </div>}
                   {(count.com > 1 || count.post > 1 && !comData.store) &&
                     <div className="text-sm">
-                      "Great news! You're ready to start adding products to your store."
+                      "Congratulations! You can now add products in your Store."
                     </div>}
 
                   <div className="flex text-sm flex-col gap-3">
@@ -436,11 +436,11 @@ const page = () => {
                     </div>}
                   </div>
                   {(state1.members < 150 || state1.engagementrate < 10) && < div className="text-sm">
-                    To create a topic, meet criteria: 150 members, 10% engagement.
+                    Need more topics and power to earn? Reach 150+ members and maintain a 10% engagement rate!
                   </div>
                   }
                   {(state1.members > 150 && state1.engagementrate > 10 && state1.topics < 3) && < div className="text-sm">
-                    Congratulations 🎉, you can create a topic now !
+                    Congratulations🎉, You can now create a new topic
                   </div>
                   }
                   <div className="flex text-sm flex-col gap-3">
@@ -561,7 +561,8 @@ const page = () => {
                     </div>}
                   </div>
                   {(state2.members < 1000 || state2.engagementrate < 10 || state2.ismonetized === false) && < div className="text-sm">
-                    "Make money with ads on your community posts! Earn from ads that appear before, during, and after your videos on the watch page."
+
+                    Make money with ads on your posts! Earn from ads before, during, and after your content.
                   </div>}
 
                   {(state2.members >= 1000 && state2.engagementrate >= 10 && state2.ismonetized) ? <>
@@ -637,7 +638,7 @@ const page = () => {
 
                       {(state2.status == "rejected" && new Date(Date.now()) <= new Date(state2.reapplydate)) && <div>
                         <div>Reason: {state2.reason}</div>
-                        <div>You can reapply for monetisation on {formatISOStringToDMY(new Date(state2.reapplydate))}</div>
+                        <div>You can reapply for monetization on {formatISOStringToDMY(new Date(state2.reapplydate))}</div>
                       </div>}
                     </div>
                   }

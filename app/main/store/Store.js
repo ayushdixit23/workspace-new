@@ -169,15 +169,15 @@ export default function Store() {
             <div className="sm:font-medium sm:pl-4 text-[18px] animate-pulse px-10 py-4 bg-[#f2f2f2] dark:bg-[#273142] rounded-2xl text-[#8B8D97]"></div>
             <Link
               href="/main/store/addproduct"
-              className="vs:max-sm:hidden  animate-pulse px-10 py-4  bg-[#f2f2f2] dark:bg-[#273142] text-white rounded-2xl"
+              className="vs:max-sm:hidden animate-pulse px-10 py-4  bg-[#f2f2f2] dark:bg-[#273142] text-white rounded-2xl"
             ></Link>
           </div>
 
           <div className=" sm:grid-cols-4 w-full grid-cols-2 grid gap-2 pt-8 sm:pl-[4%] vs:max-sm:px-[2%] ">
-            <div className="sm:h-36 vs:max-sm:h-28  animate-pulse px-40 sm:w-[80%] rounded-3xl items-center flex justify-between md:px-10 vs:max-sm:px-2 bg-[#f2f2f2] dark:bg-[#273142] ring-1 ring-[#f9f9f9] "></div>
-            <div className="sm:h-36 vs:max-sm:h-28  animate-pulse px-40 sm:w-[80%] rounded-3xl items-center flex justify-between md:px-10 vs:max-sm:px-2 bg-[#f2f2f2] dark:bg-[#273142] ring-1 ring-[#f9f9f9] "></div>
-            <div className="sm:h-36 vs:max-sm:h-28  animate-pulse px-40 sm:w-[80%] rounded-3xl items-center flex justify-between md:px-10 vs:max-sm:px-2 bg-[#f2f2f2] dark:bg-[#273142] ring-1 ring-[#f9f9f9] "></div>
-            <div className="sm:h-36 vs:max-sm:h-28  animate-pulse px-40 sm:w-[80%] rounded-3xl items-center flex justify-between md:px-10 vs:max-sm:px-2 bg-[#f2f2f2] dark:bg-[#273142] ring-1 ring-[#f9f9f9] "></div>
+            <div className="sm:h-36 vs:max-sm:h-28  animate-pulse px-40 sm:w-[80%] rounded-3xl items-center flex justify-between md:px-10 vs:max-sm:px-2 bg-[#f2f2f2] dark:bg-[#273142] light:ring-1 light:ring-[#f9f9f9] "></div>
+            <div className="sm:h-36 vs:max-sm:h-28  animate-pulse px-40 sm:w-[80%] rounded-3xl items-center flex justify-between md:px-10 vs:max-sm:px-2 bg-[#f2f2f2] dark:bg-[#273142] light:ring-1 light:ring-[#f9f9f9] "></div>
+            <div className="sm:h-36 vs:max-sm:h-28  animate-pulse px-40 sm:w-[80%] rounded-3xl items-center flex justify-between md:px-10 vs:max-sm:px-2 bg-[#f2f2f2] dark:bg-[#273142] light:ring-1 light:ring-[#f9f9f9] "></div>
+            <div className="sm:h-36 vs:max-sm:h-28  animate-pulse px-40 sm:w-[80%] rounded-3xl items-center flex justify-between md:px-10 vs:max-sm:px-2 bg-[#f2f2f2] dark:bg-[#273142] light:ring-1 light:ring-[#f9f9f9] "></div>
           </div>
 
           <div className="pt-4">

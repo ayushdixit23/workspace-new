@@ -10,7 +10,7 @@ import { useCreatePostMutation, useEditPostsMutation } from '@/app/redux/apirout
 import toast, { Toaster } from 'react-hot-toast'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
-const CreatePost = ({ id, comid, open, setOpen, refetch }) => {
+const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 	const [post, setPost] = useState({
 		title: "",
 		desc: "",
@@ -24,6 +24,7 @@ const CreatePost = ({ id, comid, open, setOpen, refetch }) => {
 	const [loading, setLoading] = useState(false)
 	const [editData, setEditData] = useState(null)
 	const [edit, setEdit] = useState(false)
+	const [thumbnail, setThumbail] = useState(false)
 	const [postAnything] = useCreatePostMutation()
 	const [editpost] = useEditPostsMutation()
 
@@ -38,6 +39,7 @@ const CreatePost = ({ id, comid, open, setOpen, refetch }) => {
 			data.append("title", post.title)
 			data.append("desc", post.desc)
 			data.append("tags", post.tags)
+			data.append("thumbnail", thumbnail)
 			post.image.forEach((d) => {
 				data.append("image", d)
 			})
@@ -47,6 +49,7 @@ const CreatePost = ({ id, comid, open, setOpen, refetch }) => {
 			const res = await postAnything({
 				id,
 				comid,
+				topicid: topicId,
 				data
 			})
 			if (res.data.success) {
@@ -56,33 +59,56 @@ const CreatePost = ({ id, comid, open, setOpen, refetch }) => {
 			setOpen(false)
 			setLoading(false)
 		} catch (error) {
-	
+
 			setLoading(false)
 		} finally {
 			setLoading(false)
 		}
 	}
 
+	let isVideo = true
+
 	const handleImage = (e) => {
 		const files = e.target.files;
 		const newMedia = Array.from(files);
 		const maxSlots = 4;
 
-		setPost((prevPost) => {
-			const combinedMedia = [...prevPost.image, ...prevPost.video, ...newMedia];
-			const media = combinedMedia.slice(0, maxSlots);
+		if (post.video.length == 0 && isVideo) {
 
-			const existingVideos = prevPost.video.filter((video) => typeof video === 'string' && video.startsWith(posturl));
-			const existingImages = prevPost.image.filter((image) => typeof image === 'string' && image.startsWith(posturl));
+			if (e.target.files[0].type.startsWith("video")) {
+				setThumbail(true)
+			}
 
+			setPost((prevPost) => {
+				const combinedMedia = [...prevPost.image, ...prevPost.video, ...newMedia];
+				const media = combinedMedia.slice(0, maxSlots);
 
-			return {
-				...prevPost,
-				image: [...existingImages, ...media.filter((file) => file.type && file.type.startsWith('image/')).map((file) => file)],
-				video: [...existingVideos, ...media.filter((file) => file.type && file.type.startsWith('video/')).map((file) => file)],
-			};
-		});
+				const existingVideos = prevPost.video.filter((video) => typeof video === 'string' && video.startsWith(posturl));
+				const existingImages = prevPost.image.filter((image) => typeof image === 'string' && image.startsWith(posturl));
+
+				return {
+					...prevPost,
+					image: [...existingImages, ...media.filter((file) => file.type && file.type.startsWith('image/')).map((file) => file)],
+					video: [...existingVideos, ...media.filter((file) => file.type && file.type.startsWith('video/')).map((file) => file)],
+				};
+			});
+			isVideo = false
+		} else {
+			setPost((prevPost) => {
+				const combinedMedia = [...prevPost.image, ...newMedia];
+				const media = combinedMedia.slice(0, maxSlots);
+				const existingImages = prevPost.image.filter((image) => typeof image === 'string' && image.startsWith(posturl));
+
+				return {
+					...prevPost,
+					image: [...existingImages, ...media.filter((file) => file.type && file.type.startsWith('image/')).map((file) => file)],
+				};
+			});
+		}
+
 	};
+
+	console.log(thumbnail, "thumbnail")
 
 
 	const handleTagsRemove = (indexToRemove) => {
@@ -105,6 +131,7 @@ const CreatePost = ({ id, comid, open, setOpen, refetch }) => {
 			data.append("title", post.title)
 			data.append("desc", post.desc)
 			data.append("tags", post.tags)
+			data.append("thumbnail", thumbnail)
 			post.image.forEach((d) => {
 				data.append("image", d)
 			})
@@ -218,14 +245,6 @@ const CreatePost = ({ id, comid, open, setOpen, refetch }) => {
 							{
 								(post.image.length || post.video.length) > 0 && <>
 									<div className='flex items-center flex-wrap gap-2'>
-										{post.image.map((d, i) => (
-											<div key={i} className='relative w-[100px] h-[100px]'>
-												<img src={typeof d === "string" ? d : URL.createObjectURL(d)} width={100} height={100} alt="image" className="rounded-lg w-[100px] h-[100px]" />
-
-												<div onClick={() => handleMediaRemove(i, "image")} className="absolute cursor-pointer top-0 right-0 p-1"><RxCross2 /></div>
-											</div>
-										))}
-
 										{
 											post.video.map((d, i) => (
 												<div key={i} className='relative w-[100px] h-[100px]'>
@@ -236,6 +255,14 @@ const CreatePost = ({ id, comid, open, setOpen, refetch }) => {
 												</div>
 											))
 										}
+										{post.image.map((d, i) => (
+											<div key={i} className='relative w-[100px] h-[100px]'>
+												<img src={typeof d === "string" ? d : URL.createObjectURL(d)} width={100} height={100} alt="image" className="rounded-lg w-[100px] h-[100px]" />
+
+												<div onClick={() => handleMediaRemove(i, "image")} className="absolute cursor-pointer top-0 right-0 p-1"><RxCross2 /></div>
+											</div>
+										))}
+
 									</div>
 									<div>{Number(post.image.length) + Number(post.video.length)}/4 files uploaded</div>
 								</>
@@ -268,7 +295,16 @@ const CreatePost = ({ id, comid, open, setOpen, refetch }) => {
 									<input
 										value={post.sampletags} onChange={(e) => setPost({ ...post, sampletags: e.target.value })}
 										type="text" className="p-1.5 px-3 bg-transparent outline-none rounded-lg w-full" placeholder="Enter Hastags" />
-									<button onClick={() => setPost({ ...post, tags: [...post.tags, post.sampletags], sampletags: "" })} className='flex justify-center items-center p-2 rounded-r-lg text-[#2461FD] dark:bg-[#3d4654] dark:text-white bg-[#F0F4FF]'>
+									<button onClick={() => {
+										if (!post.sampletags) {
+											return
+										}
+										setPost({
+											...post, tags: [
+												...post.tags, post.sampletags], sampletags: ""
+										})
+									}
+									} className='flex justify-center items-center p-2 rounded-r-lg text-[#2461FD] dark:bg-[#3d4654] dark:text-white bg-[#F0F4FF]'>
 										<div><MdAdd /></div>
 										<div>Add</div>
 									</button>

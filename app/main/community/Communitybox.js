@@ -13,6 +13,8 @@ function Communitybox({ data, id, index, handleDelete }) {
   const dispatch = useDispatch()
   const [comDelete, setComDelete] = useState(false)
 
+  console.log(data)
+
   const tosetCookie = {
     dps: data.dps?.trim(),
     title: data?.c?.title,
@@ -93,7 +95,9 @@ function Communitybox({ data, id, index, handleDelete }) {
 
                 }}>Edit</Link>
                 <button onClick={() => { setComDelete(true), setOpen(false), dispatch(LoadThis(true)) }}>Delete</button>
-                <Link href={`/main/post/${encryptaes(data?.c?._id)}`}>Posts</Link>
+                <Link onClick={() => {
+                  Cookies.set("topic", encryptaes(data?.topicId?.topicid))
+                }} href={`/main/post/${encryptaes(data?.c?._id)}`}>Posts</Link>
               </div>
             </div>
           </div>
@@ -112,7 +116,9 @@ function Communitybox({ data, id, index, handleDelete }) {
                     Cookies.set("cmdyd", encryptaes(data?.c?._id))
                   }}>Edit</Link>
                   <button onClick={() => { setComDelete(true); setOpen(false) }}>Delete</button>
-                  <Link href={`/main/post/${encryptaes(data?.c?._id)}`}>Posts</Link>
+                  <Link onClick={() => {
+                    Cookies.set("topic", encryptaes(data?.topicId?.topicid))
+                  }} href={`/main/post/${encryptaes(data?.c?._id)}`}>Posts</Link>
                 </div>
               </div>
             </div>

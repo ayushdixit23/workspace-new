@@ -320,7 +320,7 @@ function page() {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white dark:bg-[#273142] pt-3 my-1 rounded-2xl">
+                {/* <div className="bg-white dark:bg-[#273142] pt-3 my-1 rounded-2xl">
                   <div className="flex items-center">
                     <input
                       className="p-1 m-1"
@@ -357,6 +357,16 @@ function page() {
                       </div>
                     </div>
                   </div>
+
+                </div> */}
+
+                <div className="bg-white dark:bg-[#273142] text-[#b6acac] pt-3 my-1 text-xs rounded-2xl">
+                  Note:
+                  <ul className="flex flex-col list-disc mt-1 px-3 gap-1">
+                    <li>The Discounted Price will be the actual price in which your product will be sold</li>
+                    <li>The Discounted Price should be less than that of M.R.P</li>
+                    <li>The Price of the product must be inclusive of GST</li>
+                  </ul>
 
                 </div>
               </div>
@@ -450,10 +460,10 @@ function page() {
                         }}
                       />
                       <div className="relative flex justify-center items-center col-span-2 rounded-lg bg-[#F4F5F7] dark:bg-[#323d4e] w-full">
-                        <div className="w-full  flex justify-between items-end p-2 sm:max-w-[250px] bg-[#F4F5F7] dark:bg-[#323d4e] rounded-lg">
+                        <div onClick={() => setProductInfo({ ...productInfo, shipping: !productInfo.shipping })} className="w-full  flex justify-between items-end p-2 sm:max-w-[250px] bg-[#F4F5F7] dark:bg-[#323d4e] rounded-lg">
                           <div>{productInfo.weightType}</div>
                           {
-                            productInfo.shipping ? <IoChevronUpSharp onClick={() => setProductInfo({ ...productInfo, shipping: false })} className="text-lg " /> : <IoChevronDownSharp onClick={() => setProductInfo({ ...productInfo, shipping: true })} className="text-lg " />
+                            productInfo.shipping ? <IoChevronUpSharp className="text-lg " /> : <IoChevronDownSharp onClick={() => setProductInfo({ ...productInfo, shipping: true })} className="text-lg " />
                           }
 
                           <div className={`${productInfo.shipping ? "absolute top-10 sm:max-w-[250px] left-0 w-full bg-white dark:bg-[#273142] rounded-lg p-3 shadow-md" : "hidden"} `}>
