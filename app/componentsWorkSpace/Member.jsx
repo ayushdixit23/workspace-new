@@ -11,7 +11,7 @@ const Member = ({ state, data, memberships }) => {
       {data > 0 ? (
         <div className="p-2 text-[#323743] pn:max-sm:h-[240px] relative text-sm dark:text-white flex flex-col font-medium">
           {/* {memberships === "Free" && <BlurredComponent />} */}
-          <div className="flex justify-between items-center group dark:hover:bg-[#1F2937] hover:bg-[#f9f9f9] py-2 px-2 rounded-xl w-full">
+          <div className="flex justify-between items-center group dark:hover:bg-[#1F2937] overflow-hidden hover:bg-[#f9f9f9] py-2 px-2 rounded-xl w-full">
             <div className="font-medium">Joined Members</div>
             <div className="flex justify-center items-center gap-2">
               <div>{totalmembers}</div>
@@ -19,7 +19,7 @@ const Member = ({ state, data, memberships }) => {
                 onClick={() => {
                   setMore(!more);
                 }}
-                className="text-[#688ffc] hidden group-hover:block group-hover:duration-1000 hover:text-[#5572c0]"
+                className="text-[#688ffc] -mr-20 group-hover:mr-0 group-hover:duration-1000 hover:text-[#5572c0]"
               >
                 more info
               </div>
@@ -55,10 +55,10 @@ const Member = ({ state, data, memberships }) => {
                 onClick={() => {
                   setMores(!mores);
                 }}
-                className="text-[#688ffc] hidden group-hover:block group-hover:duration-1000 hover:text-[#5572c0]"
+                className="text-[#688ffc] -mr-20 group-hover:mr-0 group-hover:duration-1000 hover:text-[#5572c0]"
               >
                 more info
-              </div>{" "}
+              </div>
             </div>
           </div>
           <div

@@ -1,11 +1,10 @@
 "use client"
-import { useDeleteCommunityMutation, useDeletePostsMutation, useGetAllPostQuery } from '@/app/redux/apiroutes/community'
-import { formatISOStringToDMY, formatNumber, getData } from '@/app/utilsHelper/Useful'
+import { useDeletePostsMutation, useGetAllPostQuery } from '@/app/redux/apiroutes/community'
+import {  getData } from '@/app/utilsHelper/Useful'
 import { decryptaes } from '@/app/utilsHelper/security'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { GoPlus } from 'react-icons/go'
-import { BiUpArrowAlt } from 'react-icons/bi'
 import CreatePost from '../../community/CreatePost'
 import Loader from '@/app/data/Loader'
 import NoPost from '@/app/componentsWorkSpace/NoPost'
@@ -101,8 +100,8 @@ const page = () => {
 					{
 						mergedData?.length > 0 ? <div className="bg-white dark:bg-[#273142] rounded-xl h-full sm:p-2 w-full">
 
-							<table className="w-full text-sm text-left rtl:text-right min-w-[1200px]  text-gray-500 dark:text-gray-400">
-								<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+							<table className="w-full text-sm text-left rtl:text-right min-w-[1200px] text-gray-500 dark:text-gray-400">
+								<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 rounded-xl dark:text-gray-400">
 									<tr>
 										<th scope="col" className="px-6 py-3">
 											Posts

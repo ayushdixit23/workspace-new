@@ -392,7 +392,7 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-end items-center sm:items-end sm:hidden w-full sm:w-[85%] mt-2 mb-3 gap-2">
+        <div className="flex flex-col justify-end items-center sm:items-end sm:hidden w-full sm:w-[85%] mt-2 sm:mb-3 mb-10 gap-2">
           <div
             className="h-full text-white bg-red-600 rounded-2xl pn:max-sm:w-[90%] py-2 sm:px-6 flex justify-center items-center"
             onClick={() => setOpen(true)}

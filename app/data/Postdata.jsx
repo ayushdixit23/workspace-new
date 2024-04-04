@@ -27,7 +27,7 @@ const Postdata = ({ analyticsdata, state }) => {
           ).length === 0 ? (
           <NoPost id={encryptaes(state.id)} setOpen={false} />
         ) : (
-          <div className="overflow-y-scroll dark:text-white dark:border-2 dark:border-[#313d4f] dark:bg-[#273142] rounded-xl bg-white no-scrollbar max-h-[300px] ">
+          <div className="overflow-y-scroll dark:text-white dark:bg-[#273142] rounded-xl bg-white no-scrollbar max-h-[300px] ">
             {analyticsdata?.postmerged?.filter((f) => f?.kind !== "poll")
               ?.filter((w) => w?.community?.title === state.name)
               ?.map((d, i, arr) => (
@@ -246,7 +246,7 @@ const Postdata = ({ analyticsdata, state }) => {
           //     </tbody>
           //   </table>
           // </div>
-          <div className="max-h-[300px] overflow-y-scroll no-scrollbar dark:text-white dark:border-2 dark:border-[#313d4f] dark:bg-[#273142] bg-white rounded-xl sm:p-2  w-full">
+          <div className="max-h-[300px] overflow-y-scroll no-scrollbar dark:text-white dark:bg-[#273142] bg-white rounded-xl sm:p-2  w-full">
             <Table className="text-sm hover:bg-none">
               <TableHeader className="dark:text-white hover:bg-none dark:text-sm">
                 <TableRow>

@@ -215,7 +215,7 @@ function NavBar() {
                 ))}
 
               <span className=" sm:max-md:hidden sm:max-md:text-sm font-medium">
-                Dashboard
+                Overview
               </span>
             </Link>
 

@@ -203,7 +203,7 @@ function page() {
         email,
         password,
       });
-   
+
       if (res.data.success) {
         const a = await waitkrnevalafunc(res.data);
         if (a === true) {
@@ -285,7 +285,7 @@ function page() {
                 const reref = ref(database, `/qr/${strignref.current}/`);
                 remove(reref)
                   .then(() => {
-                   
+
                     setLoadingqr(false);
                   })
                   .catch((error) => {

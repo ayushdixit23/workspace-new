@@ -6,7 +6,7 @@ const Popularity = ({ state }) => {
     ((state.popularity ? state.popularity : 0) / 100) * 180 - 90;
   return (
     <>
-      <div className="rounded-xl w-full p-3 max-h-[300px] sm:max-h-[220px] dark:bg-[#323d4e] dark:border-[#3d4654] dark:border-2 bg-white flex flex-col gap-3 flex-grow sm:bg-[#F9F9F9]">
+      <div className="rounded-xl w-full p-3 max-h-[300px] sm:max-h-[220px] dark:bg-[#323d4e] bg-white flex flex-col gap-3 flex-grow sm:bg-[#F9F9F9]">
         <div className="flex justify-between items-center p-1 px-3">
           <div className="font-semibold">Popularity</div>
           <div className="text-2xl font-bold">

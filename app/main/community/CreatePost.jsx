@@ -108,9 +108,6 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 
 	};
 
-	console.log(thumbnail, "thumbnail")
-
-
 	const handleTagsRemove = (indexToRemove) => {
 		setPost({ ...post, tags: [...post.tags.filter((_, i) => i !== indexToRemove)] })
 	};
@@ -337,3 +334,33 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 }
 
 export default CreatePost
+
+
+{/* <div className='h-[220px] dark:border-[#fff] w-full border p-2 rounded-lg flex flex-col justify-center items-center'>
+<div className='p-5 bg-[#F0F4FF] rounded-full'>
+	<GrUploadOption className='text-4xl text-[#379AE6] font-thin' />
+</div>
+
+<div className='text-center mt-2 flex justify-center items-center flex-col'>
+	<div className='font-medium'><span className='text-[#379AE6]'>Click to choose file</span> or drag and drop.</div>
+	<div className='text-sm text-[#6F7787]'>Your ideas will be private until you publish them.</div>
+</div>
+</div> */}
+
+// <div className='h-[220px] dark:border-[#fff] w-full border p-2 rounded-lg flex flex-col justify-center items-center'>
+// 	<div className='p-5 bg-[#F0F4FF] rounded-full'>
+// 		<GrUploadOption className='text-4xl text-[#379AE6] font-thin' />
+// 	</div>
+
+// 	<div className='text-center mt-2 flex justify-center items-center flex-col'>
+// 		<div className='font-medium'><span className='text-[#379AE6]'>Upload Thumbnail</span> for Video.</div>
+// 		<div className='text-sm text-[#6F7787]'>Your ideas will be private until you publish them.</div>
+// 	</div>
+// </div>
+
+{/* <div className='h-[220px] dark:border-[#fff] w-full border p-2 rounded-lg flex flex-col justify-center items-center'>
+	<div className='p-5 bg-[#F0F4FF] rounded-full'>
+		<FaCheck className=" text-xl text-green-600" />
+	</div>
+
+</div> */}
