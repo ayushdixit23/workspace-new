@@ -11,12 +11,13 @@ import {
 } from 'recharts';
 
 const Charts = ({ data }) => {
-	console.log(data, "ds")
+
 	function getDeviceWidth() {
 		return window.screen.width;
 	}
 
 	const reversedData = data.reverse()
+
 	const calculateYAxisDomain = (data) => {
 		const allValues = data.reduce((acc, entry) => {
 			const membersValue = parseInt(entry.members);
@@ -39,7 +40,7 @@ const Charts = ({ data }) => {
 	};
 
 	return (
-		<div className='w-full h-full z-10'>
+		<div className='w-full h-full'>
 			<ResponsiveContainer width="100%" height={300}  >
 				<BarChart className='w-full relative -left-9 sm:-left-7 top-3' width={730} height={250} data={reversedData}>
 					<CartesianGrid strokeDasharray="3" vertical={false} />

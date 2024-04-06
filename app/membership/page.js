@@ -9,6 +9,9 @@ import { getItemSessionStorage, storeInSessionStorage } from "../utilsHelper/Tok
 import toast, { Toaster } from "react-hot-toast";
 import { WiStars } from "react-icons/wi";
 // import Cookies from "js-cookie";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+import membership from "../assets/image/membership.json"
 
 
 const Sample5 = () => {
@@ -16,7 +19,7 @@ const Sample5 = () => {
 	const [Razorpay] = useRazorpay()
 	const { id, fullname } = getData()
 	const [popup, setPopup] = useState(true)
-	const sessionId = getItemSessionStorage()
+	const [memberPop, setMemberPop] = useState(false)
 	const [ai, setAi] = useState({
 		free: "",
 		pro: "",
@@ -302,6 +305,7 @@ const Sample5 = () => {
 		try {
 
 			const res = await axios.post(`https://work.grovyo.xyz/api/v1/membershipbuy/${id}/${data.mid}`, { amount: amounttosend })
+			// const res = await axios.post(`http://localhost:7190/api/v1/membershipbuy/${id}/${data.mid}`, { amount: amounttosend })
 			console.log(res.data)
 			const membershipId = res.data.memid
 			if (res.data.success) {
@@ -313,6 +317,7 @@ const Sample5 = () => {
 					"description": `Buying Membership of ${data.mainTitle}`,
 					"order_id": res?.data?.oid,
 					"handler": async function (response) {
+						setMemberPop(true)
 						const paymentMethod = response?.method;
 						const data = {
 							paymentMethod,
@@ -328,6 +333,9 @@ const Sample5 = () => {
 							orderid: res.data?.order,
 							data
 						})
+						setTimeout(() => {
+							setMemberPop(false)
+						}, 1000)
 
 						if (resp.data.success) {
 							localStorage.removeItem(`excktn`)
@@ -335,6 +343,9 @@ const Sample5 = () => {
 							storeInSessionStorage(resp.data.sessionId);
 							localStorage.setItem(`excktn`, resp.data.access_token)
 							localStorage.setItem(`frhktn`, resp.data.refresh_token)
+							setTimeout(() => {
+								setMemberPop(false)
+							}, 2000)
 							router.push("/main/dashboard")
 						}
 					},
@@ -375,8 +386,22 @@ const Sample5 = () => {
 	// 	fetchmemberShip()
 	// }, [])
 
+
 	return (
 		<>
+
+			{
+				memberPop && <div className="fixed inset-0 w-screen z-50 flex justify-center items-center h-screen bg-black/50">
+					<div className="bg-white dark:bg-[#273142] w-[50%] rounded-xl">
+						<Lottie animationData={membership}></Lottie>
+						<div className="flex justify-center items-center">
+							<div className="relative text-2xl font-bold -top-16">Membership Purchased Successfully!</div>
+						</div>
+					</div>
+
+				</div>
+			}
+
 			<Toaster />
 			<div className="bg-white dark:bg-[#273142] min-h-[100vh] no-scrollbar flex items-center justify-center">
 				<div className="sm:mx-5 mx-2 pb-10">

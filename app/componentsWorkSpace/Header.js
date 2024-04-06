@@ -9,6 +9,7 @@ import { FaCrown } from "react-icons/fa";;
 // import { ModeToggle } from "./ModeToggle";
 import MembershipPopup from "./MembershipPopup";
 import Link from "next/link";
+import { MdVerified } from "react-icons/md";
 
 function Header() {
   const [prof, setProf] = useState(true);
@@ -45,13 +46,13 @@ function Header() {
           {/* {(pathname.startsWith("/main/dashboard") || pathname.startsWith("/main/community") || pathname.startsWith("/main/store")) && <div className="font-bold">Hey, {name}</div>} */}
 
           {/* {(pathname.startsWith("/main/dashboard") || pathname.startsWith("/main/community") || pathname.startsWith("/main/store")) && <div className="font-bold">Hey, {name}</div>} */}
-          {!(pathname == "/main/settings" || pathname == "/main/earnings") && <div className="font-bold">Hey, {name}</div>}
+          {!(pathname == "/main/settings" || pathname == "/main/earnings") && <div className="font-bold flex justify-center  gap-1.5  items-center">Hey, {name} {memberships !== "Free" && < MdVerified className="text-blue-700 hidden sm:block" />}</div>}
 
 
         </div>
         <div className="flex justify-center items-center gap-3">
 
-          {memberships == "Premium" &&
+          {/* {memberships == "Premium" &&
             <div className=" border-2 p-2 rounded-full text-white bg-blue-500
           flex justify-center items-center gap-1">
               <FaCrown />
@@ -74,7 +75,7 @@ function Header() {
               <div className="font-semibold text-sm">Pro</div>
             </div>
 
-          }
+          } */}
           {/* 
           <div className="flex justify-center
            items-center">
@@ -95,7 +96,7 @@ function Header() {
           <div className="sm:hidden">
 
             {pic !== null ? (
-              <Link href={"/main/settings"}>
+              <Link href={"/main/settings"} className="relative">
                 <Image
                   src={pic}
 
@@ -104,6 +105,7 @@ function Header() {
                   width={100}
                   className="h-10 w-10 cursor-pointer flex justify-center items-center rounded-[18px] ring-1 ring-white shadow-[0_3px_10px_2px_rgba(1,1,1,0.1)]"
                 />
+                {memberships !== "Free" && < MdVerified className="text-blue-700 absolute top-0 right-0 text-[17px] sm:hidden block" />}
               </Link>
             ) : (
               <div

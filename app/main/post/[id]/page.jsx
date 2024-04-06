@@ -1,6 +1,6 @@
 "use client"
 import { useDeletePostsMutation, useGetAllPostQuery } from '@/app/redux/apiroutes/community'
-import {  getData } from '@/app/utilsHelper/Useful'
+import { getData } from '@/app/utilsHelper/Useful'
 import { decryptaes } from '@/app/utilsHelper/security'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -96,11 +96,11 @@ const page = () => {
 
 				{/* web */}
 
-				<div className='pn:max-sm:hidden min-h-[70vh] overflow-x-scroll no-scrollbar '>
+				<div className='pn:max-sm:hidden min-h-[70vh] overflow-x-scroll w-full min-w-full container no-scrollbar '>
 					{
-						mergedData?.length > 0 ? <div className="bg-white dark:bg-[#273142] rounded-xl h-full sm:p-2 w-full">
+						mergedData?.length > 0 ? <div className="bg-white dark:bg-[#273142] overflow-x-scroll min-w-[1110px] rounded-xl h-full sm:p-2 w-full">
 
-							<table className="w-full text-sm text-left rtl:text-right min-w-[1200px] text-gray-500 dark:text-gray-400">
+							<table className="w-full text-sm text-left rtl:text-right min-w-full  text-gray-500 dark:text-gray-400">
 								<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 rounded-xl dark:text-gray-400">
 									<tr>
 										<th scope="col" className="px-6 py-3">
@@ -129,7 +129,7 @@ const page = () => {
 								<tbody>
 									{mergedData?.map((d, i) => (
 
-										<PostsWeb open={open} setOpen={setOpen} key={i} setPostid={setPostid} d={d} dispatch={dispatch} postDeletion={postDeletion} />
+										<PostsWeb open={open} setOpen={setOpen} key={i} setPostid={setPostid} d={d} dispatch={dispatch} postDeletion={postDeletion} userid={id} />
 
 
 									))}

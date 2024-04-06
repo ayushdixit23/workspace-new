@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { LoadThis } from '@/app/redux/slice/userData'
 import { BiUpArrowAlt } from 'react-icons/bi'
 
-const PostsWeb = ({ d, setPostid, setOpen, open, dispatch, postDeletion }) => {
+const PostsWeb = ({ d, userid, setPostid, setOpen, open, dispatch, postDeletion }) => {
 	const [showing, setShowing] = useState(false)
 	const [pop, setPop] = useState(false)
 	const handlePostId = (id) => {
@@ -18,9 +18,6 @@ const PostsWeb = ({ d, setPostid, setOpen, open, dispatch, postDeletion }) => {
 			console.log(error)
 		}
 	}
-
-
-	console.log(d)
 
 	const dataToSave = {
 		id: d?.post?._id,
@@ -77,7 +74,9 @@ const PostsWeb = ({ d, setPostid, setOpen, open, dispatch, postDeletion }) => {
 				<td className="text-center">
 					<div className='flex justify-center gap-3 relative items-center'>
 						<div>
-							<a href='https://ads.grovyo.com' className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a>
+							<a target='_blank' href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=2`
+							} className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a>
+							{/* <a href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=2`} className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a> */}
 						</div>
 						<div className="flex text-center  relative mr-3 justify-around items-center">
 							<BsThreeDotsVertical onClick={() => setShowing(!showing)} />
@@ -128,7 +127,10 @@ const PostsWeb = ({ d, setPostid, setOpen, open, dispatch, postDeletion }) => {
 							<div className="flex flex-col justify-start items-start gap-3 p-3">
 								<Link href={"/main/community/editCommunity"}>Edit</Link>
 								<div>
-									<a href='https://ads.grovyo.com' >Promote</a>
+									{/* <a href='https://ads.grovyo.com' >Promote</a> */}
+									<a target='_blank' href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=2`
+									} className=' rounded-2xl'>Promote</a>
+									{/* <a href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=2`} className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a> */}
 								</div>
 								<button onClick={() => handlePostId(d?.post?._id)}>Delete</button>
 							</div>

@@ -258,7 +258,7 @@ const page = () => {
         <div className="flex justify-between sm:hidden py-2 my-3 px-5 bg-white dark:bg-[#273142] rounded-2xl items-center">
           <div className="flex flex-col gap-2 justify-center">
             <div className="text-[#0066FF] sm:leading-snug sm:max-w-[80%] px-3 font-semibold text-xl sm:text-[26px]">
-              "Empower Your Community: <a className="text-white">Unlock Ads and Stores for Earning
+              "Empower Your Community: <a className="text-black dark:text-white">Unlock Ads and Stores for Earning
                 Potential!"</a>
             </div>
             <div className="flex items-center px-3 pb-3">
@@ -347,14 +347,15 @@ const page = () => {
                     <div className="text-sm">
                       Interested in selling products? Start by creating a community and posting something!
                     </div>}
-                  {(count.com > 1 || count.post > 1 && !comData.store) &&
+                  {(count.com > 1 || count.post > 1 && comData.store) &&
                     <div className="text-sm">
                       "Congratulations! You can now add products in your Store."
                     </div>}
 
+
                   <div className="flex text-sm flex-col gap-3">
                     {
-                      (comData?.store && count.com >= 1 && count.post >= 1) ?
+                      (comData?.store && count.com > 1 && count.post > 1) ?
                         (data?.length > 0 ?
                           <>
                             <div className="bg-[#f1f1f1] rounded-lg dark:bg-[#3d4654]">
@@ -363,6 +364,8 @@ const page = () => {
                                 <div>₹{data?.earningStats?.storeearning.toFixed(2)}</div>
                               </div>
                             </div>
+
+
 
                             <div className="text-sm">
                               <div className="flex justify-between items-center">
@@ -386,16 +389,19 @@ const page = () => {
                           </div>) :
 
                         <> {
-                          count.com < 1 || count.post < 1 ? <div className="flex text-sm flex-col gap-3">
+                          (((count.com <= 1 || count.post <= 1) && !comData?.store)) && <div className="flex text-sm flex-col gap-3">
                             <div className="px-2 flex flex-col gap-1">
                               <div className="flex justify-between items-center">
                                 <div className=" dark:text-white text-[#615E83]">Community</div>
+
                                 <div>{count.com}/1</div>
+
+
                               </div>
                               <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                                 <div
                                   style={{ width: `${(count.com / 1) * 100}%` }}
-                                  className="absolute top-0 left-0 rounded-r-xl  bg-[#40CAB0] h-full "
+                                  className={`absolute top-0 left-0 rounded-r-xl  ${count.com >= 1 ? "bg-[#40CAB0]" : "bg-[#398faf]"}  h-full `}
                                 ></div>
                               </div>
                             </div>
@@ -407,18 +413,21 @@ const page = () => {
                               <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                                 <div
                                   style={{ width: `${(count.post / 1) * 100}%` }}
-                                  className="absolute top-0 left-0 rounded-r-xl  bg-[#40CAB0] h-full "
+                                  className={`absolute top-0 left-0 rounded-r-xl  ${count.post >= 1 ? "bg-[#40CAB0]" : "bg-[#398faf]"}  h-full `}
                                 ></div>
                               </div>
                             </div>
                           </div>
-                            :
-                            <div className="flex justify-center items-center mt-4">
+                        }
+                          {(!comData?.store) && <div className="flex justify-center items-center mt-4">
+                            {comData?.communities.length > 0 ? <button disabled={count.com < 1 || count.post < 1} onClick={() => {
+                              router.push("/main/store")
+                            }} className={`${count.com < 1 || count.post < 1 ? "bg-[#878b8f]" : "bg-[#2D9AFF]"}   text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}>Create Store</button> :
                               <button onClick={() => {
-                                router.push("/main/store")
-                              }} className="bg-[#2D9AFF] text-white p-2 text-center font-semibold px-5 text-sm rounded-lg">Create Store</button>
-                            </div>
-                        }</>
+                                router.push("/main/community/createCommunity")
+                              }} className={` bg-[#2D9AFF] text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}>Create Community!</button>}
+                          </div>}
+                        </>
                     }
 
                   </div>
@@ -445,7 +454,9 @@ const page = () => {
                   }
                   <div className="flex text-sm flex-col gap-3">
 
-                    {state1.members >= 150 && state1.engagementrate >= 10 && state1.topics > 2 ?
+
+
+                    {(state1.members > 150 && state1.engagementrate > 10 && state1.topics > 2) ?
                       <>
                         <div className="bg-[#f1f1f1] rounded-lg dark:bg-[#3d4654]">
                           <div className="flex flex-col py-2 text-[14px] font-semibold gap-1 justify-center items-center">
@@ -475,50 +486,44 @@ const page = () => {
                       </>
                       :
                       <>
+
                         {
-                          (state1.engagementrate < 10 || state1.members < 150)
+                          (state1.engagementrate <= 10 || state1.members <= 150)
                           &&
-
-                          (comData?.communities?.length === 0 ? <>
-
-                            <div className="flex justify-center flex-grow h-full items-center mt-6">
-                              <Link className="bg-[#2D9AFF] text-white p-2 text-center font-semibold px-5 text-sm rounded-lg" href={"/main/community/createCommunity"}>Create Community</Link>
-                            </div>
-
-                          </> : < div className="flex text-sm flex-col gap-3">
+                          <div className="flex text-sm flex-col gap-3">
                             <div className="px-2 flex flex-col gap-1">
                               <div className="flex justify-between items-center">
                                 <div className=" dark:text-white text-[#615E83]">Members</div>
-                                <div>{state1.members}/150</div>
+                                <div>{state1.members ? state1.members : 0}/150</div>
                               </div>
                               <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                                 <div
                                   style={{ width: `${(state1.members / 150) * 100}%` }}
-                                  className="absolute top-0 left-0 rounded-r-xl  bg-[#40CAB0] h-full "
+                                  className={`absolute top-0 left-0 rounded-r-xl  ${state1.members >= 150 ? "bg-[#40CAB0]" : "bg-[#398faf]"}  h-full `}
                                 ></div>
                               </div>
                             </div>
                             <div className="px-2 flex flex-col gap-1">
                               <div className="flex justify-between items-center">
                                 <div className=" dark:text-white text-[#615E83]">Popularity Rate</div>
-                                <div className="">{state1.engagementrate} %</div>
+                                <div className="">{state1.engagementrate ? state1.engagementrate : 0}%</div>
                               </div>
                               <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                                 <div
                                   style={{ width: `${((state1.engagementrate) / 10) * 100}%` }}
-                                  className="absolute top-0 left-0 rounded-r-xl  bg-[#40CAB0] h-full "
+                                  className={`absolute top-0 left-0 rounded-r-xl  ${state1.engagementrate >= 10 ? "bg-[#40CAB0]" : "bg-[#398faf]"}  h-full `}
                                 ></div>
                               </div>
                             </div>
-                          </div>)
+                          </div>
                         }
-                        {state1.members >= 150 && state1.engagementrate >= 10 && < div className="flex justify-center mt-5 items-center">
+                        {(state1.topics < 3) && < div className="flex justify-center mt-4  items-center">
                           <div className="text-green-400">
-                            {state1.topics < 3 && <button onClick={() => {
+                            {state1.topics < 3 && <button disabled={state1.members < 150 || state1.engagementrate < 10} onClick={() => {
                               Cookies.set("comedta", JSON.stringify(tosetCookie))
                               Cookies.set("cmdyd", encryptaes(state1.id))
                               router.push("/main/community/editCommunity?topics=true")
-                            }} className="bg-[#2D9AFF] text-white p-2 text-center font-semibold px-5 text-sm rounded-lg">Create Topic!</button>}
+                            }} className={`${state1.members < 150 || state1.engagementrate < 10 ? "bg-[#878b8f]" : "bg-[#2D9AFF]"}   text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}>Create Topic!</button>}
                           </div>
                         </div>}
                       </>
@@ -581,14 +586,8 @@ const page = () => {
                   </>
                     :
                     <div className="flex text-sm flex-col gap-3">
-                      {(state2.members < 1000 || state2.engagementrate < 10) &&
-                        (comData?.communities?.length === 0 ? <>
-
-                          <div className="flex justify-center flex-grow h-full items-center mt-6">
-                            <Link className="bg-[#2D9AFF] text-white p-2 text-center font-semibold px-5 text-sm rounded-lg" href={"/main/community/createCommunity"}>Create Community</Link>
-                          </div>
-
-                        </> : <> <div className="px-2 flex flex-col gap-1">
+                      {(((state2.members <= 1000 || state2.engagementrate <= 10) && !state2.ismonetized)) &&
+                        <> <div className="px-2 flex flex-col gap-1">
                           <div className="flex justify-between items-center">
                             <div className=" dark:text-white text-[#615E83]">Members</div>
                             <div>{state2.members}/1000</div>
@@ -596,7 +595,7 @@ const page = () => {
                           <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                             <div
                               style={{ width: `${(state2.members / 1000) * 100}%` }}
-                              className="absolute top-0 left-0 rounded-r-xl  bg-[#40CAB0] h-full "
+                              className={`absolute top-0 left-0 rounded-r-xl  ${state2.members >= 1000 ? "bg-[#40CAB0]" : "bg-[#398faf]"}  h-full `}
                             ></div>
                           </div>
                         </div>
@@ -608,30 +607,30 @@ const page = () => {
                             <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                               <div
                                 style={{ width: `${((state2.engagementrate) / 10) * 100}%` }}
-                                className="absolute top-0 left-0 rounded-r-xl  bg-[#40CAB0] h-full "
+                                className={`absolute top-0 left-0 rounded-r-xl  ${state2.engagementrate >= 10 ? "bg-[#40CAB0]" : "bg-[#398faf]"}  h-full `}
                               ></div>
                             </div>
                           </div>
                         </>
-                        )}
+                      }
 
                       {state2.status == "pending" && <> {
-                        state2.members >= 1000 && state2.engagementrate >= 10 && !state2.ismonetized && < div className="flex justify-end items-center">
-                          <button className="bg-[#2D9AFF] text-white p-2 px-5 text-sm rounded-lg">Waiting...</button>
+                        state2.members >= 1000 && state2.engagementrate >= 10 && !state2.ismonetized && < div className="flex justify-center mt-4 items-center">
+                          <button className="bg-[#878b8f] text-white p-2 px-5 text-sm rounded-lg">Waiting...</button>
                         </div>
                       }</>
                       }
 
                       {state2.status == "rejected" && <> {
-                        state2.members >= 1000 && state2.engagementrate >= 10 && !state2.ismonetized && < div className="flex justify-end items-center">
+                        state2.members >= 1000 && state2.engagementrate >= 10 && !state2.ismonetized && < div className="flex justify-center mt-4 items-center">
                           <button disabled={(state2.status == "rejected" && new Date(Date.now()) <= new Date(state2.reapplydate))} onClick={() => sendRequestForMontenziation(id, state2.id)} className="bg-[#2D9AFF] text-white p-2 px-5 text-sm rounded-lg">{(state2.status == "rejected" && new Date(Date.now()) <= new Date(state2.reapplydate)) ? "Your Request Has Been Rejected" : "Apply for Monetization"}</button>
                         </div>
                       }</>
                       }
 
                       {!state2.status && <> {
-                        state2.members >= 1000 && state2.engagementrate >= 10 && !state2.ismonetized && < div className="flex justify-end items-center">
-                          <button onClick={() => sendRequestForMontenziation(id, state2.id)} className="bg-[#2D9AFF] text-white p-2 px-5 text-sm rounded-lg">Apply for Monetization</button>
+                        !state2.ismonetized && < div className="flex justify-center mt-4 items-center">
+                          <button disabled={state2.members < 1000 || state2.engagementrate < 10} onClick={() => sendRequestForMontenziation(id, state2.id)} className={`${state2.members < 1000 || state2.engagementrate < 10 ? "bg-[#878b8f]" : "bg-[#2D9AFF]"}  text-white p-2 px-5 text-sm rounded-lg`}>Apply for Monetization</button>
                         </div>
                       }</>
                       }

@@ -106,14 +106,14 @@ const MembershipPopup = ({ setPop }) => {
 
   return (
     <>
-      <div className="flex md:w-[80%] md:h-[85%] z-50 sm:max-h-[650px] h-screen w-[95%] bg-bggg bg-cover  mt-5 overflow-y-scroll no-scrollbar rounded-2xl  pt-[30px] sm:overflow-hidden sm:px-[40px]">
+      <div className="flex md:w-[80%] md:h-[85%] sm:max-h-[650px] h-screen w-[95%] bg-bggg bg-cover  mt-5 overflow-y-scroll no-scrollbar rounded-2xl  pt-[30px] sm:overflow-hidden sm:px-[40px]">
         <div className="min-w-full p-[10px]">
           <div className="flex justify-between items-center">
             <p className="text-[#fff] text-[20px] leading-[40px] font-semibold">
               Your Subscription
             </p>
-            <div onClick={() => { setPop(true); dispatch(LoadThis(true)) }}>
-              
+            <div onClick={() => { setPop(false); dispatch(LoadThis(false)) }}>
+
               <RxCross1 />
             </div>
           </div>

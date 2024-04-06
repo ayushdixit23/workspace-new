@@ -448,8 +448,8 @@ function page() {
                 </div>
                 <div className="flex flex-col gap-1">
                   <div className="flex justify-between">
-                  <div className="text-[#606060] dark:text-white  font-semibold text-sm">Community Description</div>
-                  <div>{createCommunity.desc.length}/500</div></div>
+                    <div className="text-[#606060] dark:text-white  font-semibold text-sm">Community Description</div>
+                    <div>{createCommunity.desc.length}/500</div></div>
                   <div className="flex flex-col gap-1">
                     <textarea
                       className="outline-none p-2 bg-[#F4F7FE] dark:bg-[#323d4e] w-[100%] no-scrollbar resize-y rounded-xl min-h-32 max-h-48 "
@@ -490,7 +490,7 @@ function page() {
                       <div onClick={() => setCreateCommunity({ ...createCommunity, type: "private" })} className={`p-2 px-4 ${createCommunity.type === "private" ? "bg-blue-600 text-white" : "text-black bg-white border-2 "} rounded-xl text-sm  font-semibold `}>Private</div>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col mb-10 sm:mb-0 gap-2">
                     <div className="flex justify-between items-center">
                       <div className="font-semibold text-sm dark:text-[#fff] text-[#606060]">Topics Names</div>
                       <div className="font-semibold text-sm dark:text-[#fff] text-[#606060]">Actions</div>
@@ -557,7 +557,7 @@ function page() {
         </div>
 
         <div className="flex justify-center mt-5 pn:max-sm:hidden gap-2 items-center">
-        <div onClick={() => setLeave(true)} className=" flex justify-center px-16 p-2 border border-[#979797] rounded-lg items-center">Discard</div>
+          <div onClick={() => setLeave(true)} className=" flex justify-center px-16 p-2 border border-[#979797] rounded-lg items-center">Discard</div>
           <button onClick={handleSubmit} className="bg-[#4880FF] text-white p-2 px-16 rounded-lg">Save</button>
         </div>
       </div >

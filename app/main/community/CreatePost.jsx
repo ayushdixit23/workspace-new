@@ -5,7 +5,7 @@ import { MdAdd, MdArrowBack } from 'react-icons/md'
 import { RxCross2 } from 'react-icons/rx'
 import { SlArrowRight } from "react-icons/sl"
 import { GrUploadOption } from "react-icons/gr";
-// import Image from 'next/image'
+import Image from 'next/image'
 import { useCreatePostMutation, useEditPostsMutation } from '@/app/redux/apiroutes/community'
 import toast, { Toaster } from 'react-hot-toast'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
@@ -24,9 +24,10 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 	const [loading, setLoading] = useState(false)
 	const [editData, setEditData] = useState(null)
 	const [edit, setEdit] = useState(false)
-	const [thumbnail, setThumbail] = useState(false)
+	const [thumbnail, setThumbnail] = useState(false)
 	const [postAnything] = useCreatePostMutation()
 	const [editpost] = useEditPostsMutation()
+	const [thumbnailImage, setThumbnailImage] = useState("")
 
 	const savePost = async () => {
 		if (!post.title || !post.image) {
@@ -40,6 +41,7 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 			data.append("desc", post.desc)
 			data.append("tags", post.tags)
 			data.append("thumbnail", thumbnail)
+			data.append("thumbnailImage", thumbnailImage)
 			post.image.forEach((d) => {
 				data.append("image", d)
 			})
@@ -66,47 +68,50 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 		}
 	}
 
-	let isVideo = true
-
 	const handleImage = (e) => {
 		const files = e.target.files;
 		const newMedia = Array.from(files);
 		const maxSlots = 4;
 
-		if (post.video.length == 0 && isVideo) {
+		setThumbnail(false)
 
-			if (e.target.files[0].type.startsWith("video")) {
-				setThumbail(true)
-			}
+		setPost((prevPost) => {
+			const combinedMedia = [...prevPost.image, ...prevPost.video, ...newMedia];
+			const media = combinedMedia.slice(0, maxSlots);
 
-			setPost((prevPost) => {
-				const combinedMedia = [...prevPost.image, ...prevPost.video, ...newMedia];
-				const media = combinedMedia.slice(0, maxSlots);
+			const existingVideos = prevPost.video.filter((video) => typeof video === 'string' && video.startsWith(posturl));
+			const existingImages = prevPost.image.filter((image) => typeof image === 'string' && image.startsWith(posturl));
 
-				const existingVideos = prevPost.video.filter((video) => typeof video === 'string' && video.startsWith(posturl));
-				const existingImages = prevPost.image.filter((image) => typeof image === 'string' && image.startsWith(posturl));
+			return {
+				...prevPost,
+				image: [...existingImages, ...media.filter((file) => file.type && file.type.startsWith('image/')).map((file) => file)],
+				video: [...existingVideos, ...media.filter((file) => file.type && file.type.startsWith('video/')).map((file) => file)],
+			};
+		});
 
-				return {
-					...prevPost,
-					image: [...existingImages, ...media.filter((file) => file.type && file.type.startsWith('image/')).map((file) => file)],
-					video: [...existingVideos, ...media.filter((file) => file.type && file.type.startsWith('video/')).map((file) => file)],
-				};
-			});
-			isVideo = false
+	}
+
+	const handleUpload = (e) => {
+		if (post.image.length == 0 && post.video.length == 1 && e.target.files[0].type.startsWith("image")) {
+			handleThumbnail(e)
 		} else {
-			setPost((prevPost) => {
-				const combinedMedia = [...prevPost.image, ...newMedia];
-				const media = combinedMedia.slice(0, maxSlots);
-				const existingImages = prevPost.image.filter((image) => typeof image === 'string' && image.startsWith(posturl));
-
-				return {
-					...prevPost,
-					image: [...existingImages, ...media.filter((file) => file.type && file.type.startsWith('image/')).map((file) => file)],
-				};
-			});
+			handleImage(e)
 		}
+	}
 
-	};
+	console.log(editData)
+
+	const handleThumbnail = (e) => {
+		try {
+			setThumbnail(true)
+			const image = e.target.files[0]
+			console.log("render")
+			setThumbnailImage(image)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 
 	const handleTagsRemove = (indexToRemove) => {
 		setPost({ ...post, tags: [...post.tags.filter((_, i) => i !== indexToRemove)] })
@@ -129,6 +134,7 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 			data.append("desc", post.desc)
 			data.append("tags", post.tags)
 			data.append("thumbnail", thumbnail)
+			data.append("thumbnailImage", thumbnailImage)
 			post.image.forEach((d) => {
 				data.append("image", d)
 			})
@@ -187,6 +193,12 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 					.filter((d) => d?.type?.startsWith("image/"))
 					.map((d) => posturl + d.content),
 			});
+
+			if (editData.post[0].thumbnail) {
+				setThumbnail(true)
+				setThumbnailImage(posturl + editData.post[0].thumbnail)
+			}
+
 		}
 	}, [editData])
 
@@ -236,7 +248,7 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 										</div>
 									</div>
 								</label>
-								<input accept="image/*, video/*" name='image' onChange={handleImage} type="file" id='postUpload' className='hidden w-full' />
+								<input accept="image/*, video/*" name='image' onChange={handleUpload} type="file" id='postUpload' className='hidden w-full' />
 							</div>
 							<div className='text-sm text-[#6F7787]'>We recommend high-quality .jpg, .png files less than 20MB or .mp4 files 100MB.</div>
 							{
@@ -259,7 +271,9 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 												<div onClick={() => handleMediaRemove(i, "image")} className="absolute cursor-pointer top-0 right-0 p-1"><RxCross2 /></div>
 											</div>
 										))}
-
+										{
+											thumbnailImage && <img src={typeof thumbnailImage === "string" ? thumbnailImage : URL.createObjectURL(thumbnailImage)} className="rounded-lg w-[100px] h-[100px]" />
+										}
 									</div>
 									<div>{Number(post.image.length) + Number(post.video.length)}/4 files uploaded</div>
 								</>

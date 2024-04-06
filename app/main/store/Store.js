@@ -198,6 +198,7 @@ export default function Store() {
   }
   return (
     <>
+      {console.log(productdata?.collections.length > 0)}
       {pop && (
         <div className="fixed inset-0 z-50 w-screen flex justify-center items-center bg-black/50 sm:h-screen">
           <MembershipPopup setPop={setPop} />
@@ -269,7 +270,7 @@ export default function Store() {
                     </div>
 
                     {memberships === "Free" &&
-                    productdata?.collections?.length >= 1 ? (
+                      productdata?.collections?.length >= 1 ? (
                       <div className="sm:h-[60px] h-[40px] pp:w-[230px] w-[150px] relative flex justify-center items-center">
                         <Lottie
                           animationData={Flow}
@@ -314,6 +315,138 @@ export default function Store() {
                   </div>
 
                   <div className="w-full grid grid-cols-1">
+                    {productdata?.collections.length > 0 && <>
+                      <div className="flex pn:max-sm:hidden justify-center p-3 w-full items-center gap-2 md:gap-5">
+                        <div className="flex sm:max-md:text-xs flex-col p-3 py-5 bg-white dark:bg-[#273142] rounded-xl gap-4 border light:border-[#f1f1f1] w-full">
+                          <div>
+                            <Image src={p3} alt="p1" />
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <div className="font-medium">Earnings</div>
+                            <div className="flex gap-1 text-xs  items-center">
+                              <div className="text-base font-medium">
+                                ₹{Number(getorderdata?.earnings).toFixed(2)}
+                              </div>
+                              {/* <div className="text-green-700">+0.00%</div> */}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex sm:max-md:text-xs flex-col p-3 py-5 bg-white dark:bg-[#273142] rounded-xl gap-4 border light:border-[#f1f1f1] w-full">
+                          <div>
+                            <Image src={p1} alt="p2" />
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <div className="font-medium">Customers</div>
+                            <div className="flex gap-1 text-xs  items-center">
+                              <div className="text-base font-medium">
+                                {getorderdata?.customers}
+                              </div>
+                              {/* <div className="text-green-700">+0.00%</div> */}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex flex-col p-3 sm:max-md:text-xs py-5 bg-white dark:bg-[#273142] rounded-xl gap-4 border light:border-[#f1f1f1] w-full">
+                          <div>
+                            <Image src={p2} alt="p2" />
+                          </div>
+                          <div className="flex justify-between items-center ">
+                            <div className="flex flex-col gap-1">
+                              <div className="font-medium">All Orders</div>
+                              <div className="flex gap-1 text-xs  items-center">
+                                <div className="text-base font-medium">
+                                  {getorderdata?.allorders}
+                                </div>
+                                {/* <div className="text-green-700">+0.00%</div> */}
+                              </div>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                              <div className="font-medium">Pending</div>
+                              <div className="flex gap-1 text-xs  items-center">
+                                <div className="text-base font-medium">
+                                  {getorderdata?.pendingOrders?.length}
+                                </div>
+                                {/* <div className="text-green-700">+0.00%</div> */}
+                              </div>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                              <div className="font-medium">Completed</div>
+                              <div className="flex gap-1 text-xs  items-center">
+                                <div className="text-base font-medium">
+                                  {getorderdata?.completedOrders?.length}
+                                </div>
+                                {/* <div className="text-green-700">+0.00%</div> */}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 sm:hidden p-2 w-full items-center gap-2 md:gap-7">
+                        <div className="flex flex-col bg-white dark:bg-[#273142] p-3 rounded-xl gap-2 border light:border-[#f1f1f1] w-full">
+                          <div>
+                            <Image src={p3} alt="p1" />
+                          </div>
+                          <div>
+                            <div className="font-medium">Earnings</div>
+                            <div className="flex gap-1 text-xs  items-center">
+                              <div className="text-base font-medium">
+                                ₹{Number(getorderdata?.earnings).toFixed(2)}
+                              </div>
+                              {/* <div className="text-green-700">+0.00%</div> */}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex flex-col bg-white dark:bg-[#273142] p-3 rounded-xl gap-2 border light:border-[#f1f1f1] w-full">
+                          <div>
+                            <Image src={p1} alt="p2" />
+                          </div>
+                          <div>
+                            <div className="font-medium">Customers</div>
+                            <div className="flex gap-1 text-xs  items-center">
+                              <div className="text-base font-medium">
+                                {getorderdata?.customers}
+                              </div>
+                              {/* <div className="text-green-700">+0.00%</div> */}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex col-span-2 bg-white dark:bg-[#273142] flex-col p-3 rounded-xl gap-3 border light:border-[#f1f1f1] w-full">
+                          <div>
+                            <Image src={p2} alt="p2" />
+                          </div>
+                          <div className="flex justify-between items-center ">
+                            <div>
+                              <div className="font-medium">All Orders</div>
+                              <div className="flex gap-1 text-xs  items-center">
+                                <div className="text-base font-medium">
+                                  {getorderdata?.allorders}
+                                </div>
+                                {/* <div className="text-green-700">+0.00%</div> */}
+                              </div>
+                            </div>
+                            <div>
+                              <div className="font-medium">Pending</div>
+                              <div className="flex gap-1 text-xs  items-center">
+                                <div className="text-base font-medium">
+                                  {getorderdata?.pendingOrders?.length}
+                                </div>
+                                {/* <div className="text-green-700">+0.00%</div> */}
+                              </div>
+                            </div>
+                            <div>
+                              <div className="font-medium">Completed</div>
+                              <div className="flex gap-1 text-xs  items-center">
+                                <div className="text-base font-medium">
+                                  {getorderdata?.completedOrders?.length}
+                                </div>
+                                {/* <div className="text-green-700">+0.00%</div> */}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </>}
                     <div className="rounded-2xl grid grid-cols-1 w-full">
                       {productdata?.collections.length > 0 ? (
                         <>
@@ -353,7 +486,7 @@ export default function Store() {
                                     </div>
                                     <div className="flex cursor-pointer justify-center items-center gap-2">
                                       {memberships === "Free" &&
-                                      d.products?.length >= 5 ? (
+                                        d.products?.length >= 5 ? (
                                         <div
                                           onClick={() => {
                                             setPop(true);
@@ -406,147 +539,16 @@ export default function Store() {
                         </>
                       ) : (
                         <>
-                 {  productdata?.collections.length > 0 && <>
-                          <div className="flex pn:max-sm:hidden justify-center p-3 w-full items-center gap-2 md:gap-5">
-                            <div className="flex sm:max-md:text-xs flex-col p-3 py-5 bg-white dark:bg-[#273142] rounded-xl gap-4 border light:border-[#f1f1f1] w-full">
-                              <div>
-                                <Image src={p3} alt="p1" />
-                              </div>
-                              <div className="flex flex-col gap-1">
-                                <div className="font-medium">Earnings</div>
-                                <div className="flex gap-1 text-xs  items-center">
-                                  <div className="text-base font-medium">
-                                    ₹{Number(getorderdata?.earnings).toFixed(2)}
-                                  </div>
-                                  {/* <div className="text-green-700">+0.00%</div> */}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="flex sm:max-md:text-xs flex-col p-3 py-5 bg-white dark:bg-[#273142] rounded-xl gap-4 border light:border-[#f1f1f1] w-full">
-                              <div>
-                                <Image src={p1} alt="p2" />
-                              </div>
-                              <div className="flex flex-col gap-1">
-                                <div className="font-medium">Customers</div>
-                                <div className="flex gap-1 text-xs  items-center">
-                                  <div className="text-base font-medium">
-                                    {getorderdata?.customers}
-                                  </div>
-                                  {/* <div className="text-green-700">+0.00%</div> */}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="flex flex-col p-3 sm:max-md:text-xs py-5 bg-white dark:bg-[#273142] rounded-xl gap-4 border light:border-[#f1f1f1] w-full">
-                              <div>
-                                <Image src={p2} alt="p2" />
-                              </div>
-                              <div className="flex justify-between items-center ">
-                                <div className="flex flex-col gap-1">
-                                  <div className="font-medium">All Orders</div>
-                                  <div className="flex gap-1 text-xs  items-center">
-                                    <div className="text-base font-medium">
-                                      {getorderdata?.allorders}
-                                    </div>
-                                    {/* <div className="text-green-700">+0.00%</div> */}
-                                  </div>
-                                </div>
-                                <div className="flex flex-col gap-1">
-                                  <div className="font-medium">Pending</div>
-                                  <div className="flex gap-1 text-xs  items-center">
-                                    <div className="text-base font-medium">
-                                      {getorderdata?.pendingOrders?.length}
-                                    </div>
-                                    {/* <div className="text-green-700">+0.00%</div> */}
-                                  </div>
-                                </div>
-                                <div className="flex flex-col gap-1">
-                                  <div className="font-medium">Completed</div>
-                                  <div className="flex gap-1 text-xs  items-center">
-                                    <div className="text-base font-medium">
-                                      {getorderdata?.completedOrders?.length}
-                                    </div>
-                                    {/* <div className="text-green-700">+0.00%</div> */}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        
-                          <div className="grid grid-cols-2 sm:hidden p-2 w-full items-center gap-2 md:gap-7">
-                            <div className="flex flex-col bg-white dark:bg-[#273142] p-3 rounded-xl gap-2 border light:border-[#f1f1f1] w-full">
-                              <div>
-                                <Image src={p3} alt="p1" />
-                              </div>
-                              <div>
-                                <div className="font-medium">Earnings</div>
-                                <div className="flex gap-1 text-xs  items-center">
-                                  <div className="text-base font-medium">
-                                    ₹{Number(getorderdata?.earnings).toFixed(2)}
-                                  </div>
-                                  {/* <div className="text-green-700">+0.00%</div> */}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="flex flex-col bg-white dark:bg-[#273142] p-3 rounded-xl gap-2 border light:border-[#f1f1f1] w-full">
-                              <div>
-                                <Image src={p1} alt="p2" />
-                              </div>
-                              <div>
-                                <div className="font-medium">Customers</div>
-                                <div className="flex gap-1 text-xs  items-center">
-                                  <div className="text-base font-medium">
-                                    {getorderdata?.customers}
-                                  </div>
-                                  {/* <div className="text-green-700">+0.00%</div> */}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="flex col-span-2 bg-white dark:bg-[#273142] flex-col p-3 rounded-xl gap-3 border light:border-[#f1f1f1] w-full">
-                              <div>
-                                <Image src={p2} alt="p2" />
-                              </div>
-                              <div className="flex justify-between items-center ">
-                                <div>
-                                  <div className="font-medium">All Orders</div>
-                                  <div className="flex gap-1 text-xs  items-center">
-                                    <div className="text-base font-medium">
-                                      {getorderdata?.allorders}
-                                    </div>
-                                    {/* <div className="text-green-700">+0.00%</div> */}
-                                  </div>
-                                </div>
-                                <div>
-                                  <div className="font-medium">Pending</div>
-                                  <div className="flex gap-1 text-xs  items-center">
-                                    <div className="text-base font-medium">
-                                      {getorderdata?.pendingOrders?.length}
-                                    </div>
-                                    {/* <div className="text-green-700">+0.00%</div> */}
-                                  </div>
-                                </div>
-                                <div>
-                                  <div className="font-medium">Completed</div>
-                                  <div className="flex gap-1 text-xs  items-center">
-                                    <div className="text-base font-medium">
-                                      {getorderdata?.completedOrders?.length}
-                                    </div>
-                                    {/* <div className="text-green-700">+0.00%</div> */}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
 
-                          </>}
-                          <div className=" p-3 w-full rounded-xl max-w-full flex flex-col gap-7 justify-center items-center h-[50vh] sm:h-[70vh]">
+                          <div className=" p-3 w-full rounded-xl max-w-full flex flex-col gap-7 justify-center items-center h-[70vh]">
                             <div className="max-w-full flex justify-center  rounded-xl overflow-hidden items-center">
-                              <Image src={collectionpic} alt="collection" className="max-h-[400px] w-full object-contain rounded-xl"/>
+                              <Image src={collectionpic} alt="collection" className="max-h-[400px] w-full object-contain rounded-xl" />
                             </div>
                             {/* <div className="flex justify-center rounded-xl font-semibold text-3xl items-center dark:bg-[#273142] bg-white h-full w-full">
                               No Collections Found
                             </div> */}
 
-                            <div className="font-semibold">Get Ready to get Create your first Collection</div>
+                            <div className="font-semibold text-center">Get Ready to get Create your first Collection</div>
                           </div>
                         </>
                       )}
@@ -557,8 +559,8 @@ export default function Store() {
             )}
           </>
         ) : (
-          <div className="flex flex-col justify-center items-center w-full h-[70vh] sm:h-[70vh]">
-            <div className="sm:w-auto h-full flex flex-col w-[90%] justify-center gap-4">
+          <div className="flex flex-col justify-center items-center w-full h-[80vh] sm:h-[70vh]">
+            <div className="sm:w-auto h-full flex mt-3 flex-col w-[90%] justify-center gap-4">
               <div className="text-[#70737D] font-semibold">
                 Ready to setup your store! Here's Your 3-Step Guide
               </div>
@@ -581,10 +583,10 @@ export default function Store() {
                               <div className=" dark:text-white text-[#615E83]">
                                 Community
                               </div>
-                              <div>{ checkstore?.community}/1</div>
+                              <div>{checkstore?.community}/1</div>
                             </div>
                             <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
-                              <div style={{width :checkstore?.community>=1 ? "100%":0}} className="absolute top-0 left-0 rounded-r-xl  bg-[#40CAB0] h-full "></div>
+                              <div style={{ width: checkstore?.community >= 1 ? "100%" : 0 }} className="absolute top-0 left-0 rounded-r-xl  bg-[#40CAB0] h-full "></div>
                             </div>
                           </div>
                           <div className="px-2 flex flex-col gap-1">
@@ -595,7 +597,7 @@ export default function Store() {
                               <div>{checkstore?.posts}/1</div>
                             </div>
                             <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
-                            <div style={{width :checkstore?.posts>=1 ? "100%":0}} className="absolute top-0 left-0 rounded-r-xl  bg-[#40CAB0] h-full "></div>
+                              <div style={{ width: checkstore?.posts >= 1 ? "100%" : 0 }} className="absolute top-0 left-0 rounded-r-xl  bg-[#40CAB0] h-full "></div>
                             </div>
                           </div>
                         </div>

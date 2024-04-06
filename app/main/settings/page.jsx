@@ -107,7 +107,7 @@ const page = () => {
     setProfile({
       ...profile,
       fullname: data?.data?.name,
-      phone: data?.data?.phone == "91" ? "" : data?.data?.phone.substring(2),
+      phone: data?.data?.phone == "91" ? "" : data?.data?.phone?.substring(2),
       email: data?.data?.email,
       username: data?.data?.username,
       image: data?.data.image,
