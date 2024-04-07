@@ -19,7 +19,7 @@ const page = () => {
 	const decomid = path.split("/").pop()
 	const { id } = getData()
 	const comid = decryptaes(decomid)
-	const [open, setOpen] = useState(false)
+	const [open, setOpen] = useState(true)
 	const [topicId, setTopicId] = useState("")
 	const [loading, setLoading] = useState(false)
 	const [postid, setPostid] = useState(null)
@@ -96,9 +96,9 @@ const page = () => {
 
 				{/* web */}
 
-				<div className='pn:max-sm:hidden min-h-[70vh] overflow-x-scroll w-full min-w-full container no-scrollbar '>
+				<div className='pn:max-sm:hidden bg-transparent h-[73vh] z-0 overflow-auto w-full min-w-full container no-scrollbar '>
 					{
-						mergedData?.length > 0 ? <div className="bg-white dark:bg-[#273142] overflow-x-scroll min-w-[1110px] rounded-xl h-full sm:p-2 w-full">
+						mergedData?.length > 0 ? <div className="bg-white dark:bg-[#273142] overflow-x-scroll no-scrollbar min-w-[1110px] rounded-xl h-full sm:p-2 w-full">
 
 							<table className="w-full text-sm text-left rtl:text-right min-w-full  text-gray-500 dark:text-gray-400">
 								<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 rounded-xl dark:text-gray-400">
@@ -128,10 +128,7 @@ const page = () => {
 								</thead>
 								<tbody>
 									{mergedData?.map((d, i) => (
-
 										<PostsWeb open={open} setOpen={setOpen} key={i} setPostid={setPostid} d={d} dispatch={dispatch} postDeletion={postDeletion} userid={id} />
-
-
 									))}
 								</tbody >
 							</table>
@@ -143,7 +140,7 @@ const page = () => {
 				</div>
 
 
-				<div className='sm:hidden min-h-[70vh]'>
+				<div className='sm:hidden min-h-[70vh] z-0 '>
 					{
 						mergedData?.length > 0 ? <div className="dark:bg-[#273142] dark:text-white bg-white">
 

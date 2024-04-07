@@ -29,10 +29,16 @@ const PostsWeb = ({ d, userid, setPostid, setOpen, open, dispatch, postDeletion 
 	return (
 		<>
 			<div className={`${pop ? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md" : "hidden -z-50"}`}>
-				<div className="flex justify-center items-center w-[90%] pp:w-[65%] sm:max-w-[500px] dark:text-white lg:w-[30%] p-3 rounded-xl h-[250px] dark:bg-[#273142] bg-white">
+				<div className="flex justify-center items-center w-[90%] pp:w-[65%] sm:max-w-[500px] dark:text-white lg:w-[30%] p-3 rounded-xl dark:bg-[#273142] bg-white">
 					<div className="flex flex-col flex-grow gap-3 justify-center items-center w-full">
-						<div className="text-2xl font-semibold">Are You Sure?</div>
-						<div className="text-center dark:text-white text-[#667085]">Do you really want to Delete this Post? This process cannot be undone.</div>
+						<div className="flex flex-col gap-3 mt-4 justify-center mb-4 items-center">
+							<div className="text-2xl font-semibold">Are You Sure?</div>
+							<div className="text-center dark:text-white text-[#667085]">
+								<div>Do you really want to Delete this Post?</div>
+								<div> This process cannot be undone.</div>
+							</div>
+						</div>
+
 						<div className="flex justify-center w-full gap-3 items-center">
 							<button onClick={() => { setPop(false), dispatch(LoadThis(false)) }} className="w-full border-2 dark:border-white p-2 px-5 rounded-xl">Cancel</button>
 							<button onClick={() => { postDeletion(), setPop(false), dispatch(LoadThis(false)) }} className="w-full bg-[#f44336] text-white p-2 px-5 rounded-xl">Delete</button>
@@ -42,7 +48,7 @@ const PostsWeb = ({ d, userid, setPostid, setOpen, open, dispatch, postDeletion 
 				</div>
 			</div>
 
-			<div onClick={() => setShowing(false)} className={`${showing ? "fixed z-50 w-screen h-screen" : "hidden"} `}></div>
+			<div onClick={() => setShowing(false)} className={`${showing ? "fixed z-50 w-screen h-screen" : "hidden  -z-30"} `}></div>
 			<tr className="bg-white pn:max-sm:hidden border-b h-[70px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 				<td className="font-medium w-[250px]  text-left">
 					<div className="flex gap-2 p-2 items-center">

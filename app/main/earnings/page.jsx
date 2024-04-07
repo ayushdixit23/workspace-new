@@ -347,15 +347,17 @@ const page = () => {
                     <div className="text-sm">
                       Interested in selling products? Start by creating a community and posting something!
                     </div>}
-                  {(count.com > 1 || count.post > 1 && comData.store) &&
+                  {((count.com >= 1 || count.post >= 1) && comData.store) &&
                     <div className="text-sm">
                       "Congratulations! You can now add products in your Store."
                     </div>}
 
 
-                  <div className="flex text-sm flex-col gap-3">
+
+                  <div className="flex text-sm flex-col h-full gap-3">
+                    {console.log(data, data?.length)}
                     {
-                      (comData?.store && count.com > 1 && count.post > 1) ?
+                      (comData?.store && count.com >= 1 && count.post >= 1) ?
                         (data?.length > 0 ?
                           <>
                             <div className="bg-[#f1f1f1] rounded-lg dark:bg-[#3d4654]">
@@ -382,10 +384,21 @@ const page = () => {
 
                             </div>
 
-                          </> : <div className="flex justify-center items-center text-xl px-2 font-bold">
-                            <button onClick={() => {
-                              router.push("/main/store")
-                            }} className="bg-[#2D9AFF] text-white p-2 text-center font-semibold px-5 text-sm rounded-lg">Create Products</button>
+                          </> : <div className="flex flex-col justify-center h-full items-center text-xl px-2 font-bold">
+                            <div className="h-full -mt-2 flex justify-center items-center flex-col gap-3">
+                              <div>
+                                No Products At The Moment!
+                              </div>
+                              <div className="text-base">
+                                Try Creating Products and Start Selling!
+                              </div>
+
+                            </div>
+                            <div className="flex justify-center items-center">
+                              <button onClick={() => {
+                                router.push("/main/store")
+                              }} className="bg-[#2D9AFF] text-white p-2 text-center font-semibold px-5 text-sm rounded-lg">Create Products!</button>
+                            </div>
                           </div>) :
 
                         <> {

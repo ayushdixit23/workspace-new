@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import { FaToggleOn } from 'react-icons/fa'
+import { FaCheck, FaToggleOn } from 'react-icons/fa'
 import { MdAdd, MdArrowBack } from 'react-icons/md'
 import { RxCross2 } from 'react-icons/rx'
 import { SlArrowRight } from "react-icons/sl"
@@ -25,6 +25,7 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 	const [editData, setEditData] = useState(null)
 	const [edit, setEdit] = useState(false)
 	const [thumbnail, setThumbnail] = useState(false)
+	const [uiThumbnail, setUiThumbnail] = useState(false)
 	const [postAnything] = useCreatePostMutation()
 	const [editpost] = useEditPostsMutation()
 	const [thumbnailImage, setThumbnailImage] = useState("")
@@ -73,6 +74,11 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 		const newMedia = Array.from(files);
 		const maxSlots = 4;
 
+
+		if (post.image.length == 0 && post.video.length == 0 && e.target.files[0].type.startsWith("video")) {
+			setUiThumbnail(true)
+		}
+
 		setThumbnail(false)
 
 		setPost((prevPost) => {
@@ -94,19 +100,20 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 	const handleUpload = (e) => {
 		if (post.image.length == 0 && post.video.length == 1 && e.target.files[0].type.startsWith("image")) {
 			handleThumbnail(e)
+		} else if (post.image.length == 0 && post.video.length == 1 && e.target.files[0].type.startsWith("video")) {
+			toast.error("Upload Thumbnail for video!")
+			return
 		} else {
 			handleImage(e)
 		}
 	}
 
-	console.log(editData)
-
 	const handleThumbnail = (e) => {
 		try {
 			setThumbnail(true)
 			const image = e.target.files[0]
-			console.log("render")
 			setThumbnailImage(image)
+			setUiThumbnail(false)
 		} catch (error) {
 			console.log(error)
 		}
@@ -117,10 +124,45 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 		setPost({ ...post, tags: [...post.tags.filter((_, i) => i !== indexToRemove)] })
 	};
 
+	// const handleMediaRemove = (indexToRemove, media) => {
+	// 	if (post.video.length == 1 || post.video.length == 0) {
+	// 		setUiThumbnail(false)
+	// 		setPost({ ...post, image: [...post.image, thumbnailImage] })
+	// 		setThumbnailImage("")
+	// 	}
+	// 	setPost({ ...post, [media]: [...post[media].filter((_, i) => i !== indexToRemove)] })
+	// };
+
 	const handleMediaRemove = (indexToRemove, media) => {
-		setPost({ ...post, [media]: [...post[media].filter((_, i) => i !== indexToRemove)] })
+		if (post.video.length === 1 || post.video.length === 0) {
+			setUiThumbnail(false);
+			setThumbnailImage("");
+			setPost(prevPost => {
+				// Copy the current state of post
+				let updatedPost = { ...prevPost };
+
+				// If thumbnailImage exists, move it to post.image array
+				if (thumbnailImage) {
+					updatedPost.image.push(thumbnailImage);
+				}
+
+				// Remove the media item at indexToRemove from the specified media array
+				updatedPost[media] = prevPost[media].filter((_, i) => i !== indexToRemove);
+
+				return updatedPost;
+			});
+		} else {
+			// If there are more than one video, simply remove the item from the specified media array
+			setPost(prevPost => ({
+				...prevPost,
+				[media]: prevPost[media].filter((_, i) => i !== indexToRemove)
+			}));
+		}
 	};
 
+
+
+	console.log(post.image, "image", thumbnailImage)
 
 	const editPosts = async () => {
 		if (!post.title || !post.image) {
@@ -202,6 +244,12 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 		}
 	}, [editData])
 
+	useEffect(() => {
+		if (post.video.length === 1 && post.image.length === 0) {
+			setUiThumbnail(true)
+		}
+	}, [post.video, post.image])
+
 	if (loading) {
 		return (
 			<>
@@ -237,17 +285,40 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 					<div className='grid sm:grid-cols-2 w-full gap-5 p-3'>
 						<div className='w-full flex flex-col gap-2'>
 							<div className='w-full'>
-								<label htmlFor='postUpload' className='w-full h-[220px] cursor-pointer shadow-md rounded-lg'>
-									<div className='h-[220px] dark:border-[#fff] w-full border p-2 rounded-lg flex flex-col justify-center items-center'>
-										<div className='p-5 bg-[#F0F4FF] rounded-full'>
-											<GrUploadOption className='text-4xl text-[#379AE6] font-thin' />
+								{uiThumbnail ?
+
+									<label htmlFor='postUpload' className='w-full h-[220px] cursor-pointer shadow-md rounded-lg'>
+										<div className='h-[220px] dark:border-[#fff] w-full border p-2 rounded-lg flex flex-col justify-center items-center'>
+											<div className='p-5 bg-[#F0F4FF] rounded-full'>
+												<GrUploadOption className='text-4xl text-[#379AE6] font-thin' />
+											</div>
+
+											<div className='text-center mt-2 flex justify-center items-center flex-col'>
+												<div className='font-medium'><span className='text-[#379AE6]'>Upload Thumbnail</span> for Video.</div>
+												<div className='text-sm text-[#6F7787]'>Your ideas will be private until you publish them.</div>
+											</div>
 										</div>
-										<div className='text-center mt-2 flex justify-center items-center flex-col'>
-											<div className='font-medium'><span className='text-[#379AE6]'>Click to choose file</span> or drag and drop.</div>
-											<div className='text-sm text-[#6F7787]'>Your ideas will be private until you publish them.</div>
+									</label> :
+									(thumbnailImage ?
+										<div className='h-[220px] dark:border-[#fff] w-full border p-2 rounded-lg flex flex-col justify-center items-center'>
+											<div className='p-5 bg-[#F0F4FF] rounded-full'>
+												<FaCheck className=" text-xl text-green-600" />
+											</div>
+
 										</div>
-									</div>
-								</label>
+										:
+										<label htmlFor='postUpload' className='w-full h-[220px] cursor-pointer shadow-md rounded-lg'>
+											<div className='h-[220px] dark:border-[#fff] w-full border p-2 rounded-lg flex flex-col justify-center items-center'>
+												<div className='p-5 bg-[#F0F4FF] rounded-full'>
+													<GrUploadOption className='text-4xl text-[#379AE6] font-thin' />
+												</div>
+												<div className='text-center mt-2 flex justify-center items-center flex-col'>
+													<div className='font-medium'><span className='text-[#379AE6]'>Click to choose file</span> or drag and drop.</div>
+													<div className='text-sm text-[#6F7787]'>Your ideas will be private until you publish them.</div>
+												</div>
+											</div>
+										</label>)
+								}
 								<input accept="image/*, video/*" name='image' onChange={handleUpload} type="file" id='postUpload' className='hidden w-full' />
 							</div>
 							<div className='text-sm text-[#6F7787]'>We recommend high-quality .jpg, .png files less than 20MB or .mp4 files 100MB.</div>
@@ -272,10 +343,14 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 											</div>
 										))}
 										{
-											thumbnailImage && <img src={typeof thumbnailImage === "string" ? thumbnailImage : URL.createObjectURL(thumbnailImage)} className="rounded-lg w-[100px] h-[100px]" />
+											thumbnailImage &&
+											<div className='relative w-[100px] h-[100px]'>
+												<img src={typeof thumbnailImage === "string" ? thumbnailImage : URL.createObjectURL(thumbnailImage)} className="rounded-lg w-full h-full" />
+												<div onClick={() => { setThumbnailImage(""); setUiThumbnail(true) }} className="absolute cursor-pointer top-0 right-0 p-1"><RxCross2 /></div>
+											</div>
 										}
 									</div>
-									<div>{Number(post.image.length) + Number(post.video.length)}/4 files uploaded</div>
+									{!thumbnail && <div>{Number(post.image.length) + Number(post.video.length)}/4 files uploaded</div>}
 								</>
 							}
 
@@ -339,7 +414,7 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 								<div><SlArrowRight /></div>
 							</div> */}
 						</div>
-					</div>
+					</div >
 				</div >
 			</div >
 
@@ -360,17 +435,6 @@ export default CreatePost
 	<div className='text-sm text-[#6F7787]'>Your ideas will be private until you publish them.</div>
 </div>
 </div> */}
-
-// <div className='h-[220px] dark:border-[#fff] w-full border p-2 rounded-lg flex flex-col justify-center items-center'>
-// 	<div className='p-5 bg-[#F0F4FF] rounded-full'>
-// 		<GrUploadOption className='text-4xl text-[#379AE6] font-thin' />
-// 	</div>
-
-// 	<div className='text-center mt-2 flex justify-center items-center flex-col'>
-// 		<div className='font-medium'><span className='text-[#379AE6]'>Upload Thumbnail</span> for Video.</div>
-// 		<div className='text-sm text-[#6F7787]'>Your ideas will be private until you publish them.</div>
-// 	</div>
-// </div>
 
 {/* <div className='h-[220px] dark:border-[#fff] w-full border p-2 rounded-lg flex flex-col justify-center items-center'>
 	<div className='p-5 bg-[#F0F4FF] rounded-full'>
