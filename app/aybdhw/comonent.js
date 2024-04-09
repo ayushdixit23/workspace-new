@@ -7,7 +7,6 @@ import toast from "react-hot-toast"
 import Loader from "../data/Loader"
 import Cookies from "js-cookie"
 import { encryptaes } from "../utilsHelper/security"
-// import Cookies from "js-cookie"
 
 const Component = () => {
 	const queryParams = useSearchParams()
@@ -43,7 +42,7 @@ const Component = () => {
 			localStorage.setItem(`frhktn`, data.refresh_token)
 			// localStorage.setItem(`excktn${data.sessionId}`, data.access_token)
 			// localStorage.setItem(`frhktn${data.sessionId}`, data.refresh_token)
-			if (title && category) {
+			if (comId) {
 				Cookies.set("comedta", JSON.stringify(tosetCookie))
 				Cookies.set("cmdyd", encryptaes(comId))
 			}

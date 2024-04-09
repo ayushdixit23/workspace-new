@@ -105,7 +105,7 @@ function Header() {
                   width={100}
                   className="h-10 w-10 cursor-pointer flex justify-center items-center rounded-[18px] ring-1 ring-white shadow-[0_3px_10px_2px_rgba(1,1,1,0.1)]"
                 />
-                {memberships !== "Free" && < MdVerified className="text-blue-700 absolute top-0 right-0 text-[17px] sm:hidden block" />}
+                {memberships !== "Free" && <MdVerified className="text-blue-700 absolute -bottom-1 -right-1 text-[17px] sm:hidden block" />}
               </Link>
             ) : (
               <div

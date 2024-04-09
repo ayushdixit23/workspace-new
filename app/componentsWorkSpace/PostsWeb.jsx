@@ -80,8 +80,10 @@ const PostsWeb = ({ d, userid, setPostid, setOpen, open, dispatch, postDeletion 
 				<td className="text-center">
 					<div className='flex justify-center gap-3 relative items-center'>
 						<div>
-							<a target='_blank' href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=2`
+							<a target='_blank' href={`http://localhost:3000/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=2`
 							} className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a>
+							{/* <a target='_blank' href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=1`
+							} className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a> */}
 							{/* <a href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=2`} className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a> */}
 						</div>
 						<div className="flex text-center  relative mr-3 justify-around items-center">
@@ -134,7 +136,7 @@ const PostsWeb = ({ d, userid, setPostid, setOpen, open, dispatch, postDeletion 
 								<Link href={"/main/community/editCommunity"}>Edit</Link>
 								<div>
 									{/* <a href='https://ads.grovyo.com' >Promote</a> */}
-									<a target='_blank' href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=2`
+									<a target='_blank' href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=1`
 									} className=' rounded-2xl'>Promote</a>
 									{/* <a href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=2`} className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a> */}
 								</div>

@@ -355,7 +355,7 @@ const page = () => {
 
 
                   <div className="flex text-sm flex-col h-full gap-3">
-                    {console.log(data, data?.length)}
+
                     {
                       (comData?.store && count.com >= 1 && count.post >= 1) ?
                         (data?.length > 0 ?
@@ -402,14 +402,11 @@ const page = () => {
                           </div>) :
 
                         <> {
-                          (((count.com <= 1 || count.post <= 1) && !comData?.store)) && <div className="flex text-sm flex-col gap-3">
+                          (!comData?.store) && <div className="flex text-sm flex-col gap-3">
                             <div className="px-2 flex flex-col gap-1">
                               <div className="flex justify-between items-center">
                                 <div className=" dark:text-white text-[#615E83]">Community</div>
-
                                 <div>{count.com}/1</div>
-
-
                               </div>
                               <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                                 <div
