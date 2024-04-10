@@ -4,8 +4,6 @@ import useTokenAndData from "./tokens";
 import { useDispatch } from "react-redux";
 import { changelaoding, sendData } from "../redux/slice/userData";
 import { ThemeProvider } from "@/components/theme-provider";
-import { redirect, usePathname } from "next/navigation";
-import Loader from "../data/Loader";
 
 export const storeInSessionStorage = (sessionId) => {
   try {
@@ -32,31 +30,15 @@ export const getItemSessionStorage = () => {
 
 const TokenDataWrapper = ({ children }) => {
   const { isValid, data } = useTokenAndData();
-  const sessionId = getItemSessionStorage()
   const dispatch = useDispatch();
-  const path = usePathname()
-  const [loading, setLoading] = useState(true)
-
-  const exactpath = ["/login", "/aybdhw", "/contact", "/cancellation", "/deleterequest", "/privacy", "/requestdata", "/return", "/shipping", "/terms"]
   useEffect(() => {
 
     if (isValid) {
       dispatch(changelaoding({ loading: false }));
       dispatch(sendData(data))
-      setLoading(false)
     }
-    const token = localStorage.getItem(`frhktn`)
-    if (!token && !exactpath.includes(path)) {
-      redirect("/login");
-    }
-    if (token && (path === "/login" || path === "/aybdhw" || path === "/")) {
-      redirect("/main/dashboard");
-    }
-    setLoading(false)
 
-
-
-  }, [isValid, data, sessionId, dispatch]);
+  }, [isValid, data, dispatch]);
 
 
   return <>
@@ -66,10 +48,8 @@ const TokenDataWrapper = ({ children }) => {
       enableSystem
       disableTransitionOnChange
     >
-      {/* <Loader /> */}
-      {loading ? <Loader /> : <>{children}</>}
-
-    </ThemeProvider>
+      {children}
+    </ThemeProvider >
   </>;
 };
 

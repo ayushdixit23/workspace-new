@@ -12,6 +12,7 @@ import dynamic from "next/dynamic";
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import membership from "../assets/image/membership.json"
 import { TbTruckDelivery } from "react-icons/tb";
+import Cookies from "js-cookie";
 
 const Sample5 = () => {
 	const [monthprice, setMonthPrice] = useState(true);
@@ -89,7 +90,7 @@ const Sample5 = () => {
 	};
 
 
-	const buyMembership = async (price, mId, title) => {
+	const buyMembership = async (price, mId, title, deliverylimitcity, deliverylimitcountry) => {
 		const amount = price + parseInt(price * 0.18)
 		const amounttosend = `₹${amount}`
 
@@ -114,6 +115,8 @@ const Sample5 = () => {
 							paymentMethod,
 							razorpay_order_id: response?.razorpay_order_id,
 							razorpay_payment_id: response?.razorpay_payment_id,
+							deliverylimitcity,
+							deliverylimitcountry,
 							memid: membershipId,
 							razorpay_signature: response?.razorpay_signature,
 							status: true,
@@ -129,11 +132,13 @@ const Sample5 = () => {
 						}, 1000)
 
 						if (resp.data.success) {
-							localStorage.removeItem(`excktn`)
-							localStorage.removeItem(`frhktn`)
-							storeInSessionStorage(resp.data.sessionId);
-							localStorage.setItem(`excktn`, resp.data.access_token)
-							localStorage.setItem(`frhktn`, resp.data.refresh_token)
+							// localStorage.removeItem(`excktn`)
+							// localStorage.removeItem(`frhktn`)
+							Cookies.remove("excktn")
+							Cookies.remove("frhktn")
+
+							Cookies.set(`excktn`, resp.data.access_token)
+							Cookies.set(`frhktn`, resp.data.refresh_token)
 							setTimeout(() => {
 								setMemberPop(false)
 							}, 2000)
@@ -579,7 +584,7 @@ const Sample5 = () => {
 												<div className="text-sm -ml-2 mt-3">/{monthprice ? "month" : "year"}</div>
 											</div>
 											<div className="w-full flex justify-center items-center mt-3 ">
-												<button onClick={() => buyMembership(monthprice ? plus : plusy, process.env.NEXT_PUBLIC_PLUS, "Plus")} className="bg-[#0066FF] p-3 px-4 text-white font-semibold text-sm rounded-lg w-full">Choose This Plan</button>
+												<button onClick={() => buyMembership(monthprice ? plus : plusy, process.env.NEXT_PUBLIC_PLUS, "Plus", d.plus, dc.plus)} className="bg-[#0066FF] p-3 px-4 text-white font-semibold text-sm rounded-lg w-full">Choose This Plan</button>
 											</div>
 										</div>
 									</div>
@@ -752,7 +757,7 @@ const Sample5 = () => {
 												<div className="text-sm -ml-2 mt-3">/{monthprice ? "month" : "year"}</div>
 											</div>
 											<div className="w-full flex justify-center items-center mt-3 ">
-												<button onClick={() => buyMembership(monthprice ? pro : proy, process.env.NEXT_PUBLIC_PRO, "Pro")} className="bg-[#0066FF] p-3 px-4 text-white font-semibold text-sm rounded-lg w-full">Choose This Plan</button>
+												<button onClick={() => buyMembership(monthprice ? pro : proy, process.env.NEXT_PUBLIC_PRO, "Pro", d.pro, dc.pro)} className="bg-[#0066FF] p-3 px-4 text-white font-semibold text-sm rounded-lg w-full">Choose This Plan</button>
 											</div>
 										</div>
 									</div>
@@ -924,7 +929,7 @@ const Sample5 = () => {
 												<div className="text-sm -ml-2 mt-3">/{monthprice ? "month" : "year"}</div>
 											</div>
 											<div className="w-full flex justify-center items-center mt-3 ">
-												<button onClick={() => buyMembership(monthprice ? premium : premiumy, process.env.NEXT_PUBLIC_PREMIUM, "Premium")} className="bg-[#0066FF] p-3 px-4 text-white font-semibold text-sm rounded-lg w-full">Choose This Plan</button>
+												<button onClick={() => buyMembership(monthprice ? premium : premiumy, process.env.NEXT_PUBLIC_PREMIUM, "Premium", d.premium, dc.premium)} className="bg-[#0066FF] p-3 px-4 text-white font-semibold text-sm rounded-lg w-full">Choose This Plan</button>
 											</div>
 										</div>
 									</div>

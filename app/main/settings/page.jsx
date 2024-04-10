@@ -7,6 +7,7 @@ import {
 } from "@/app/redux/apiroutes/userLoginAndSetting";
 import { storeInSessionStorage } from "@/app/utilsHelper/Tokenwrap";
 import { getData } from "@/app/utilsHelper/Useful";
+import Cookies from "js-cookie";
 // import Cookies from 'js-cookie'
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -90,13 +91,15 @@ const page = () => {
   const resetCookies = async (data) => {
     try {
 
-      localStorage.removeItem(`excktn`);
-      localStorage.removeItem(`frhktn`);
+      // localStorage.removeItem(`excktn`);
+      // localStorage.removeItem(`frhktn`);
 
-      localStorage.setItem(`excktn`, data.access_token);
-      localStorage.setItem(`frhktn`, data.refresh_token);
+      Cookies.remove("excktn")
+      Cookies.remove(`frhktn`);
 
-      storeInSessionStorage(data?.sessionId);
+      Cookies.set(`excktn`, data.access_token);
+      Cookies.set(`frhktn`, data.refresh_token);
+
     } catch (e) {
       console.log(e);
     }
@@ -128,8 +131,8 @@ const page = () => {
   const logout = () => {
     try {
 
-      localStorage.removeItem(`excktn`);
-      localStorage.removeItem(`frhktn`);
+      Cookies.remove(`excktn`);
+      Cookies.remove(`frhktn`);
       setOpen(false);
       router.push("/login");
     } catch (error) {
@@ -392,7 +395,7 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-end items-center sm:items-end sm:hidden w-full sm:w-[85%] mt-2 sm:mb-3 mb-10 gap-2">
+        <div className="flex flex-col justify-end items-center sm:items-end sm:hidden w-full sm:w-[85%] mt-2 sm:mb-3 mb-[3%] gap-2">
           <div
             className="h-full text-white bg-red-600 rounded-2xl pn:max-sm:w-[90%] py-2 sm:px-6 flex justify-center items-center"
             onClick={() => setOpen(true)}

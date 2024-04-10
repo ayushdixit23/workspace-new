@@ -13,8 +13,6 @@ function Communitybox({ data, id, index, handleDelete }) {
   const dispatch = useDispatch()
   const [comDelete, setComDelete] = useState(false)
 
-  console.log(data)
-
   const tosetCookie = {
     dps: data.dps?.trim(),
     title: data?.c?.title,

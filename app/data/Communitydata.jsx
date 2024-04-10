@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Postdata from "./Postdata";
 import {
   Select,
@@ -12,7 +12,10 @@ import Charts from "./Charts"
 import { formatDate } from "../utilsHelper/Useful";
 import BuiltSelected from "../componentsWorkSpace/BuiltSelected";
 
-const Communitydata = ({ state, analyticsdata, setState }) => {
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+
+const Communitydata = ({ state, analyticsdata, setState, setDateValue, dateValue }) => {
+  const [toggle, setToggle] = useState(false)
   const communityData = state.stats && state?.stats?.map((d) => ({
     members: d.Y1 ? Number(d.Y1) : 0,
     X: d.X ? formatDate(d.X) : d.X,
@@ -25,36 +28,39 @@ const Communitydata = ({ state, analyticsdata, setState }) => {
       <div className="rounded-2xl dark:text-white dark:bg-[#273142] bg-white">
         <div className="flex h-14 justify-between rounded-2xl p-2">
           <div className="w-[155px] ">
-          
+
             <div className="w-[155px] "><BuiltSelected data={analyticsdata?.commerged} state={state} setState={setState} type={"dashboard"} /></div>
           </div>
 
-          {/* <div className="flex pn:max-sm:hidden justify-center items-center gap-1">
-            <div className="text-xl">
-              <BiUpArrowAlt />
-            </div>
-            <div className="text-sm">2.1% vs last week</div>
-          </div> */}
+          <div className="flex pn:max-sm:hidden justify-center items-center gap-1">
+            < div onClick={() => setToggle(!toggle)} className='flex flex-col w-full bg-[#f7f7f7] dark:bg-[#323d4e] rounded-xl' >
+              <div className='flex justify-between items-center relative p-1.5 cursor-pointer h-full gap-2 px-2 w-full text-sm'>
+                <div className='flex items-center gap-2'>
+                  {dateValue} Days
+                </div>
+
+                <div className='text-lg '>{toggle ? <IoIosArrowUp onClick={() => setToggle(!toggle)} /> : <IoIosArrowDown onClick={() => setToggle(!toggle)} />}
+                </div>
+
+                <div className={`${toggle ? "top-[45px]" : "top-0 border-none text-[0px] w-[0px] h-[0px]"} absolute left-0 bg-[#f7f7f7] duration-100 dark:bg-[#323d4e] rounded-xl z-50 w-full`}>
+                  <div className='flex flex-col gap-3 px-2 py-1 max-h-[300px] overflow-y-scroll no-scrollbar'>
+                    <div onClick={() => setDateValue(7)}>7 Days</div>
+                    <div onClick={() => setDateValue(30)}>30 Days</div>
+                  </div>
+                </div>
+              </div>
+            </div >
+          </div>
         </div>
 
 
 
-        {/* <div className="flex items-center px-3 py-2 gap-4 w-full">
-          <div className="flex justify-center items-center gap-2">
-            <input type="radio" name="radio" id="1" />
-            <div>Last 6 days</div>
-          </div>
-          <div className="flex justify-center items-center gap-2">
-            <input type="radio" name="radio" id="2" />
-            <div>Last Week</div>
-          </div>
-        </div> */}
 
         <div className="w-full p-2 h-full flex justify-center items-center z-0">
 
           {communityData.length === 0 && <div className="h-[250px] w-full flex text-2xl font-semibold justify-center items-center">No Data To Show</div>}
 
-    
+
           {(communityData.length >= 1) &&
             <Charts data={communityData} />
           }

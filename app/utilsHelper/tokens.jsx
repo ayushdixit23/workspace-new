@@ -5,23 +5,16 @@ import { useRouter } from "next/navigation";
 import { changelaoding, sendData } from "../redux/slice/userData";
 import { useGetRefreshTokenMutation } from "../redux/apiroutes/userLoginAndSetting";
 import { checkToken } from "./Useful";
-import { getItemSessionStorage } from "./Tokenwrap";
 import Cookies from "js-cookie";
+
 const useTokenAndData = () => {
   const [isValid, setIsValid] = useState(false);
-  const sessionId = getItemSessionStorage()
-  // const token = Cookies.get(`excktn${sessionId}`)
-  const [token, setToken] = useState(null)
+  const token = Cookies.get(`excktn`)
   const path = useSelector((state) => state.userData.path);
   const router = useRouter();
   const [data, setData] = useState(null);
   const dispatch = useDispatch();
   const [refreshedtokenAgain] = useGetRefreshTokenMutation()
-
-  useEffect(() => {
-    const token = localStorage.getItem(`excktn`)
-    setToken(token)
-  }, [sessionId])
 
   const refreshAccessToken = useCallback(async (refreshToken) => {
     try {
@@ -42,7 +35,7 @@ const useTokenAndData = () => {
 
   const checkRefreshTokenValidity = useCallback(() => {
     try {
-      const refreshToken = localStorage.getItem(`frhktn`)
+      const refreshToken = Cookies.get(`frhktn`)
       // const refreshToken = Cookies.get(`frhktn${sessionId}`)
       if (!refreshToken) {
         console.error("No refresh token found");
@@ -60,7 +53,7 @@ const useTokenAndData = () => {
   }, []);
 
   const refresh = useCallback(async () => {
-    const refreshToken = localStorage.getItem(`frhktn`)
+    const refreshToken = Cookies.get(`frhktn`)
     // const refreshToken = Cookies.get(`frhktn${sessionId}`)
     if (!refreshToken) {
       console.error("No refresh token found");
@@ -69,9 +62,9 @@ const useTokenAndData = () => {
     try {
       const newToken = await refreshAccessToken(refreshToken);
       if (newToken) {
-        localStorage.setItem(`excktn`, newToken.access_token)
-        localStorage.setItem(`frhktn`, newToken.refresh_token)
-        router.refresh()
+        Cookies.set(`excktn`, newToken.access_token)
+        Cookies.set(`frhktn`, newToken.refresh_token)
+
         // Cookies.set(`excktn${sessionId}`, newToken.access_token)
       }
     } catch (error) {
@@ -84,8 +77,8 @@ const useTokenAndData = () => {
       try {
         const tokentoInclude = token || qrtoken
         if (tokentoInclude) {
-          const { check, payload } = await checkToken(tokentoInclude)
-          if (check) {
+          const { isValid, payload } = await checkToken(tokentoInclude)
+          if (isValid) {
             setIsValid(true);
             dispatch(changelaoding({ loading: false }))
             setData(payload)
@@ -97,8 +90,8 @@ const useTokenAndData = () => {
             await refresh()
           } else {
             setIsValid(false);
-            localStorage.removeItem(`excktn`)
-            localStorage.removeItem(`frhktn`)
+            Cookies.remove(`excktn`)
+            Cookies.remove(`frhktn`)
             // Cookies.remove(`excktn${sessionId}`)
             // Cookies.remove(`frhktn${sessionId}`)
           }
@@ -106,8 +99,8 @@ const useTokenAndData = () => {
       } catch (e) {
         console.error(e);
         setIsValid(false);
-        localStorage.removeItem(`excktn`)
-        localStorage.removeItem(`frhktn`)
+        Cookies.remove(`excktn`)
+        Cookies.remove(`frhktn`)
         // Cookies.remove(`excktn${sessionId}`)
         // Cookies.remove(`frhktn${sessionId}`)
       }

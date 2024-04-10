@@ -96,14 +96,14 @@ const page = () => {
 							collectionlimit: addcollectionlimit.quantity,
 						}
 						const resp = await axios.post(`http://localhost:7190/api/v1/customMembership/${id}/${res.data?.order}`, data)
-					
+
 						if (resp.data.success) {
 
-							localStorage.removeItem(`excktn`)
-							localStorage.removeItem(`frhktn`)
+							Cookies.remove(`excktn`)
+							Cookies.remove(`frhktn`)
 							storeInSessionStorage(resp.data.sessionId);
-							localStorage.setItem(`excktn`, resp.data.access_token)
-							localStorage.setItem(`frhktn`, resp.data.refresh_token)
+							Cookies.set(`excktn`, resp.data.access_token)
+							Cookies.set(`frhktn`, resp.data.refresh_token)
 							router.push("/main/dashboard")
 						}
 					},
@@ -124,7 +124,7 @@ const page = () => {
 						razorpay_signature: response?.razorpay_signature,
 						status: false,
 					}
-				
+
 
 				})
 				rpay.open();

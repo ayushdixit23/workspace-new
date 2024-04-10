@@ -3,7 +3,7 @@ import { FaCrown } from "react-icons/fa";
 import MemorizedDontHave from "./DontHave";
 
 const Member = ({ state, data, memberships }) => {
-  const { totalmembers, visitors, paidmember, returningvisitor, newvisitor, uniquemembers, activemembers, } = state;
+  const { totalmembers, stats } = state;
   const [more, setMore] = useState(false);
   const [mores, setMores] = useState(false);
   return (
@@ -31,18 +31,18 @@ const Member = ({ state, data, memberships }) => {
             <div className="flex justify-between items-center pl-3 px-1 w-full">
               <div>Active Members</div>
               {/* <div>0</div> */}
-              {memberships === "Free" ? < FaCrown className="bg-[#FFEB33] text-[#323d4e] rounded-full h-[25px] p-1.5 w-[25px] " /> : <div>{activemembers}</div>}
+              {memberships === "Free" ? < FaCrown className="bg-[#FFEB33] text-[#323d4e] rounded-full h-[25px] p-1.5 w-[25px] " /> : <div>{stats[0]?.activemembers}</div>}
 
             </div>
             <div className="flex justify-between items-center pl-3 px-1 w-full">
               <div>Unique Members</div>
               {/* <div>0</div> */}
-              {memberships === "Free" ? < FaCrown className="bg-[#FFEB33] text-[#323d4e] rounded-full h-[25px] p-1.5 w-[25px] " /> : <div>{uniquemembers}</div>}
+              {memberships === "Free" ? < FaCrown className="bg-[#FFEB33] text-[#323d4e] rounded-full h-[25px] p-1.5 w-[25px] " /> : <div>{stats[0]?.newmembers}</div>}
             </div>
             <div className="flex justify-between items-center pl-3 px-1 w-full">
               <div>Paid Members</div>
               {/* <div>{paidmember}</div> */}
-              {memberships === "Free" ? < FaCrown className="bg-[#FFEB33] text-[#323d4e] rounded-full h-[25px] p-1.5 w-[25px] " /> : <div>{paidmember}</div>}
+              {memberships === "Free" ? < FaCrown className="bg-[#FFEB33] text-[#323d4e] rounded-full h-[25px] p-1.5 w-[25px] " /> : <div>{stats[0]?.paidmembers}</div>}
             </div>
           </div>
           <div className="flex justify-between items-center mt-2 group dark:hover:bg-[#1F2937] hover:bg-[#f9f9f9] py-2 px-2 rounded-xl w-full">
@@ -50,7 +50,7 @@ const Member = ({ state, data, memberships }) => {
 
             <div className="flex justify-center items-center gap-2">
               {" "}
-              <div>{visitors}</div>{" "}
+              <div>{stats[0]?.returningvisitor + stats[0]?.newvisitor}</div>{" "}
               <div
                 onClick={() => {
                   setMores(!mores);
@@ -68,12 +68,12 @@ const Member = ({ state, data, memberships }) => {
             <div className="flex justify-between items-center pl-3 px-1 w-full">
               <div>Returning visitors</div>
               {/* <div>0</div> */}
-              {memberships === "Free" ? < FaCrown className="bg-[#FFEB33] text-[#323d4e] rounded-full h-[25px] p-1.5 w-[25px] " /> : <div>{returningvisitor}</div>}
+              {memberships === "Free" ? < FaCrown className="bg-[#FFEB33] text-[#323d4e] rounded-full h-[25px] p-1.5 w-[25px] " /> : <div>{stats[0]?.returningvisitor}</div>}
             </div>
             <div className="flex justify-between items-center pl-3 px-1 w-full">
               <div>New visitors</div>
               {/* <div>0</div> */}
-              {memberships === "Free" ? < FaCrown className="bg-[#FFEB33] text-[#323d4e] rounded-full h-[25px] p-1.5 w-[25px] " /> : <div>{newvisitor}</div>}
+              {memberships === "Free" ? < FaCrown className="bg-[#FFEB33] text-[#323d4e] rounded-full h-[25px] p-1.5 w-[25px] " /> : <div>{stats[0]?.newvisitor}</div>}
             </div>
           </div>
         </div>

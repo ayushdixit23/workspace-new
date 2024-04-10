@@ -5,6 +5,10 @@ export const communityApi = Api.injectEndpoints({
       query: ({ id }) => `/v1/analyticsuser/${id}`,
       keepUnusedDataFor: 400,
     }),
+    getAnalyticsThirtyDays: builder.query({
+      query: ({ id }) => `/v1/analyticsuserThirtyDays/${id}`,
+      keepUnusedDataFor: 400,
+    }),
     getCommunity: builder.query({
       query: ({ id }) => `/v1/allcoms/${id}`,
     }),
@@ -101,7 +105,8 @@ export const communityApi = Api.injectEndpoints({
         url: `/v1/monetization/${id}/${comid}`,
         method: "POST",
       })
-    })
+    }),
+
   }),
 });
 
@@ -122,5 +127,6 @@ export const {
   useFetchCommunityQuery,
   useMonetizationMutation,
   useDeletePostsMutation,
-  useEditPostsMutation
+  useEditPostsMutation,
+  useGetAnalyticsThirtyDaysQuery
 } = communityApi;

@@ -17,7 +17,7 @@ import MemorizedPopularity from "@/app/data/Popularity";
 import Loader from "@/app/data/Loader";
 import Communitydata from "@/app/data/Communitydata";
 import Storedata from "@/app/data/Storedata";
-import { useGetAnalyticsQuery } from "@/app/redux/apiroutes/community";
+import { useGetAnalyticsQuery, useGetAnalyticsThirtyDaysQuery } from "@/app/redux/apiroutes/community";
 import { useGetFetchOrderQuery } from "@/app/redux/apiroutes/userLoginAndSetting";
 import { getData } from "@/app/utilsHelper/Useful";
 import Monetization from "../../assets/image/Monetization.png";
@@ -27,14 +27,24 @@ import Link from "next/link";
 
 function Dashboard() {
   const [change, setChange] = useState("community");
+  const [dateValue, setDateValue] = useState(7)
   const [comchange, setComchange] = useState(1);
   const [prochange, setProchange] = useState("1");
   const [loading, setLoading] = useState(true);
   const { id, memberships } = getData();
-  const { data: analyticsdata, isLoading } = useGetAnalyticsQuery(
-    { id: id },
-    { skip: !id }
-  );
+
+  let analyticsdata, isLoading
+  if (dateValue == 7) {
+    ({ data: analyticsdata, isLoading } = useGetAnalyticsQuery(
+      { id: id },
+      { skip: !id }
+    ));
+  } else {
+    ({ data: analyticsdata, isLoading } = useGetAnalyticsThirtyDaysQuery(
+      { id: id },
+      { skip: !id }
+    ));
+  }
   const { data: getorderdata } = useGetFetchOrderQuery(
     { id: id },
     { skip: !id }
@@ -55,6 +65,9 @@ function Dashboard() {
     uniquemembers: "",
     activemembers: "",
   });
+
+  console.log(analyticsdata?.commerged)
+
 
   useEffect(() => {
     if (
@@ -524,6 +537,8 @@ function Dashboard() {
                       {change == "community" && (
                         <Communitydata
                           state={state}
+                          dateValue={dateValue}
+                          setDateValue={setDateValue}
                           analyticsdata={analyticsdata}
                           setState={setState}
                         />
@@ -597,6 +612,8 @@ function Dashboard() {
                                 />
                               </div>
                             </div>
+
+
                             <div
                               className={`${comchange === 2 ? "h-full" : "hidden"}`}
                             >
@@ -730,11 +747,12 @@ function Dashboard() {
                                 <Products data={analyticsdata?.promerged} />
                               )}
                               {prochange == 2 && (
-                                <Customer data={analyticsdata?.pieChart} />
+                                <Customer data={analyticsdata?.pieChart} memberships={memberships} />
                               )}
                               {prochange == 3 && (
                                 <LocationStore
                                   data={analyticsdata?.storeLocation}
+                                  memberships={memberships}
                                 />
                               )}
                             </div>
@@ -792,6 +810,7 @@ function Dashboard() {
                             state={state}
                             memberships={memberships}
                             data={analyticsdata?.commerged?.length}
+
                           />
                         </div>
                       </div>
@@ -926,10 +945,10 @@ function Dashboard() {
                           <Products data={analyticsdata?.promerged} />
                         )}
                         {prochange == 2 && (
-                          <Customer data={analyticsdata?.pieChart} />
+                          <Customer data={analyticsdata?.pieChart} memberships={memberships} />
                         )}
                         {prochange == 3 && (
-                          <LocationStore data={analyticsdata?.storeLocation} />
+                          <LocationStore memberships={memberships} data={analyticsdata?.storeLocation} />
                         )}
                       </div>
                     </div>

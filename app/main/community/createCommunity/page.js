@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { LiaToggleOnSolid, LiaToggleOffSolid } from "react-icons/lia";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -16,7 +16,7 @@ import {
   useUpdateTopicMutation,
 } from "@/app/redux/apiroutes/community";
 import { getData } from "@/app/utilsHelper/Useful";
-import Image from "next/image";
+import Image from "next/image"
 
 function page() {
   const router = useRouter();
@@ -490,7 +490,7 @@ function page() {
                       <div onClick={() => setCreateCommunity({ ...createCommunity, type: "private" })} className={`p-2 px-4 ${createCommunity.type === "private" ? "bg-blue-600 text-white" : "text-black bg-white border-2 "} rounded-xl text-sm  font-semibold `}>Private</div>
                     </div>
                   </div>
-                  <div className="flex flex-col mb-10 sm:mb-0 gap-2">
+                  <div className="flex flex-col mb-[3%] sm:mb-0 gap-2">
                     <div className="flex justify-between items-center">
                       <div className="font-semibold text-sm dark:text-[#fff] text-[#606060]">Topics Names</div>
                       <div className="font-semibold text-sm dark:text-[#fff] text-[#606060]">Actions</div>

@@ -16,7 +16,6 @@ const page = () => {
     { id: id },
     { skip: !id }
   )
-
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(6);
   const lastindex = currentPage * postPerPage;

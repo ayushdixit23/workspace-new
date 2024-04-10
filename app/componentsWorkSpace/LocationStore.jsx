@@ -1,11 +1,14 @@
 import React from "react";
 import { FaAngleDown } from "react-icons/fa";
+import BlurredComponent from "./Blur";
 
-const LocationStore = ({ data }) => {
+const LocationStore = ({ data, memberships }) => {
 
   return (
     <>
-      <div className="overflow-y-scroll dark:text-white sm:max-h-[200px] no-scrollbar">
+      {memberships === "Free" ? <div className="h-[220px]">
+        <BlurredComponent />
+      </div> : <div className="overflow-y-scroll dark:text-white sm:max-h-[200px] no-scrollbar">
         <div className="flex justify-between mt-3 px-3 items-center">
           <div className="text-lg font-semibold">Top Location</div>
           {/* <div className="flex justify-center text-sm p-[5px] rounded-xl gap-1 border px-3 items-center">
@@ -48,7 +51,7 @@ const LocationStore = ({ data }) => {
             </div>
           </div> */}
         </div>
-      </div>
+      </div>}
     </>
   );
 };

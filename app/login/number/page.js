@@ -20,12 +20,11 @@ import { QRCodeSVG } from "qrcode.react";
 import { RiLoader4Line } from "react-icons/ri";
 import { database } from "@/firebase.config";
 import { useLoginWithQrMutation } from "@/app/redux/apiroutes/userLoginAndSetting";
-import useTokenAndData from "@/app/utilsHelper/tokens";
 import toast, { Toaster } from "react-hot-toast";
-import { storeInSessionStorage } from "@/app/utilsHelper/Tokenwrap";
 import workspace from "../../assets/image/workspace.png";
 import Image from "next/image";
 import Logo from "@/app/assets/icons/Logo";
+import Cookies from "js-cookie";
 // import Cookies from "js-cookie";
 
 function page() {
@@ -43,7 +42,7 @@ function page() {
   const [change, setChange] = useState(1);
   const dispatch = useDispatch();
   const [login] = useLoginMutation();
-  const { generateData } = useTokenAndData();
+  // const { generateData } = useTokenAndData();
   const otpInputRef = useRef(null);
   const [emailLogin] = useEmailLoginMutation();
 
@@ -96,14 +95,17 @@ function page() {
   // };
   const waitkrnevalafunc = async (data) => {
     try {
-      if (localStorage.length > 20) {
-        localStorage.clear();
-      }
-      storeInSessionStorage(data.sessionId);
+      // if (localStorage.length > 20) {
+      //   localStorage.clear();
+      // }
+      // storeInSessionStorage(data.sessionId);
       // Cookies.set(`excktn${data.sessionId}`, data.access_token)
       // Cookies.set(`frhktn${data.sessionId}`, data.refresh_token)
-      localStorage.setItem(`excktn`, data.access_token);
-      localStorage.setItem(`frhktn`, data.refresh_token);
+      Cookies.set(`excktn`, data.access_token);
+      Cookies.set(`frhktn`, data.refresh_token);
+
+      // localStorage.setItem(`excktn`, data.access_token);
+      // localStorage.setItem(`frhktn`, data.refresh_token);
       return true;
     } catch (e) {
       console.error("Error during login:", e);

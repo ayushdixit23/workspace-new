@@ -9,7 +9,6 @@ import CustomizationLight from "../assets/icons/CustomizationLight";
 import Logo from "../assets/icons/Logo";
 import EarningLight from "../assets/icons/MonetizationLight";
 import { MdOutlineLogout } from "react-icons/md";
-import { getItemSessionStorage } from "../utilsHelper/Tokenwrap";
 import CustomizationDark from "../assets/icons/CustomizationDark";
 import CommunityDark from "../assets/icons/CommunityDark";
 import DashboardDark from "../assets/icons/DashboardDark";
@@ -18,9 +17,8 @@ import SettingsDark from "../assets/icons/SettingsDark";
 import StoreDark from "../assets/icons/StoreDark";
 import { useTheme } from "next-themes";
 // import Cookies from "js-cookie";
-import { FaCrown } from "react-icons/fa";
 import MembershipPopup from "./MembershipPopup";
-import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 
 function NavBar() {
   const MemoizedDashIconLight = useMemo(() => DashboardLight, []);
@@ -37,15 +35,14 @@ function NavBar() {
   const MemoizedCustomizationDark = useMemo(() => CustomizationDark, []);
   const MemoizedLogo = useMemo(() => Logo, []);
   // const [pop, setPop] = useState(true)
-  const dispatch = useDispatch();
   const [pop, setPop] = useState(false);
-  const sessionId = getItemSessionStorage();
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const path = usePathname();
   const { theme, systemTheme } = useTheme();
   const colorToPut = path.split("/").pop().toLowerCase();
   const [location, setLocation] = useState(colorToPut);
+
   const navItems = [
     {
       label: "Dashboard",
@@ -104,9 +101,10 @@ function NavBar() {
     try {
       // Cookies.remove(`excktn${sessionId}`)
       // Cookies.remove(`frhktn${sessionId}`)
-
-      localStorage.removeItem(`excktn`);
-      localStorage.removeItem(`frhktn`);
+      Cookies.remove(`excktn`);
+      Cookies.remove(`frhktn`);
+      // localStorage.removeItem(`excktn`);
+      // localStorage.removeItem(`frhktn`);
       setOpen(false);
       router.push("/login");
     } catch (error) {
@@ -139,8 +137,8 @@ function NavBar() {
 
       <div
         className={`${open
-            ? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md"
-            : "hidden -z-50"
+          ? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md"
+          : "hidden -z-50"
           }`}
       >
         <div className="flex justify-center items-center w-[90%] pp:w-[65%] sm:max-w-[500px] lg:w-[30%] rounded-xl p-4 dark:bg-[#273142] bg-white">
@@ -189,8 +187,8 @@ function NavBar() {
             <Link
               onClick={() => ChangeColor("dashboard")}
               className={`flex ${open ? "-z-30" : null} ${location == "dashboard"
-                  ? "dark:bg-[#4880ff] dark:text-white bg-[#487fff4b]  text-[#4880ff] ring-1 ring-[#4880ff]"
-                  : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                ? "dark:bg-[#4880ff] dark:text-white bg-[#487fff4b]  text-[#4880ff] ring-1 ring-[#4880ff]"
+                : "hover:bg-gray-100 dark:hover:bg-gray-800"
                 } items-center px-4 py-2 gap-2 dark:text-gray-400 rounded-2xl`}
               href="/main/dashboard"
             >
@@ -222,8 +220,8 @@ function NavBar() {
             <Link
               onClick={() => ChangeColor("community")}
               className={`flex ${open ? "-z-30" : null} ${location == "community"
-                  ? "dark:bg-[#4880ff] dark:text-white bg-[#487fff4b]  text-[#4880ff] ring-1 ring-[#4880ff]"
-                  : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                ? "dark:bg-[#4880ff] dark:text-white bg-[#487fff4b]  text-[#4880ff] ring-1 ring-[#4880ff]"
+                : "hover:bg-gray-100 dark:hover:bg-gray-800"
                 } items-center px-4 py-2 gap-2 mt-5 dark:text-gray-400 rounded-2xl`}
               href="/main/community"
             >
@@ -255,8 +253,8 @@ function NavBar() {
             <Link
               onClick={() => ChangeColor("store")}
               className={`flex ${open ? "-z-30" : null} ${location == "store"
-                  ? "dark:bg-[#4880ff] dark:text-white bg-[#487fff4b]  text-[#4880ff] ring-1 ring-[#4880ff]"
-                  : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                ? "dark:bg-[#4880ff] dark:text-white bg-[#487fff4b]  text-[#4880ff] ring-1 ring-[#4880ff]"
+                : "hover:bg-gray-100 dark:hover:bg-gray-800"
                 } items-center px-4 py-2 gap-2 mt-5 dark:text-gray-400 rounded-2xl`}
               href="/main/store"
             >
@@ -288,8 +286,8 @@ function NavBar() {
             <Link
               onClick={() => ChangeColor("customization")}
               className={`flex ${open ? "-z-30" : null} ${location == "customization"
-                  ? "dark:bg-[#4880ff] dark:text-white bg-[#487fff4b]  text-[#4880ff] ring-1 ring-[#4880ff]"
-                  : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                ? "dark:bg-[#4880ff] dark:text-white bg-[#487fff4b]  text-[#4880ff] ring-1 ring-[#4880ff]"
+                : "hover:bg-gray-100 dark:hover:bg-gray-800"
                 } items-center px-4 py-2 gap-2 mt-5 dark:text-gray-400 rounded-2xl`}
               href="/main/customization"
             >
@@ -323,8 +321,8 @@ function NavBar() {
             <Link
               onClick={() => ChangeColor("earnings")}
               className={`flex ${open ? "-z-30" : null} ${location == "earnings"
-                  ? "dark:bg-[#4880ff] dark:text-white bg-[#487fff4b]  text-[#4880ff] ring-1 ring-[#4880ff]"
-                  : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                ? "dark:bg-[#4880ff] dark:text-white bg-[#487fff4b]  text-[#4880ff] ring-1 ring-[#4880ff]"
+                : "hover:bg-gray-100 dark:hover:bg-gray-800"
                 } items-center px-4 py-2 gap-2 mt-5 dark:text-gray-400 rounded-2xl`}
               href="/main/earnings"
             >
@@ -360,8 +358,8 @@ function NavBar() {
             <Link
               onClick={() => ChangeColor("settings")}
               className={`flex ${open ? "-z-30" : null} ${location == "settings"
-                  ? "dark:bg-[#4880ff] dark:text-white bg-[#487fff4b]  text-[#4880ff] ring-1 ring-[#4880ff]"
-                  : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                ? "dark:bg-[#4880ff] dark:text-white bg-[#487fff4b]  text-[#4880ff] ring-1 ring-[#4880ff]"
+                : "hover:bg-gray-100 dark:hover:bg-gray-800"
                 } items-center px-4 py-2 gap-2 mt-5 dark:text-gray-400 rounded-2xl`}
               href="/main/settings"
             >
@@ -428,8 +426,8 @@ function NavBar() {
               >
                 <div
                   className={`duraction-100 ${path === item.path
-                      ? "h-1 w-10 rounded-full dark:bg-white bg-black"
-                      : "h-0 w-0"
+                    ? "h-1 w-10 rounded-full dark:bg-white bg-black"
+                    : "h-0 w-0"
                     }`}
                 ></div>
                 <div className="h-10 w-10 pt-2">

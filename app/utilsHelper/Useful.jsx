@@ -33,9 +33,9 @@ export const checkToken = async (token) => {
       const expiration = decodedToken.payload.exp;
       const isValidExp = currentTimestamp <= expiration;
       if (isValidIat && isValidExp) {
-        return { check: true, payload: decodedToken.payload }
+        return { isValid: true, payload: decodedToken.payload }
       } else {
-        return { check: false, payload: "" }
+        return { isValid: false, payload: "" }
       }
     }
   } catch (error) {

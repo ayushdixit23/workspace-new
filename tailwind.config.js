@@ -22,6 +22,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         bggg: "url('./assets/image/memberback.png')",
+        prosite: "url('./assets/image/prositepopup.png')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",

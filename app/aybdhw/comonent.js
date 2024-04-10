@@ -7,9 +7,11 @@ import toast from "react-hot-toast"
 import Loader from "../data/Loader"
 import Cookies from "js-cookie"
 import { encryptaes } from "../utilsHelper/security"
+import { useAuthContext } from "../utilsHelper/AuthWrapper"
 
 const Component = () => {
 	const queryParams = useSearchParams()
+	const { setAuth } = useAuthContext()
 	const id = queryParams.get("zyxxpht")
 	const path = queryParams.get("path")
 	const dps = queryParams.get("dps")
@@ -33,13 +35,16 @@ const Component = () => {
 	const router = useRouter()
 	const waitkrnevalafunc = async (data) => {
 		try {
-			localStorage.removeItem("excktn")
-			localStorage.removeItem("frhktn")
-			storeInSessionStorage(data.sessionId)
-			// Cookies.set(`excktn${data.sessionId}`, data.access_token)
-			// Cookies.set(`frhktn${data.sessionId}`, data.refresh_token)
-			localStorage.setItem(`excktn`, data.access_token)
-			localStorage.setItem(`frhktn`, data.refresh_token)
+			// localStorage.removeItem("excktn")
+			// localStorage.removeItem("frhktn")
+
+			// storeInSessionStorage(data.sessionId)
+			Cookies.set(`excktn`, data.access_token)
+			Cookies.set(`frhktn`, data.refresh_token)
+
+			setAuth(true)
+			// localStorage.setItem(`excktn`, data.access_token)
+			// localStorage.setItem(`frhktn`, data.refresh_token)
 			// localStorage.setItem(`excktn${data.sessionId}`, data.access_token)
 			// localStorage.setItem(`frhktn${data.sessionId}`, data.refresh_token)
 			if (comId) {

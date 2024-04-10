@@ -3,7 +3,6 @@ import { RxCross1 } from "react-icons/rx";
 import { getData } from "../utilsHelper/Useful";
 import useRazorpay from "react-razorpay";
 import {
-  getItemSessionStorage,
   storeInSessionStorage,
 } from "../utilsHelper/Tokenwrap";
 import axios from "axios";
@@ -15,94 +14,12 @@ import { LoadThis } from "../redux/slice/userData";
 import dynamic from "next/dynamic";
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import Flow from "../assets/icons/Flow.json"
+import Cookies from "js-cookie";
 
 const MembershipPopup = ({ setPop }) => {
   const { id, fullname, memberships } = getData();
   const router = useRouter();
-  const [Razorpay] = useRazorpay();
   const dispatch = useDispatch();
-  const [membershipFinalise] = useMemfinalizeMutation();
-  const buyMembership = async () => {
-    try {
-      const res = await axios.post(
-        `https://work.grovyo.xyz/api/v1/membershipbuy/${id}/${process.env.NEXT_PUBLIC_PREMIUM}`,
-        // { amount: `₹1` }
-        { amount: `₹3499` }
-      );
-      // const res = await axios.post(`http://192.168.84.86:7190/api/v1/membershipbuy/${id}/65671e6004b7d0d07ef0e798`,
-      // 	// { amount: `₹1` }
-      // 	{ amount: `₹3499` }
-      // )
-
-      const membershipId = res.data.memid;
-      if (res.data.success) {
-        let options = {
-          key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-          amount: 349900,
-          currency: "INR",
-          name: "Grovyo",
-          description: `Buying Membership of Premium`,
-          order_id: res?.data?.oid,
-          handler: async function (response) {
-            const paymentMethod = response?.method;
-            const data = {
-              paymentMethod,
-              razorpay_order_id: response?.razorpay_order_id,
-              razorpay_payment_id: response?.razorpay_payment_id,
-              memid: membershipId,
-              razorpay_signature: response?.razorpay_signature,
-              status: true,
-            };
-            const resp = await membershipFinalise({
-              id,
-              orderid: res.data?.order,
-              data,
-            });
-
-            if (resp.data?.success) {
-              // Cookies.remove(`excktn${sessionId}`)
-              // Cookies.remove(`frhktn${sessionId}`)
-              // Cookies.set(`excktn${data.sessionId}`, data.access_token)
-              // Cookies.set(`frhktn${data.sessionId}`, data.refresh_token)
-
-              localStorage.removeItem(`excktn`);
-              localStorage.removeItem(`frhktn`);
-              storeInSessionStorage(resp.data.sessionId);
-              localStorage.setItem(`excktn`, resp.data.access_token);
-              localStorage.setItem(`frhktn`, resp.data.refresh_token);
-              dispatch(LoadThis(true));
-              setPop(true);
-            }
-          },
-          prefill: {
-            email: res?.data?.email || "",
-            contact: res?.data?.phone || "",
-            name: fullname,
-          },
-          theme: {
-            color: "#3399cc",
-          },
-        };
-        let rpay = new Razorpay(options);
-        rpay.on("payment.failed", async function (response) {
-          const data = {
-            razorpay_order_id: response?.razorpay_order_id,
-            razorpay_payment_id: response?.razorpay_payment_id,
-            razorpay_signature: response?.razorpay_signature,
-            status: true,
-          };
-          await membershipFinalise({
-            id,
-            orderid: res.data?.order,
-            data,
-          });
-        });
-        rpay.open();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <>
@@ -144,7 +61,7 @@ const MembershipPopup = ({ setPop }) => {
                     {">"} Create Up-to 2 Communities
                   </p>
                   <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    {">"} Free 10 Deliveries
+                    {">"} Badge : Not Available
                   </p>
                   <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
                     {">"} Access upto 5 templates
@@ -193,17 +110,17 @@ const MembershipPopup = ({ setPop }) => {
                     {">"} Create Up-to 5 Products
                   </p>
                   <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    {">"} Create Up-to 2 Communities
+                    {">"} Create Up-to 3 Communities
                   </p>
                   <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    {">"} Free 10 Deliveries
+                    {">"} Badge: Available
                   </p>
                   <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    {">"} Access upto 5 templates
+                    {">"} Access upto 10 templates
                   </p>
                 </div>
                 <div className="mt-[25px] -ml-1">
-                  <button className="bg-[#006EF5] rounded-lg py-[15px] px-[25px] w-full text-[#fff] text-[14px] leading-[17px] font-semibold">
+                  <button onClick={() => router.push("/membership")} className="bg-[#006EF5] rounded-lg py-[15px] px-[25px] w-full text-[#fff] text-[14px] leading-[17px] font-semibold">
                     Upgrade +
                   </button>
                 </div>
@@ -247,20 +164,20 @@ const MembershipPopup = ({ setPop }) => {
               <div className="mt-3 pl-1">
                 <div className="flex flex-col gap-3">
                   <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    {">"} Create Up-to 5 Products
+                    {">"} Create Up-to 10 Products
                   </p>
                   <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    {">"} Create Up-to 2 Communities
+                    {">"} Create Up-to 5 Communities
                   </p>
                   <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    {">"} Free 10 Deliveries
+                    {">"} Badge : Available
                   </p>
                   <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    {">"} Access upto 5 templates
+                    {">"} Access upto 15 templates
                   </p>
                 </div>
                 <div className="mt-[25px] -ml-1">
-                  <button className="bg-yellow-400 rounded-lg py-[15px] px-[25px] w-full text-[#fff] text-[14px] leading-[17px] font-semibold">
+                  <button onClick={() => router.push("/membership")} className="bg-yellow-400 rounded-lg py-[15px] px-[25px] w-full text-[#fff] text-[14px] leading-[17px] font-semibold">
                     Upgrade +
                   </button>
                 </div>
@@ -294,20 +211,20 @@ const MembershipPopup = ({ setPop }) => {
               <div className="mt-3 pl-1">
                 <div className="flex flex-col gap-3">
                   <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    {">"} Create Up-to 5 Products
+                    {">"} Create Up-to 10 Products
                   </p>
                   <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    {">"} Create Up-to 2 Communities
+                    {">"} Create Up-to 10 Communities
                   </p>
                   <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    {">"} Free 10 Deliveries
+                    {">"} Badge: Available
                   </p>
                   <p className="text-[#717F87] text-[14px] leading-[24px] font-medium">
-                    {">"} Access upto 5 templates
+                    {">"} Access upto 30 templates
                   </p>
                 </div>
                 <div className="mt-[25px] -ml-1">
-                  <button className="bg-[#006EF5] rounded-lg py-[15px] px-[25px] w-full text-[#fff] text-[14px] leading-[17px] font-semibold">
+                  <button onClick={() => router.push("/membership")} className="bg-[#006EF5] rounded-lg py-[15px] px-[25px] w-full text-[#fff] text-[14px] leading-[17px] font-semibold">
                     Upgrade +
                   </button>
                 </div>
