@@ -7,7 +7,6 @@ import toast from "react-hot-toast"
 import Loader from "../data/Loader"
 import Cookies from "js-cookie"
 import { encryptaes } from "../utilsHelper/security"
-import { useAuthContext } from "../utilsHelper/AuthWrapper"
 
 const Component = () => {
 	const queryParams = useSearchParams()
