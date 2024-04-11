@@ -15,25 +15,22 @@ const page = () => {
 
 	return (
 		<>
-
-			{pop && <div className='fixed inset-0 w-screen h-screen flex justify-center bg-black/50 items-center'>
-				<div className='bg-prosite bg-center text-xl font-semibold flex flex-col p-3 rounded-xl'>
-					<div className='flex justify-end pt-3 items-center'>
-						<RxCross2 className='text-xl' onClick={() => setPop(false)} />
-					</div>
-					<div className='flex justify-center items-center pt-4 pb-5 flex-col gap-2'>
-						<div>Choose templates that suits you and your profession   </div>
-						<div>to form your own Prosite</div>
-						<div className=''>Profile + Website</div>
-					</div>
-				</div>
-			</div>}
-			<div className='sm:h-[82vh] h-auto bg-white sm:rounded-xl dark:bg-[#273142] flex flex-col'>
+			<div className='sm:h-[82vh] h-auto overflow-y-scroll no-scrollbar py-5 bg-white sm:rounded-xl *:
+			
+			dark:bg-[#273142] flex flex-col'>
 				<div className='flex justify-between border-b px-4 sm:px-7  dark:border-[#3d4654] items-center w-full'>
 					<div className='pt-4 pb-2  w-full font-medium text-[#4880FF]'>Prosite Templates</div>
 				</div>
 
 				<div className='grid pn:max-sm:mb-[3%] grid-cols-1 mt-5 px-5 w-full'>
+					<div className='bg-prosite text-white bg-center text-xl font-semibold w-full flex flex-col p-3 rounded-xl'>
+
+						<div className='flex justify-center items-center pt-4 pb-5 flex-col gap-2'>
+							<div>Choose templates that suits you and your profession   </div>
+							<div>to form your own Prosite</div>
+							<div className=''>Profile + Website</div>
+						</div>
+					</div>
 					<div className='flex flex-col'>
 
 

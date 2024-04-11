@@ -10,14 +10,15 @@ import { getData } from "@/app/utilsHelper/Useful";
 import Cookies from "js-cookie";
 // import Cookies from 'js-cookie'
 import { useRouter } from "next/navigation";
+import Link from "next/link"
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FaCamera, FaPen } from "react-icons/fa";
-import { MdOutlineLogout } from "react-icons/md";
+import { MdOutlineLogout, MdVerified } from "react-icons/md";
 
 const page = () => {
-  const { id } = getData();
+  const { id, memberships } = getData();
   const [profileDetails] = usePostProfileMutation();
   const [loading, setLoading] = useState(true);
   const [loading2, setLoading2] = useState(false);
@@ -315,15 +316,21 @@ const page = () => {
             <div className="w-full flex lg:pl-3 flex-col gap-4 md:col-span-3 sm:max-md:col-span-2 lg:col-span-3">
               <div className="w-full flex flex-col gap-1 sm:max-w-[450px]">
                 <div className="w-full text-sm">Your Name</div>
-                <input
-                  type="text"
-                  onChange={(e) =>
-                    setProfile({ ...profile, fullname: e.target.value })
-                  }
-                  value={profile.fullname}
-                  className="w-full outline-none rounded-xl placeholder:text-sm  placeholder:text-[#718EBF] p-1.5 px-3 dark:bg-[#323d4e] dark:border-none border"
-                  placeholder="Charlene Reed"
-                />
+                <div className="flex justify-center items-center dark:bg-[#323d4e] p-1.5 px-3  rounded-xl dark:border-none border w-full">
+                  <input
+                    type="text"
+                    onChange={(e) =>
+                      setProfile({ ...profile, fullname: e.target.value })
+                    }
+                    value={profile.fullname}
+                    className="w-full outline-none rounded-xl bg-transparent placeholder:text-sm  placeholder:text-[#718EBF] "
+                    placeholder="Charlene Reed"
+                  />
+                  {memberships !== "Free" && <Link href={"/membership"} className="flex justify-center text-sm font-semibold items-center">
+                    {/* <MdVerified className="text-blue-700 text-[20px] " /> */}
+                    Verified
+                  </Link>}
+                </div>
               </div>
               <div className="w-full flex flex-col gap-1 sm:max-w-[450px]">
                 <div className="w-full text-sm">Email</div>
@@ -395,7 +402,7 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-end items-center sm:items-end sm:hidden w-full sm:w-[85%] mt-2 sm:mb-3 mb-[3%] gap-2">
+        <div className="flex flex-col justify-end items-center sm:items-end sm:hidden w-full sm:w-[85%] mt-2 sm:mb-3 mb-[10%] gap-2">
           <div
             className="h-full text-white bg-red-600 rounded-2xl pn:max-sm:w-[90%] py-2 sm:px-6 flex justify-center items-center"
             onClick={() => setOpen(true)}

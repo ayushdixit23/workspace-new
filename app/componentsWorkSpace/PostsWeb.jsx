@@ -80,10 +80,10 @@ const PostsWeb = ({ d, userid, setPostid, setOpen, open, dispatch, postDeletion 
 				<td className="text-center">
 					<div className='flex justify-center gap-3 relative items-center'>
 						<div>
-							<a target='_blank' href={`http://localhost:3000/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=2`
-							} className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a>
-							{/* <a target='_blank' href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=1`
+							{/* <a target='_blank' href={`http://localhost:3001/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=1`
 							} className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a> */}
+							<a target='_blank' href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=1`
+							} className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a>
 							{/* <a href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=2`} className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a> */}
 						</div>
 						<div className="flex text-center  relative mr-3 justify-around items-center">
@@ -102,10 +102,9 @@ const PostsWeb = ({ d, userid, setPostid, setOpen, open, dispatch, postDeletion 
 					</div>
 				</td>
 			</tr>
-
+			
 			<div
-
-				className={`light:border-b sm:hidden light:border-[#eaecf0] px-2 flex flex-col justify-center items-center gap-4 w-full`}
+				className={`light:border-b mb-[10%] sm:hidden light:border-[#eaecf0] px-2 flex flex-col justify-center items-center gap-4 w-full`}
 			>
 				<div className="flex justify-between mt-3 px-3 w-full items-center">
 					<div className="flex justify-center items-center gap-2">

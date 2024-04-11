@@ -756,7 +756,7 @@ function page() {
 											<div onClick={() => setEditCommunity({ ...editCommunity, type: "private" })} className={`p-2 px-4 ${editCommunity.type === "private" ? "bg-blue-600 text-white" : "text-black bg-white border-2 "} rounded-xl text-sm  font-semibold `}>Private</div>
 										</div>
 									</div>
-									<div className="flex flex-col mb-[3%] sm:mb-0 gap-2">
+									<div className="flex flex-col  mb-[10%] sm:mb-0 gap-2">
 										<div className="flex justify-between items-center">
 											<div className="text-sm text-[#606060] font-semibold">Topics Names</div>
 											<div className="text-sm font-semibold text-[#606060]">Actions</div>

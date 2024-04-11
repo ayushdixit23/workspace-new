@@ -498,7 +498,7 @@ const page = () => {
                       <>
 
                         {
-                          (state1.engagementrate <= 10 || state1.members <= 150)
+                          (state1.topics < 3)
                           &&
                           <div className="flex text-sm flex-col gap-3">
                             <div className="px-2 flex flex-col gap-1">
@@ -596,11 +596,11 @@ const page = () => {
                   </>
                     :
                     <div className="flex text-sm flex-col gap-3">
-                      {(((state2.members <= 1000 || state2.engagementrate <= 10) && !state2.ismonetized)) &&
+                      {((!state2.ismonetized)) &&
                         <> <div className="px-2 flex flex-col gap-1">
                           <div className="flex justify-between items-center">
                             <div className=" dark:text-white text-[#615E83]">Members</div>
-                            <div>{state2.members}/1000</div>
+                            <div>{state2.members ? state2.members : 0}/1000</div>
                           </div>
                           <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                             <div
@@ -612,7 +612,7 @@ const page = () => {
                           <div className="px-2 flex flex-col gap-1">
                             <div className="flex justify-between items-center">
                               <div className=" dark:text-white text-[#615E83]">Popularity Rate</div>
-                              <div className="">{state2.engagementrate} %</div>
+                              <div className="">{state2.engagementrate ? state2.engagementrate : 0} %</div>
                             </div>
                             <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                               <div
