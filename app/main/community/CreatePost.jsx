@@ -160,10 +160,6 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 		}
 	};
 
-
-
-	console.log(post.image, "image", thumbnailImage)
-
 	const editPosts = async () => {
 		if (!post.title || !post.image) {
 			toast.error("Enter required details")
@@ -266,7 +262,7 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 		<>
 			<Toaster />
 			<div className={`${open ? "sm:fixed sm:inset-0 w-screen sm:p-2 z-50 bg-[#cccccc33] sm:h-screen flex justify-center items-center" : "hidden -z-50"}`}>
-				<div className="flex flex-col justify-center shadow-md items-center p-3 sm:rounded-xl w-full sm:max-w-[90%] md:max-w-[80%] dark:bg-[#273142] bg-white">
+				<div className="flex flex-col justify-center sm:mb-0 mb-[10%] shadow-md items-center p-3 sm:rounded-xl w-full sm:max-w-[90%] md:max-w-[80%] dark:bg-[#273142] bg-white">
 					<div className='flex justify-between w-full items-center p-2'>
 						<div className='flex justify-center items-center gap-4'>
 							<div onClick={() => { setOpen(false), sessionStorage.removeItem("postdata") }} className='cursor-pointer'>

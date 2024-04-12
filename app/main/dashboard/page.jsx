@@ -245,7 +245,7 @@ function Dashboard() {
                       </div>
                     </div>
                     <Link
-                      href={"/main/community/createCommunity"}
+                      href={"/main/store"}
                       className="bg-[#2A85FF] text-sm rounded-xl flex justify-center items-center text-white p-2 px-4"
                     >
                       Create Store

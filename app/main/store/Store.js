@@ -149,6 +149,7 @@ export default function Store() {
         () => {
           toast.error("Allow Location To Create Store!");
           setCheck(null);
+          dispatch(LoadThis(false));
         }
       );
     }
