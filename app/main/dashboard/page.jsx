@@ -562,7 +562,7 @@ function Dashboard() {
                 <>
                   {getorderdata?.storeexistornot ? (
                     <>
-                      {getorderdata?.isStoreVerified && <div className="md:col-span-4  sm:col-span-5 h-full sm:mb-0 mb-[64px] sm:max-h-[570px]  xl:max-h-full sticky top-2 w-full rounded-xl dark:bg-[#273142] dark:border-2 dark:border-[#323d4e] bg-white dark:bg-red-500 overflow-hidden p-[6px]">
+                      {getorderdata?.isStoreVerified && <div className="md:col-span-4  sm:col-span-5 h-full sm:mb-0 mb-[64px] sm:max-h-[570px]  xl:max-h-full sticky top-2 w-full rounded-xl dark:bg-[#273142] dark:border-2 dark:border-[#323d4e] bg-white overflow-hidden p-[6px]">
                         <div
                           className={`h-full flex flex-col ${change == "community" ? null : "hidden"
                             }`}

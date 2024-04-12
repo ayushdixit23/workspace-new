@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import Charts from "./Charts"
-import { formatDate } from "../utilsHelper/Useful";
+import { formatDate, formatISOStringToDMY } from "../utilsHelper/Useful";
 import BuiltSelected from "../componentsWorkSpace/BuiltSelected";
 
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
@@ -18,7 +18,7 @@ const Communitydata = ({ state, analyticsdata, setState, setDateValue, dateValue
   const [toggle, setToggle] = useState(false)
   const communityData = state.stats && state?.stats?.map((d) => ({
     members: d.Y1 ? Number(d.Y1) : 0,
-    X: d.X ? formatDate(d.X) : d.X,
+    X: d?.creation ? formatISOStringToDMY(d?.creation) : d?.creation,
     visitors: d.Y2 ? Number(d.Y2) : 0,
     leave: d.Y3 ? Number(d.Y3) : 0
   }))
@@ -32,7 +32,7 @@ const Communitydata = ({ state, analyticsdata, setState, setDateValue, dateValue
             <div className="w-[155px] "><BuiltSelected data={analyticsdata?.commerged} state={state} setState={setState} type={"dashboard"} /></div>
           </div>
 
-          <div className="flex pn:max-sm:hidden justify-center items-center gap-1">
+          <div className="flex justify-center items-center gap-1">
             < div onClick={() => setToggle(!toggle)} className='flex flex-col w-full bg-[#f7f7f7] dark:bg-[#323d4e] rounded-xl' >
               <div className='flex justify-between items-center relative p-1.5 cursor-pointer h-full gap-2 px-2 w-full text-sm'>
                 <div className='flex items-center gap-2'>

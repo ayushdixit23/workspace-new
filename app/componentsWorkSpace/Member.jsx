@@ -6,6 +6,10 @@ const Member = ({ state, data, memberships }) => {
   const { totalmembers, stats } = state;
   const [more, setMore] = useState(false);
   const [mores, setMores] = useState(false);
+
+  console.log(stats[0]?.X, "stats member")
+  console.log(stats[stats.length - 1]?.X, "stats member")
+
   return (
     <>
       {data > 0 ? (

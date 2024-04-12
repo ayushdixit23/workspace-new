@@ -102,7 +102,7 @@ const PostsWeb = ({ d, userid, setPostid, setOpen, open, dispatch, postDeletion 
 					</div>
 				</td>
 			</tr>
-			
+
 			<div
 				className={`light:border-b mb-[10%] sm:hidden light:border-[#eaecf0] px-2 flex flex-col justify-center items-center gap-4 w-full`}
 			>
