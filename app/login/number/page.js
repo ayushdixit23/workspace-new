@@ -23,8 +23,8 @@ import { useLoginWithQrMutation } from "@/app/redux/apiroutes/userLoginAndSettin
 import toast, { Toaster } from "react-hot-toast";
 import workspace from "../../assets/image/workspace.png";
 import Image from "next/image";
-import Logo from "@/app/assets/icons/Logo";
 import Cookies from "js-cookie";
+import useTokenAndData from "@/app/utilsHelper/tokens";
 // import Cookies from "js-cookie";
 
 function page() {
@@ -42,7 +42,7 @@ function page() {
   const [change, setChange] = useState(1);
   const dispatch = useDispatch();
   const [login] = useLoginMutation();
-  // const { generateData } = useTokenAndData();
+  const { generateData } = useTokenAndData();
   const otpInputRef = useRef(null);
   const [emailLogin] = useEmailLoginMutation();
 

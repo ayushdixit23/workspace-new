@@ -25,6 +25,8 @@ function Header() {
     setPic(dp)
   }, [fullname])
 
+  console.log(memberships, "me")
+
   return (
 
     <>
@@ -46,7 +48,7 @@ function Header() {
           {/* {(pathname.startsWith("/main/dashboard") || pathname.startsWith("/main/community") || pathname.startsWith("/main/store")) && <div className="font-bold">Hey, {name}</div>} */}
 
           {/* {(pathname.startsWith("/main/dashboard") || pathname.startsWith("/main/community") || pathname.startsWith("/main/store")) && <div className="font-bold">Hey, {name}</div>} */}
-          {!(pathname == "/main/settings" || pathname == "/main/earnings") && <div className="font-bold flex justify-center  gap-1.5  items-center">Hey, {name} {memberships !== "Free" && < MdVerified className="text-blue-700 hidden sm:block" />}</div>}
+          {!(pathname == "/main/settings" || pathname == "/main/earnings") && <div className="font-bold flex justify-center  gap-1.5  items-center">Hey, {name} {(memberships !== null && memberships !== "Free") && < MdVerified className="text-blue-700 hidden sm:block" />}</div>}
 
 
         </div>
@@ -105,7 +107,7 @@ function Header() {
                   width={100}
                   className="h-10 w-10 cursor-pointer flex justify-center items-center rounded-[18px] ring-1 ring-white shadow-[0_3px_10px_2px_rgba(1,1,1,0.1)]"
                 />
-                {memberships !== "Free" && <MdVerified className="text-blue-700 absolute -bottom-1 -right-1 text-[17px] sm:hidden block" />}
+                {(memberships !== null && memberships !== "Free") && <MdVerified className="text-blue-700 absolute -bottom-1 -right-1 text-[17px] sm:hidden block" />}
               </Link>
             ) : (
               <div
@@ -126,7 +128,7 @@ function Header() {
             ) : (
               <div
                 onClick={() => setProf(!prof)}
-                className="h-10 w-10 bg-red-600 cursor-pointer flex justify-center items-center rounded-[18px] ring-1 ring-white shadow-[0_3px_10px_2px_rgba(1,1,1,0.1)]"
+                className="h-10 w-10 bg-black cursor-pointer flex justify-center items-center rounded-[18px] ring-1 ring-white shadow-[0_3px_10px_2px_rgba(1,1,1,0.1)]"
               />
             )}
           </div>

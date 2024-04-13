@@ -22,6 +22,7 @@ const useTokenAndData = () => {
       const { access_token, success } = res.data;
       if (success) {
         return { access_token, refresh_token: refreshToken };
+
       } else {
         console.error("Failed to refresh token");
         return Promise.reject("Failed to refresh token");

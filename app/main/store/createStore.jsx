@@ -1,9 +1,9 @@
 import { useCreateStoreMutation } from "@/app/redux/apiroutes/product";
 import { LoadThis } from "@/app/redux/slice/userData";
 import axios from "axios";
-import React, { useCallback } from "react";
+import React from "react";
 import toast from "react-hot-toast";
-import { FaPlus } from "react-icons/fa";
+import { FaAsterisk, FaPlus } from "react-icons/fa";
 import { RiLoader2Line } from "react-icons/ri";
 
 const CreateStore = ({
@@ -23,7 +23,6 @@ const CreateStore = ({
   const [createStore] = useCreateStoreMutation();
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    console.log("runnded");
     const sendFile = URL.createObjectURL(selectedFile);
     setStore({ ...store, d9: selectedFile });
     setShowImage(sendFile);
@@ -130,11 +129,11 @@ const CreateStore = ({
               <div className="text-lg font-semibold">
                 Continue to Setup Your Store
               </div>
-              <div>Enter The Remaining Details </div>
+              <div>Enter The Remaining Details</div>
             </div>
             <div className="grid grid-cols-1 gap-2 w-full">
               <div className="flex flex-col gap-1 w-full">
-                <div className="text-sm font-medium">Address</div>
+                <div className="text-sm flex gap-1 items-center font-medium">Address <FaAsterisk className="text-[10px] text-red-800" /></div>
                 <input
                   type="text"
                   className="border-2 bg-[#FAFAFA] dark:bg-[#323d4e] dark:border-none outline-none p-1 rounded-lg"
@@ -145,7 +144,7 @@ const CreateStore = ({
 
               <div className="grid pp:grid-cols-2 gap-2 w-full">
                 <div className="flex flex-col gap-1 w-full">
-                  <div className="text-sm font-medium">Postal Code</div>
+                  <div className="text-sm flex gap-1 items-center font-medium">Postal Code <FaAsterisk className="text-[10px] text-red-800" /></div>
                   <input
                     type="number"
                     maxLength={6}
@@ -156,7 +155,7 @@ const CreateStore = ({
                   />
                 </div>
                 <div className="flex flex-col gap-1 w-full">
-                  <div className="text-sm font-medium">Famous Landmark</div>
+                  <div className="text-sm flex gap-1 items-center font-medium">Famous Landmark <FaAsterisk className="text-[10px] text-red-800" /></div>
                   <input
                     type="text"
                     className="border-2 bg-[#FAFAFA] dark:bg-[#323d4e] dark:border-none outline-none p-1 rounded-lg"
@@ -167,7 +166,7 @@ const CreateStore = ({
               </div>
               <div className="grid pp:grid-cols-2 gap-2 w-full">
                 <div className="flex flex-col gap-1 w-full">
-                  <div className="text-sm font-medium">City</div>
+                  <div className="text-sm flex gap-1 items-center font-medium">City <FaAsterisk className="text-[10px] text-red-800" /></div>
                   <input
                     disabled={store.d4.length != 6}
                     type="text"
@@ -177,7 +176,7 @@ const CreateStore = ({
                   />
                 </div>
                 <div className="flex flex-col gap-1 w-full">
-                  <div className="text-sm font-medium">State</div>
+                  <div className="text-sm flex gap-1 items-center font-medium">State <FaAsterisk className="text-[10px] text-red-800" /></div>
                   <input
                     disabled={store.d4.length != 6}
                     type="text"
@@ -188,7 +187,7 @@ const CreateStore = ({
                 </div>
               </div>
               <div className="flex flex-col gap-1 w-full">
-                <div className="text-sm font-medium">GST Number (Optional)</div>
+                <div className="text-sm flex gap-1 items-center font-medium">GST Number (Optional) <FaAsterisk className="text-[10px] text-red-800" /></div>
                 <input
                   type="text"
                   className="border-2 bg-[#FAFAFA] dark:bg-[#323d4e] dark:border-none outline-none p-1 rounded-lg"
@@ -197,7 +196,7 @@ const CreateStore = ({
                 />
               </div>
               {/* <div className="flex flex-col gap-1 w-full">
-                <div className="text-sm font-medium">Business Category</div>
+                <div className="text-sm flex gap-1 items-center font-medium">Business Category</div>
                 <input
                   type="text"
                   className="border-2 bg-[#FAFAFA] dark:bg-[#323d4e] dark:border-none outline-none p-1 rounded-lg"
@@ -206,8 +205,8 @@ const CreateStore = ({
                 />
               </div> */}
               <div className="flex flex-col gap-1 w-full">
-                <div className="text-sm font-medium">
-                  Enter PAN or Aadhaar Number
+                <div className="text-sm flex gap-1 items-center font-medium">
+                  Enter PAN or Aadhaar Number <FaAsterisk className="text-[10px] text-red-800" />
                 </div>
                 <input
                   type="text"
@@ -218,7 +217,7 @@ const CreateStore = ({
               </div>
               <div className="flex flex-col gap-1">
                 <label htmlFor="fileInputagain" >
-                  <div className="mb-1">Upload Document for Verification</div>
+                  <div className="mb-1  flex items-center gap-1">Upload Document for Verification <FaAsterisk className="text-[10px] text-red-800" /></div>
                   {store.d9 != "" ? (
                     <div className=" flex justify-center items-center">
                       <img

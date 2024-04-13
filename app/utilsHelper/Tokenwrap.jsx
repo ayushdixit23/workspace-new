@@ -4,8 +4,9 @@ import useTokenAndData from "./tokens";
 import { useDispatch } from "react-redux";
 import { changelaoding, sendData } from "../redux/slice/userData";
 import { ThemeProvider } from "@/components/theme-provider";
-import { redirect, usePathname } from "next/navigation";
+import { redirect, usePathname, useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import Loader from "../data/Loader";
 
 export const storeInSessionStorage = (sessionId) => {
   try {
@@ -33,6 +34,7 @@ export const getItemSessionStorage = () => {
 const TokenDataWrapper = ({ children }) => {
   const { isValid, data } = useTokenAndData();
   const path = usePathname()
+  const [loading, setLoading] = useState(true)
   const exactpath = ["/login", "/aybdhw", "/contact", "/cancellation", "/deleterequest", "/privacy", "/requestdata", "/return", "/shipping", "/terms"]
   const dispatch = useDispatch();
   useEffect(() => {
@@ -47,9 +49,9 @@ const TokenDataWrapper = ({ children }) => {
     if (token && (path === "/login" || path === "/aybdhw" || path === "/")) {
       redirect("/main/dashboard");
     }
+    setLoading(false)
 
   }, [isValid, data, dispatch]);
-
 
   return <>
     <ThemeProvider
@@ -58,7 +60,9 @@ const TokenDataWrapper = ({ children }) => {
       enableSystem
       disableTransitionOnChange
     >
-      {children}
+
+      {loading ? <Loader /> : <>{children}</>}
+
     </ThemeProvider >
   </>;
 };
