@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/table";
 import Image from "next/image";
 import Store from "../assets/image/Store.png";
+import { BiCycling } from "react-icons/bi";
+import { FaTruck } from "react-icons/fa";
 
 const Storedata = ({ getorderdata, sales }) => {
   const salesData =
@@ -46,16 +48,16 @@ const Storedata = ({ getorderdata, sales }) => {
               </div>
               <div className="w-full relative -left-10 pp:-left-8 sm:-left-6 top-2">
                 {salesData.length > 0 ? (
-               
-                    <ChartsStore data={salesData} />
-                
+
+                  <ChartsStore data={salesData} />
+
                 ) : (
                   // <div className="h-[200px] w-full flex text-2xl text-center font-semibold justify-center items-center">
                   //   Data will be available after 7 days
                   // </div>
                   <div className="h-[200px] w-full flex text-2xl text-center font-semibold justify-center items-center">
-                  No Data To Show
-                </div>
+                    No Data To Show
+                  </div>
                 )}
               </div>
             </>
@@ -103,8 +105,24 @@ const Storedata = ({ getorderdata, sales }) => {
           href={"/main/order"}
           className="w-full rounded-xl dark:bg-[#273142] bg-white sm:max-h-[200px] max-w-full overflow-y-scroll no-scrollbar sm:min-h-[200px] "
         >
-          <div className="text-lg font-semibold hidden sm:block p-2 sm:p-3 dark:text-white text-[#030229]">
-            Recent Orders
+          <div className="flex justify-end sm:justify-between items-center">
+            <div className="text-lg font-semibold hidden sm:block p-2 sm:p-3 dark:text-white text-[#030229]">
+              Recent Orders
+            </div>
+            <div className="flex sm:mt-0 mt-3 justify-center items-center gap-3 px-3">
+              <div className="flex justify-center items-center gap-2">
+                <div className="flex justify-center items-center gap-1">
+                  <div><BiCycling /></div>
+                  <div>{getorderdata?.citydelivery}</div>
+                </div>
+                <div className="flex justify-center items-center gap-1">
+                  <div><FaTruck />
+                  </div>
+                  <div>{getorderdata?.countrydelivery}</div>
+                </div>
+              </div>
+              <div className="text-sm hidden sm:block">View More</div>
+            </div>
           </div>
 
           <div className="pn:max-sm:hidden max-w-full min-w-[700px] overflow-scroll no-scrollbar dark:bg-[#273142] p-2 rounded-lg bg-white sm:px-3">

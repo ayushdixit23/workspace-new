@@ -347,7 +347,7 @@ const page = () => {
                     <div className="text-sm">
                       Interested in selling products? Start by creating a community and posting something!
                     </div>}
-                  {((count.com >= 1 || count.post >= 1) && comData.store) &&
+                  {((count.com >= 1 || count.post >= 1) && comData.store && data.length < 0) &&
                     <div className="text-sm">
                       "Congratulations! You can now add products in your Store."
                     </div>}
@@ -481,7 +481,7 @@ const page = () => {
                             <div className="font-semibold text-[17px]">Members</div>
                             <div className="font-semibold text-[17px]">Earnings</div>
                           </div>
-                          <div className="h-[1px] w-full bg-gray-500 my-2"></div>
+                          <div className="h-[1px] w-full dark:bg-[#3d4654]  my-2"></div>
                           {
                             state1.topic.map((d, i) => (
                               <div className="flex mt-1 justify-between items-center">
@@ -585,6 +585,19 @@ const page = () => {
                       <div className="flex flex-col py-2 text-[14px] font-semibold gap-1 justify-center items-center">
                         <div>Total Earnings</div>
                         <div>₹{data?.earningStats?.adsearning}</div>
+                      </div>
+                    </div>
+
+                    <div className="px-2 flex flex-col gap-1">
+                      <div className="flex justify-between items-center">
+                        <div className=" dark:text-white text-[#615E83]">Popularity Rate</div>
+                        <div className="">{state2.engagementrate ? state2.engagementrate : 0} %</div>
+                      </div>
+                      <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
+                        <div
+                          style={{ width: `${((state2.engagementrate) / 10) * 100}%` }}
+                          className={`absolute top-0 left-0 rounded-r-xl  ${state2.engagementrate >= 10 ? "bg-[#40CAB0]" : "bg-[#398faf]"}  h-full `}
+                        ></div>
                       </div>
                     </div>
 

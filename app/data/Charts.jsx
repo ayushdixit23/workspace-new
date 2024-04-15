@@ -10,7 +10,7 @@ import {
 	YAxis
 } from 'recharts';
 
-const Charts = ({ data }) => {
+const Charts = ({ data, uniqueMonths }) => {
 
 	function getDeviceWidth() {
 		return window.screen.width;
@@ -39,6 +39,8 @@ const Charts = ({ data }) => {
 		return [0, parseInt(highestValue * 1.3)];
 	};
 
+	const months = uniqueMonths.reverse()
+
 	return (
 		<div className='w-full h-full'>
 			<ResponsiveContainer width="100%" height={300}  >
@@ -53,6 +55,15 @@ const Charts = ({ data }) => {
 					<Bar dataKey="leave" fill="#ff718b" />
 				</BarChart>
 			</ResponsiveContainer>
+			<div className="flex justify-center gap-2 text-sm items-center">
+
+				{months.map((month, index) => (
+					<React.Fragment key={index}>
+						<div>{month}</div>
+						{index !== months.length - 1 && <div className="separator">-</div>}
+					</React.Fragment>
+				))}
+			</div>
 		</div>
 	);
 };

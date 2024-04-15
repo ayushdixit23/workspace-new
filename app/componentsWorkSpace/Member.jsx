@@ -49,7 +49,7 @@ const Member = ({ state, data, memberships }) => {
               {memberships === "Free" ? < FaCrown className="bg-[#FFEB33] text-[#323d4e] rounded-full h-[25px] p-1.5 w-[25px] " /> : <div>{stats[0]?.paidmembers}</div>}
             </div>
           </div>
-          <div className="flex justify-between items-center mt-2 group dark:hover:bg-[#1F2937] hover:bg-[#f9f9f9] py-2 px-2 rounded-xl w-full">
+          <div className="flex justify-between items-center mt-2  overflow-hidden group dark:hover:bg-[#1F2937] hover:bg-[#f9f9f9] py-2 px-2 rounded-xl w-full">
             <div className="font-medium">Visitors</div>
 
             <div className="flex justify-center items-center gap-2">

@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import Charts from "./Charts"
-import { formatDate, formatISOStringToDMY } from "../utilsHelper/Useful";
+import { formatDate, formatISOStringToDate, formatISOStringToMonth } from "../utilsHelper/Useful";
 import BuiltSelected from "../componentsWorkSpace/BuiltSelected";
 
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
@@ -18,10 +18,18 @@ const Communitydata = ({ state, analyticsdata, setState, setDateValue, dateValue
   const [toggle, setToggle] = useState(false)
   const communityData = state.stats && state?.stats?.map((d) => ({
     members: d.Y1 ? Number(d.Y1) : 0,
-    X: d?.creation ? formatISOStringToDMY(d?.creation) : d?.creation,
+    X: d?.creation ? formatISOStringToDate(d?.creation) : d?.creation,
     visitors: d.Y2 ? Number(d.Y2) : 0,
-    leave: d.Y3 ? Number(d.Y3) : 0
+    leave: d.Y3 ? Number(d.Y3) : 0,
   }))
+
+  const months = state.stats && state?.stats?.map(data => {
+    const month = formatISOStringToMonth(data.creation);
+    return month
+  });
+
+  const uniqueMonths = [...new Set(months)];
+
 
   return (
     <div className="h-full">
@@ -62,9 +70,10 @@ const Communitydata = ({ state, analyticsdata, setState, setDateValue, dateValue
 
 
           {(communityData.length >= 1) &&
-            <Charts data={communityData} />
+            <Charts data={communityData} uniqueMonths={uniqueMonths} />
           }
         </div>
+
       </div >
 
       <div className="flex flex-col my-3 gap-2 pn:max-sm:hidden dark:text-white dark:bg-[#273142] bg-white p-2 px-4 rounded-2xl">

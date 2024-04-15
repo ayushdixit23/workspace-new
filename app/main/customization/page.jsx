@@ -6,12 +6,26 @@ import t2 from "../../assets/image/t2.png"
 import t3 from "../../assets/image/t3.png"
 import t4 from "../../assets/image/t4.png"
 import t5 from "../../assets/image/t5.png"
-import React, { useEffect, useState } from 'react'
-import { RxCross2 } from 'react-icons/rx'
+import React, { useState } from 'react'
+import { Label } from "@/components/ui/label"
+import { Switch } from "@/components/ui/switch"
+import { useDefaultPrositeMutation } from '@/app/redux/apiroutes/prosite'
 
 const page = () => {
 	const { id } = getData()
-	const [pop, setPop] = useState(true)
+	const [isChecked, setIsChecked] = useState(false)
+	const [defaultProsite] = useDefaultPrositeMutation()
+
+	const changeprosite = async () => {
+		try {
+			setIsChecked(!isChecked)
+			await defaultProsite({
+				id, checked: !isChecked
+			})
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
 	return (
 		<>
@@ -19,18 +33,26 @@ const page = () => {
 			
 			dark:bg-[#273142] flex flex-col'>
 				<div className='flex justify-between border-b px-4 sm:px-7  dark:border-[#3d4654] items-center w-full'>
-					<div className='pt-4 pb-2  w-full font-medium text-[#4880FF]'>Prosite Templates</div>
+					<div className=' pb-2 w-full font-medium text-[#4880FF]'>Prosite Templates</div>
+					<div className=' w-full flex justify-end items-center'>
+						<div><div className="flex items-center space-x-2">
+							<Label htmlFor="airplane-mode">Set Live</Label>
+							<Switch checked={isChecked} onCheckedChange={changeprosite} id="airplane-mode" />
+						</div>
+						</div>
+					</div>
 				</div>
 
 				<div className='grid pn:max-sm:mb-[3%] grid-cols-1 mt-5 px-5 w-full'>
-					<div className='bg-prosite text-white bg-center text-xl font-semibold w-full flex flex-col p-3 rounded-xl'>
 
+					<div className='flex justify-center items-center bg-black/70 rounded-xl'>
 						<div className='flex justify-center items-center pt-4 pb-5 flex-col gap-2'>
-							<div>Choose templates that suits you and your profession   </div>
+							<div>Choose templates that suits you and your profession</div>
 							<div>to form your own Prosite</div>
 							<div className=''>Profile + Website</div>
 						</div>
 					</div>
+
 					<div className='flex flex-col'>
 
 

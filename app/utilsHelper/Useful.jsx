@@ -15,6 +15,36 @@ export const formatISOStringToDMY = (dateString) => {
   return formattedDate;
 };
 
+export const formatISOStringToDate = (dateString) => {
+  const date = new Date(dateString); // Parse the ISO string
+  if (isNaN(date)) {
+    console.log("Invalid date string");
+  }
+  const day = date.getDate();
+  const month = date.toLocaleString("default", { month: "long" });
+  // const updated = month.slice(0, 3)
+  // const year = date.getFullYear();
+
+  // const formattedDate = `${day} ${updated} ${year}`;
+  return day;
+};
+
+export const formatISOStringToMonth = (dateString) => {
+  const date = new Date(dateString); // Parse the ISO string
+  if (isNaN(date)) {
+    console.log("Invalid date string");
+  }
+  const day = date.getDate();
+  const month = date.toLocaleString("default", { month: "long" });
+  // const updated = month.slice(0, 3)
+  // const year = date.getFullYear();
+
+  // const formattedDate = `${day} ${updated} ${year}`;
+  return month;
+};
+
+
+
 export function formatDate(dateString) {
   const [day, month, year] = dateString.split('/');
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
