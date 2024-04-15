@@ -450,7 +450,7 @@ const Sample5 = () => {
 									<div className="h-[150px] px-2 border border-[#E6E9F5] flex justify-start z-20 bg-white sticky top-0 left-0 items-center
 									">
 										<div className="flex flex-col w-full sticky top-0 left-0 h-full-end gap-2">
-											<div className="flex justify-center mt-2 text-black text-black items-center gap-3">
+											<div className="flex justify-center mt-2 text-black  items-center gap-3">
 												<div className="font-bold text-5xl">Free</div>
 												<div className="text-sm -ml-2 mt-3">/{monthprice ? "month" : "year"}</div>
 											</div>
@@ -585,7 +585,7 @@ const Sample5 = () => {
 									<div className="h-[150px] px-2 border border-[#E6E9F5] flex justify-start z-20 bg-white sticky top-0 left-0  items-center
 									">
 										<div className="flex flex-col w-full  h-full-end gap-2">
-											<div className="flex justify-center mt-2 text-black text-black items-center gap-3">
+											<div className="flex justify-center mt-2 text-black  items-center gap-3">
 												<div className="font-bold text-5xl">₹{monthprice ? plus : plusy}</div>
 												<div className="text-sm -ml-2 mt-3">/{monthprice ? "month" : "year"}</div>
 											</div>
@@ -758,7 +758,7 @@ const Sample5 = () => {
 									<div className="h-[150px] px-2 border border-[#E6E9F5] flex justify-start z-20 bg-white sticky top-0 left-0  items-center
 									">
 										<div className="flex flex-col w-full  h-full-end gap-2">
-											<div className="flex justify-center mt-2 text-black text-black items-center gap-3">
+											<div className="flex justify-center mt-2 text-black items-center gap-3">
 												<div className="font-bold text-5xl">₹{monthprice ? pro : proy}</div>
 												<div className="text-sm -ml-2 mt-3">/{monthprice ? "month" : "year"}</div>
 											</div>
