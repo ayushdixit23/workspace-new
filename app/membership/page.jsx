@@ -268,7 +268,7 @@ const Sample5 = () => {
 								<TbTruckDelivery className="w-[50px] h-[50px]" />
 								<div className="flex flex-col justify-center">
 									<div className="font-medium text-base  text-[#101828] ">Want to deliver your Products?</div>
-									<div className="font-medium  text-[#060a11] text-sm">Get upto 10 deliveries free  </div>
+									<div className="font-medium  text-[#060a11] text-sm">Get upto 10 deliveries free </div>
 								</div>
 
 							</div>

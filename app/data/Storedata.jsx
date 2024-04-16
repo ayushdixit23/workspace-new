@@ -109,7 +109,7 @@ const Storedata = ({ getorderdata, sales }) => {
             <div className="text-lg font-semibold hidden sm:block p-2 sm:p-3 dark:text-white text-[#030229]">
               Recent Orders
             </div>
-            <div className="flex sm:mt-0 mt-3 justify-center items-center gap-3 px-3">
+            {(getorderdata?.citydelivery && getorderdata?.countrydelivery) && <div className="flex sm:mt-0 mt-3 justify-center items-center gap-3 px-3">
               <div className="flex justify-center items-center gap-2">
                 <div className="flex justify-center items-center gap-1">
                   <div><BiCycling /></div>
@@ -122,7 +122,7 @@ const Storedata = ({ getorderdata, sales }) => {
                 </div>
               </div>
               <div className="text-sm hidden sm:block">View More</div>
-            </div>
+            </div>}
           </div>
 
           <div className="pn:max-sm:hidden max-w-full min-w-[700px] overflow-scroll no-scrollbar dark:bg-[#273142] p-2 rounded-lg bg-white sm:px-3">
@@ -215,8 +215,9 @@ const Storedata = ({ getorderdata, sales }) => {
             </div>
           </div>
         </Link>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 

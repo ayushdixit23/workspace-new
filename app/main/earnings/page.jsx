@@ -13,6 +13,7 @@ import rupee from "../../assets/image/rupee.png";
 import { MdAdd, MdOutlineNotifications } from "react-icons/md";
 import {
   useAddBankMutation,
+  useChangeMontentMutation,
   //  useBankRequestMutation,
   useGetEarningStatsQuery
 } from "@/app/redux/apiroutes/payment";
@@ -27,6 +28,7 @@ import { useRouter } from "next/navigation";
 import Selected from "@/app/componentsWorkSpace/Selected";
 import Link from "next/link";
 import BuiltSelected from "@/app/componentsWorkSpace/BuiltSelected";
+import { Switch } from "@/components/ui/switch";
 
 const page = () => {
   const { id } = getData()
@@ -38,6 +40,7 @@ const page = () => {
   const [monetisation] = useMonetizationMutation()
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [changeMontentizationCommunity] = useChangeMontentMutation()
   const [bank, setBank] = useState({
     bankname: "",
     branchname: "",
@@ -72,6 +75,18 @@ const page = () => {
       console.log(error)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const changeMontentization = async () => {
+    try {
+      setState2({ ...state2, ismonetized: !state2.ismonetized })
+      await changeMontentizationCommunity({
+        comid: state2.id,
+        ismonetized: !state2.ismonetized
+      })
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -337,7 +352,7 @@ const page = () => {
                 </div> */}
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 my-3 ">
-                <div className="flex flex-col gap-3 bg-white dark:bg-[#273142] dark:border-[#3d4654] dark:border shadow-sm py-4 px-3 rounded-xl sm:max-w-[450px]">
+                <div className="flex flex-col gap-3 bg-white dark:bg-[#273142] sm:max-h-[310px] dark:border-[#3d4654] dark:border shadow-sm py-4 px-3 rounded-xl sm:max-w-[450px]">
 
                   <div className="flex items-center gap-2">
                     <div><Image src={order} alt="image" className="w-[60px] h-[60px] object-cover rounded-xl" /></div>
@@ -389,9 +404,9 @@ const page = () => {
                               <div>
                                 No Products At The Moment!
                               </div>
-                              <div className="text-base">
+                              {/* <div className="text-base">
                                 Try Creating Products and Start Selling!
-                              </div>
+                              </div> */}
 
                             </div>
                             <div className="flex justify-center items-center">
@@ -442,7 +457,7 @@ const page = () => {
 
                   </div>
                 </div>
-                <div className="flex flex-col gap-3 bg-white dark:bg-[#273142] dark:border-[#3d4654] dark:border shadow-sm py-4 px-3 rounded-xl sm:max-w-[450px]">
+                <div className="flex flex-col gap-3 bg-white sm:max-h-[310px] dark:bg-[#273142] dark:border-[#3d4654] dark:border shadow-sm py-4 px-3 rounded-xl sm:max-w-[450px]">
 
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
@@ -575,12 +590,20 @@ const page = () => {
                       <div className="w-[155px]  ring-[1px] ring-[#d1d1d1] rounded-xl"><BuiltSelected type={"earnings"} data={comData?.communities} state={state2} setState={setState2} /></div>
                     </div>}
                   </div>
-                  {(state2.members < 1000 || state2.engagementrate < 10 || state2.ismonetized === false) && < div className="text-sm">
+                  {((state2.members < 1000 || state2.engagementrate < 10 || state2.ismonetized === false) && state2.status !== "approved") && < div className="text-sm">
 
                     Make money with ads on your posts! Earn from ads before, during, and after your content.
                   </div>}
 
-                  {(state2.members >= 1000 && state2.engagementrate >= 10 && state2.ismonetized) ? <>
+                  {(state2.members >= 1000 && state2.engagementrate >= 10 && state2.status === "approved") && < div className="flex justify-between items-center">
+                    <div className="text-sm font-semibold">Monetization</div>
+                    <div>
+
+                      <Switch checked={state2.ismonetized} onCheckedChange={changeMontentization} id="montentization" />
+                    </div>
+                  </div>}
+
+                  {(state2.members >= 1000 && state2.engagementrate >= 10 && state2.status === "approved") ? <>
                     <div className="bg-[#f1f1f1] rounded-lg dark:bg-[#3d4654]">
                       <div className="flex flex-col py-2 text-[14px] font-semibold gap-1 justify-center items-center">
                         <div>Total Earnings</div>
@@ -595,21 +618,39 @@ const page = () => {
                       </div>
                       <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                         <div
-                          style={{ width: `${((state2.engagementrate) / 10) * 100}%` }}
-                          className={`absolute top-0 left-0 rounded-r-xl  ${state2.engagementrate >= 10 ? "bg-[#40CAB0]" : "bg-[#398faf]"}  h-full `}
+                          style={{ width: `${((state2.engagementrate))}%` }}
+                          className={`absolute top-0 z-0 left-0  
+                            ${(state2.engagementrate) <= 25 && "bg-red-800"}
+                            ${((state2.engagementrate > 25) && (state2.engagementrate) <= 50) && "bg-green-800"} 
+                            ${((state2.engagementrate > 50) && (state2.engagementrate) <= 75) && "bg-yellow-800"} 
+                            ${((state2.engagementrate > 75) && (state2.engagementrate) <= 100) && "bg-blue-800"} 
+                            h-full `}
                         ></div>
+
+                        <div
+
+                          className={`absolute top-0 left-0 z-10 w-full bg-transparent  h-full `}
+                        >
+                          <div className="w-full flex h-full justify-evenly items-center">
+                            <div className="h-full w-1 bg-red-800"></div>
+                            <div className="h-full w-1 bg-green-800"></div>
+                            <div className="h-full w-1 bg-yellow-800"></div>
+                            <div className="h-full w-1 bg-blue-800"></div>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
-                    {/* <div className="flex mt-4 gap-2 mb-2 text-sm flex-col">
+
+                    <div className="flex mt-2 gap-2 mb-2 text-sm flex-col">
                       <div>Impressions : ₹5000</div>
                       <div>CPM (Cost Per Mille) :  ₹4000</div>
                       <div>CPC (Cost Per Click :  ₹3000)</div>
-                    </div> */}
+                    </div>
                   </>
                     :
                     <div className="flex text-sm flex-col gap-3">
-                      {((!state2.ismonetized)) &&
+                      {((!state2.ismonetized) && state2.status !== "approved") &&
                         <> <div className="px-2 flex flex-col gap-1">
                           <div className="flex justify-between items-center">
                             <div className=" dark:text-white text-[#615E83]">Members</div>

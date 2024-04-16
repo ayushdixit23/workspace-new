@@ -20,6 +20,14 @@ export const paymentApi = Api.injectEndpoints({
 				body: data
 			})
 		}),
+		changeMontent: builder.mutation({
+			query: ({ comid, ismonetized }) => ({
+				// url: `/v1/memfinalize/${id}/${res.data?.order}`,
+				url: `/v1/changemont/${comid}`,
+				method: "POST",
+				body: { ismonetized }
+			})
+		}),
 		// bankRequest: builder.mutation({
 		// 	query: ({ id }) => ({
 		// 		url: `/v1/approvalrequestbank/${id}`,
@@ -34,4 +42,5 @@ export const {
 	useAddBankMutation,
 	useMemfinalizeMutation,
 	// useBankRequestMutation
+	useChangeMontentMutation
 } = paymentApi;
