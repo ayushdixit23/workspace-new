@@ -40,12 +40,12 @@ const MembershipPopup = ({ setPop }) => {
               className="w-full bg-[#fff] hover:scale-105 duration-100 ring-1 ring-red-200 rounded-[10px] shadow-[0px 1px 2px #E1E3E5] p-1"
             >
               <div className="bg-[#f0f0f0] h-[150px] p-2 flex flex-col justify-center items-center rounded-[10px] w-full">
-                <div>
+                <div className="w-full">
                   <div className="flex justify-between">
                     <p className="text-[#070707] text-[19px] font-bold">Free</p>
                   </div>
                   <p className="text-[#333333] text-[14px] font-medium">
-                    For organizing every corner of your work & life.
+                    Free Membership
                   </p>
                   <p className="text-[#333333] text-[30px]  font-bold">
                     &#8377;0
@@ -84,7 +84,7 @@ const MembershipPopup = ({ setPop }) => {
               className="w-full bg-[#fff] hover:scale-105 duration-100 rounded-[10px] shadow-[0px 1px 2px #E1E3E5] p-1"
             >
               <div className="bg-[#f0f0f0] h-[150px] p-2 flex flex-col justify-center items-center rounded-[10px] w-full">
-                <div>
+                <div className="w-full">
                   <div className="flex justify-between">
                     <p className="text-[#070707] text-[19px] font-bold">Plus</p>
                     <div className="bg-[#F6F6F7] dark:bg-[#006EF5] rounded-[20px] flex justify-center align-center px-[12px]">
@@ -94,7 +94,7 @@ const MembershipPopup = ({ setPop }) => {
                     </div>
                   </div>
                   <p className="text-[#333333] text-[14px] font-medium">
-                    For organizing every corner of your work & life.
+                    Unleash Your Creative Power!
                   </p>
                   <p className="text-[#333333] text-[30px]  font-bold">
                     &#8377;499{" "}
@@ -131,7 +131,7 @@ const MembershipPopup = ({ setPop }) => {
               className="w-full bg-[#fff] ring-2 ring-yellow-400 hover:scale-105 duration-100 scale-100 rounded-[10px] shadow-[0px 1px 2px #E1E3E5] p-1"
             >
               <div className="bg-[#f0f0f0] h-[150px] p-2 flex flex-col justify-center items-center rounded-[10px] w-full">
-                <div>
+                <div className="w-full">
                   <div className="flex justify-between">
                     <p className="text-[#070707] text-[19px] font-bold">Pro</p>
                     <div className="sm:h-[20px] h-[20px] pp:w-[230px] w-[150px] relative flex justify-end  items-center">
@@ -151,7 +151,7 @@ const MembershipPopup = ({ setPop }) => {
                     </div>
                   </div>
                   <p className="text-[#333333] text-[14px] font-medium">
-                    For organizing every corner of your work & life.
+                    Unleash Your Startup's Potential!
                   </p>
                   <p className="text-[#333333] text-[30px]  font-bold">
                     &#8377;1999{" "}
@@ -188,9 +188,9 @@ const MembershipPopup = ({ setPop }) => {
               className="w-full bg-[#fff] hover:scale-105 duration-100 rounded-[10px] shadow-[0px 1px 2px #E1E3E5] p-1"
             >
               <div className="bg-[#f0f0f0] h-[150px] p-2 flex flex-col justify-center items-center rounded-[10px] w-full">
-                <div>
-                  <div className="flex justify-between">
-                    <p className="text-[#070707] text-[19px] font-bold">Free</p>
+                <div className="w-full">
+                  <div className="flex justify-between w-full">
+                    <p className="text-[#070707] text-[19px] font-bold">Premium</p>
                     <div className="bg-[#F6F6F7] dark:bg-[#006EF5] rounded-[20px] flex justify-center align-center px-[12px]">
                       <p className="text-[#00153B] text-[12px] leading-[28px] font-bold">
                         Starter
@@ -198,7 +198,7 @@ const MembershipPopup = ({ setPop }) => {
                     </div>
                   </div>
                   <p className="text-[#333333] text-[14px] font-medium">
-                    For organizing every corner of your work & life.
+                    Exclusivity Redefined!
                   </p>
                   <p className="text-[#333333] text-[30px]  font-bold">
                     &#8377;3499{" "}
@@ -242,7 +242,7 @@ const MembershipPopup = ({ setPop }) => {
             </button>
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 };

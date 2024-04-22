@@ -72,8 +72,7 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 	const handleImage = (e) => {
 		const files = e.target.files;
 		const newMedia = Array.from(files);
-		const maxSlots = 4;
-
+		const maxSlots = 10;
 
 		if (post.image.length == 0 && post.video.length == 0 && e.target.files[0].type.startsWith("video")) {
 			setUiThumbnail(true)

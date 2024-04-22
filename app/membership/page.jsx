@@ -315,7 +315,7 @@ const Sample5 = () => {
 						<div className="grid xl:grid-cols-5 gap-10 sm:gap-5 xl:gap-0 sm:grid-cols-2 w-full">
 							<div className="xl:block hidden">
 								<div>
-									<div className="h-[150px] px-2 font-semibold text-sm  border border-[#E6E9F5] flex justify-start z-20 bg-white sticky top-0 left-0  items-center
+									<div className="h-[180px] px-2 font-semibold text-sm  border border-[#E6E9F5] flex justify-start z-20 bg-white sticky top-0 left-0  items-center
 									">
 										<div className="flex flex-col  text-black gap-2">
 											<div className="flex items-center gap-3">
@@ -447,13 +447,14 @@ const Sample5 = () => {
 							{/* free */}
 							<div className="md:max-lg:min-w-[450px]">
 								<div>
-									<div className="h-[150px] px-2 border border-[#E6E9F5] flex justify-start z-20 bg-white sticky top-0 left-0 items-center
+									<div className="h-[180px] px-2 border border-[#E6E9F5] flex justify-start z-20 bg-white sticky top-0 left-0 items-center
 									">
 										<div className="flex flex-col w-full sticky top-0 left-0 h-full-end gap-2">
 											<div className="flex justify-center mt-2 text-black  items-center gap-3">
 												<div className="font-bold text-5xl">Free</div>
 												<div className="text-sm -ml-2 mt-3">/{monthprice ? "month" : "year"}</div>
 											</div>
+											<div className="text-center font-semibold text-black mt-2">Free Membership</div>
 											<div className="w-full flex justify-center items-center mt-3 ">
 												<button className="bg-[#0066FF] p-3 px-4 text-white font-semibold text-sm rounded-lg w-full">Choose This Plan</button>
 											</div>
@@ -582,13 +583,14 @@ const Sample5 = () => {
 							{/* plus */}
 							<div className="md:max-lg:min-w-[450px]">
 								<div>
-									<div className="h-[150px] px-2 border border-[#E6E9F5] flex justify-start z-20 bg-white sticky top-0 left-0  items-center
+									<div className="h-[180px] px-2 border border-[#E6E9F5] flex justify-start z-20 bg-white sticky top-0 left-0  items-center
 									">
 										<div className="flex flex-col w-full  h-full-end gap-2">
 											<div className="flex justify-center mt-2 text-black  items-center gap-3">
 												<div className="font-bold text-5xl">₹{monthprice ? plus : plusy}</div>
 												<div className="text-sm -ml-2 mt-3">/{monthprice ? "month" : "year"}</div>
 											</div>
+											<div className="text-center font-semibold text-black mt-2">Unleash Your Creative Power!</div>
 											<div className="w-full flex justify-center items-center mt-3 ">
 												<button onClick={() => buyMembership(monthprice ? plus : plusy, process.env.NEXT_PUBLIC_PLUS, "Plus", d.plus, dc.plus)} className="bg-[#0066FF] p-3 px-4 text-white font-semibold text-sm rounded-lg w-full">Choose This Plan</button>
 											</div>
@@ -755,13 +757,14 @@ const Sample5 = () => {
 							{/* pro */}
 							<div className="md:max-lg:min-w-[450px]">
 								<div>
-									<div className="h-[150px] px-2 border border-[#E6E9F5] flex justify-start z-20 bg-white sticky top-0 left-0  items-center
+									<div className="h-[180px] px-2 border border-[#E6E9F5] flex justify-start z-20 bg-white sticky top-0 left-0  items-center
 									">
 										<div className="flex flex-col w-full  h-full-end gap-2">
 											<div className="flex justify-center mt-2 text-black items-center gap-3">
 												<div className="font-bold text-5xl">₹{monthprice ? pro : proy}</div>
 												<div className="text-sm -ml-2 mt-3">/{monthprice ? "month" : "year"}</div>
 											</div>
+											<div className="text-center font-semibold text-black mt-2">Unleash Your Startup's Potential!</div>
 											<div className="w-full flex justify-center items-center mt-3 ">
 												<button onClick={() => buyMembership(monthprice ? pro : proy, process.env.NEXT_PUBLIC_PRO, "Pro", d.pro, dc.pro)} className="bg-[#0066FF] p-3 px-4 text-white font-semibold text-sm rounded-lg w-full">Choose This Plan</button>
 											</div>
@@ -927,13 +930,14 @@ const Sample5 = () => {
 							{/* premium */}
 							<div className="md:max-lg:min-w-[450px]">
 								<div>
-									<div className="h-[150px] px-2 border border-[#E6E9F5] flex justify-start z-20 bg-white sticky top-0 left-0  items-center
+									<div className="h-[180px] px-2 border border-[#E6E9F5] flex justify-start z-20 bg-white sticky top-0 left-0  items-center
 									">
 										<div className="flex flex-col w-full  h-full-end gap-2">
 											<div className="flex justify-center mt-2 text-black items-center gap-3">
 												<div className="font-bold text-5xl">₹{monthprice ? premium : premiumy}</div>
 												<div className="text-sm -ml-2 mt-3">/{monthprice ? "month" : "year"}</div>
 											</div>
+											<div className="text-center font-semibold text-black mt-2">Exclusivity Redefined!</div>
 											<div className="w-full flex justify-center items-center mt-3 ">
 												<button onClick={() => buyMembership(monthprice ? premium : premiumy, process.env.NEXT_PUBLIC_PREMIUM, "Premium", d.premium, dc.premium)} className="bg-[#0066FF] p-3 px-4 text-white font-semibold text-sm rounded-lg w-full">Choose This Plan</button>
 											</div>

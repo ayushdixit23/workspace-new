@@ -532,8 +532,8 @@ function page() {
           {/* otp button */}
           <div className={`${change === 1 ? "py-3" : "hidden"} `}>
             <div
-              onClick={onSignup}
-              // onClick={fetchid}
+              // onClick={onSignup}
+              onClick={fetchid}
               className="h-[50px] w-[300px] select-none cursor-pointer bg-black flex items-center justify-center rounded-2xl text-white "
             >
               {loading && <CgSpinner size={20} className="m-1 animate-spin" />}

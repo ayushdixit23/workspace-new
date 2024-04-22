@@ -8,9 +8,13 @@ export const prositeApi = Api.injectEndpoints({
         body: { checked },
       }),
     }),
+    fetchValue: builder.query({
+      query: ({ id }) => `/v1/checkfordefault/${id}`
+    })
   }),
 });
 
 export const {
-  useDefaultPrositeMutation
+  useDefaultPrositeMutation,
+  useFetchValueQuery
 } = prositeApi;

@@ -322,7 +322,7 @@ const page = () => {
                   <div className="font-semibold">₹{data?.earningStats?.pendingpayments}</div>
                 </div>
               </div>
-              <div className="flex flex-col w-full h-full">
+              <div className="flex pn:max-sm:col-span-2 flex-col w-full h-full">
                 {
                   bank.verified === "pending" ? <div className="flex h-full w-full pn:max-sm:col-span-2 bg-white dark:bg-[#273142] justify-between items-center p-4 sm:p-3 px-5 font-bold rounded-xl gap-3">
                     Bank  Verification Under Process
@@ -478,9 +478,6 @@ const page = () => {
                   </div>
                   }
                   <div className="flex text-sm flex-col gap-3">
-
-
-
                     {(state1.members > 150 && state1.engagementrate > 10 && state1.topics > 2) ?
                       <>
                         <div className="bg-[#f1f1f1] rounded-lg dark:bg-[#3d4654]">
@@ -511,7 +508,6 @@ const page = () => {
                       </>
                       :
                       <>
-
                         {
                           (state1.topics < 3)
                           &&
@@ -551,6 +547,35 @@ const page = () => {
                             }} className={`${state1.members < 150 || state1.engagementrate < 10 ? "bg-[#878b8f]" : "bg-[#2D9AFF]"}   text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}>Create Topic!</button>}
                           </div>
                         </div>}
+
+                        {state1.topics > 2 && <>
+                          <div className="bg-[#f1f1f1] rounded-lg dark:bg-[#3d4654]">
+                            <div className="flex flex-col py-2 text-[14px] font-semibold gap-1 justify-center items-center">
+                              <div>Total Earnings</div>
+                              <div>₹{Number(state1.earnings).toFixed(2)}</div>
+                            </div>
+                          </div>
+
+                          <div className="text-sm">
+                            <div className="flex justify-between items-center">
+                              <div className="font-semibold text-[17px]">Topics</div>
+                              <div className="font-semibold text-[17px]">Members</div>
+                              <div className="font-semibold text-[17px]">Earnings</div>
+                            </div>
+                            <div className="h-[1px] w-full dark:bg-[#3d4654]  my-2"></div>
+                            {
+                              state1.topic.map((d, i) => (
+                                <div className="flex mt-1 justify-between items-center">
+                                  <div>{d?.title}</div>
+                                  <div>{d?.members}</div>
+                                  <div>₹{d?.earnings}</div>
+                                </div>
+                              ))
+                            }
+                          </div>
+
+                        </>}
+
                       </>
                     }
                   </div>
@@ -616,7 +641,7 @@ const page = () => {
                         <div className=" dark:text-white text-[#615E83]">Popularity Rate</div>
                         <div className="">{state2.engagementrate ? state2.engagementrate : 0} %</div>
                       </div>
-                      <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
+                      <div className="w-full h-2 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                         <div
                           style={{ width: `${((state2.engagementrate))}%` }}
                           className={`absolute top-0 z-0 left-0  
@@ -629,13 +654,13 @@ const page = () => {
 
                         <div
 
-                          className={`absolute top-0 left-0 z-10 w-full bg-transparent  h-full `}
+                          className={`absolute top-0 left-0 z-0 w-full bg-transparent  h-full `}
                         >
                           <div className="w-full flex h-full justify-evenly items-center">
                             <div className="h-full w-1 bg-red-800"></div>
                             <div className="h-full w-1 bg-green-800"></div>
                             <div className="h-full w-1 bg-yellow-800"></div>
-                            <div className="h-full w-1 bg-blue-800"></div>
+
                           </div>
                         </div>
                       </div>

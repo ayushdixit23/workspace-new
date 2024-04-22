@@ -172,7 +172,7 @@ function Dashboard() {
           </div>
           <div>
             {change == "community" && (
-              <div className="flex flex-col justify-center items-center w-full h-[50vh] sm:h-[70vh]">
+              <div className="flex flex-col justify-center items-center w-full h-[70vh] sm:h-[70vh]">
                 <div className="sm:w-auto h-full flex flex-col w-[90%] justify-center gap-4">
                   <div className="text-[#70737D] font-semibold">
                     Create Your Community & Start Earning Today!
