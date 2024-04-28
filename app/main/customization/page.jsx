@@ -52,7 +52,7 @@ const page = () => {
 
 				<div className='grid pn:max-sm:mb-[3%] grid-cols-1 mt-5 px-5 w-full'>
 
-					<div className='flex justify-center items-center text-white bg-black/70 rounded-xl'>
+					<div className='flex justify-center items-center bg-[#f1f1f1] text-black dark:text-white dark:bg-black/70 rounded-xl'>
 						<div className='flex justify-center text-sm sm:text-base font-semibold items-center pt-4 pb-5 flex-col gap-2'>
 							<div className='text-center'>Choose templates that suits you and your profession</div>
 							<div>to form your own Prosite</div>

@@ -153,7 +153,7 @@ function page() {
           callback: (response) => {
             onSignup();
           },
-          "expired-callback": () => { },
+          "expired-callback": () => {},
         }
       );
     }
@@ -287,7 +287,6 @@ function page() {
                 const reref = ref(database, `/qr/${strignref.current}/`);
                 remove(reref)
                   .then(() => {
-
                     setLoadingqr(false);
                   })
                   .catch((error) => {
@@ -352,10 +351,11 @@ function page() {
   return (
     <div className="h-screen flex flex-col sm:justify-center ">
       <div
-        className={`${loadingqr
-          ? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md"
-          : "hidden -z-50"
-          } `}
+        className={`${
+          loadingqr
+            ? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md"
+            : "hidden -z-50"
+        } `}
       >
         <div className="animate-spin">
           <RiLoader4Line className="text-3xl" />
@@ -363,7 +363,7 @@ function page() {
       </div>
       <Toaster toastOptions={{ duration: 4000 }} />
 
-      <div id="recaptcha-container" ></div>
+      <div id="recaptcha-container"></div>
       {showOTP ? (
         // OTP
         <div className="h-screen flex flex-col justify-center items-center">
@@ -398,8 +398,9 @@ function page() {
                   <div className="text-[#424242] dark:text-[#fff]">
                     Don't receive code ?{" "}
                     <button
-                      className={` text-blue-600 hover:text-blue-900 ${isActive ? "" : ""
-                        } `}
+                      className={` text-blue-600 hover:text-blue-900 ${
+                        isActive ? "" : ""
+                      } `}
                       onClick={toggleTimer}
                     >
                       Request Again
@@ -408,10 +409,11 @@ function page() {
                 </div>
               ) : (
                 <h1
-                  className={`${come === 1
-                    ? "hidden"
-                    : "text-[16px] font-normal dark:text-white text-[#3e3e3e]"
-                    } `}
+                  className={`${
+                    come === 1
+                      ? "hidden"
+                      : "text-[16px] font-normal dark:text-white text-[#3e3e3e]"
+                  } `}
                 >
                   Resend: <span className="font-semibold">00:{seconds}</span>
                 </h1>
@@ -464,7 +466,9 @@ function page() {
               className="w-full max-w-[150px] max-h-[150px] h-full object-cover"
             />
             <div>
-              <div className="font-bold text-lg"><a className="text-[#4480ff]">Work</a>space</div>
+              <div className="font-bold text-lg">
+                <a className="text-[#4480ff]">Work</a>space
+              </div>
               <div className="text-xs flex justify-end w-full items-center">
                 by Grovyo
               </div>
@@ -477,10 +481,11 @@ function page() {
                 onClick={() => {
                   setChange(1);
                 }}
-                className={`m-1 flex justify-center items-center h-full w-full z-10 ${change === 1
-                  ? "font-bold border-b-2 border-blue-600"
-                  : "cursor-pointer"
-                  }`}
+                className={`m-1 flex justify-center items-center h-full w-full z-10 ${
+                  change === 1
+                    ? "font-bold border-b-2 border-blue-600"
+                    : "cursor-pointer"
+                }`}
               >
                 Phone no.
               </div>
@@ -488,10 +493,11 @@ function page() {
                 onClick={() => {
                   setChange(2);
                 }}
-                className={`m-1 flex justify-center items-center h-full w-full z-10 ${change === 2
-                  ? "font-bold border-b-2 border-blue-600"
-                  : "cursor-pointer"
-                  }`}
+                className={`m-1 flex justify-center items-center h-full w-full z-10 ${
+                  change === 2
+                    ? "font-bold border-b-2 border-blue-600"
+                    : "cursor-pointer"
+                }`}
               >
                 Email
               </div>
@@ -499,10 +505,11 @@ function page() {
           </div>
           {/* phone */}
           <div
-            className={`${change === 1
-              ? "flex justify-start flex-col items-start  py-4"
-              : "hidden"
-              } `}
+            className={`${
+              change === 1
+                ? "flex justify-start flex-col items-start  py-4"
+                : "hidden"
+            } `}
           >
             <div className="text-sm pb-3 px-1 dark:text-white font-semibold text-[#424856]">
               Enter Your Phone Number
@@ -516,9 +523,7 @@ function page() {
 
             </div> */}
             <div className="flex justify-center dark:bg-[#323d4e] w-[300px] h-[50px] rounded-2xl  bg-[#f7f7f7] items-center">
-              <div className="p-2 pl-2 pr-2 ">
-                +91
-              </div>
+              <div className="p-2 pl-2 pr-2 ">+91</div>
               <div className="h-[80%] w-[1px] bg-[#dddddd] rounded-full dark:bg-[#5a6277]" />
               <input
                 value={number}
@@ -532,8 +537,8 @@ function page() {
           {/* otp button */}
           <div className={`${change === 1 ? "py-3" : "hidden"} `}>
             <div
-              // onClick={onSignup}
-              onClick={fetchid}
+              onClick={onSignup}
+              // onClick={fetchid}
               className="h-[50px] w-[300px] select-none cursor-pointer bg-black flex items-center justify-center rounded-2xl text-white "
             >
               {loading && <CgSpinner size={20} className="m-1 animate-spin" />}

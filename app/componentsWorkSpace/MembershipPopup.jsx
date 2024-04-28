@@ -2,9 +2,7 @@ import React from "react";
 import { RxCross1 } from "react-icons/rx";
 import { getData } from "../utilsHelper/Useful";
 import useRazorpay from "react-razorpay";
-import {
-  storeInSessionStorage,
-} from "../utilsHelper/Tokenwrap";
+import { storeInSessionStorage } from "../utilsHelper/Tokenwrap";
 import axios from "axios";
 import { useMemfinalizeMutation } from "../redux/apiroutes/payment";
 import { useRouter } from "next/navigation";
@@ -13,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { LoadThis } from "../redux/slice/userData";
 import dynamic from "next/dynamic";
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
-import Flow from "../assets/icons/Flow.json"
+import Flow from "../assets/icons/Flow.json";
 import Cookies from "js-cookie";
 
 const MembershipPopup = ({ setPop }) => {
@@ -29,15 +27,20 @@ const MembershipPopup = ({ setPop }) => {
             <p className="text-[#fff] text-[20px] leading-[40px] font-semibold">
               Your Subscription
             </p>
-            <div onClick={() => { setPop(false); dispatch(LoadThis(false)) }}>
-
+            <div
+              onClick={() => {
+                setPop(false);
+                dispatch(LoadThis(false));
+              }}
+              className="text-white"
+            >
               <RxCross1 />
             </div>
           </div>
           <div className="mt-[20px] pn:max-sm:pb-[90px] sm:pb-[50px] grid sm:grid-cols-4 gap-[20px]">
             <div
               key="1"
-              className="w-full bg-[#fff] hover:scale-105 duration-100 ring-1 ring-red-200 rounded-[10px] shadow-[0px 1px 2px #E1E3E5] p-1"
+              className="w-full bg-[#fff] sm:hover:scale-105 duration-100 ring-1 ring-red-200 rounded-[10px] shadow-[0px 1px 2px #E1E3E5] p-1"
             >
               <div className="bg-[#f0f0f0] h-[150px] p-2 flex flex-col justify-center items-center rounded-[10px] w-full">
                 <div className="w-full">
@@ -81,14 +84,14 @@ const MembershipPopup = ({ setPop }) => {
             </div>
             <div
               key="2"
-              className="w-full bg-[#fff] hover:scale-105 duration-100 rounded-[10px] shadow-[0px 1px 2px #E1E3E5] p-1"
+              className="w-full bg-[#fff] sm:hover:scale-105 duration-100 rounded-[10px] shadow-[0px 1px 2px #E1E3E5] p-1"
             >
               <div className="bg-[#f0f0f0] h-[150px] p-2 flex flex-col justify-center items-center rounded-[10px] w-full">
                 <div className="w-full">
                   <div className="flex justify-between">
                     <p className="text-[#070707] text-[19px] font-bold">Plus</p>
                     <div className="bg-[#F6F6F7] dark:bg-[#006EF5] rounded-[20px] flex justify-center align-center px-[12px]">
-                      <p className="text-[#00153B] text-[12px] leading-[28px] font-bold">
+                      <p className="text-white text-[12px] leading-[28px] font-bold">
                         Starter
                       </p>
                     </div>
@@ -120,7 +123,10 @@ const MembershipPopup = ({ setPop }) => {
                   </p>
                 </div>
                 <div className="mt-[25px] -ml-1">
-                  <button onClick={() => router.push("/membership")} className="bg-[#006EF5] rounded-lg py-[15px] px-[25px] w-full text-[#fff] text-[14px] leading-[17px] font-semibold">
+                  <button
+                    onClick={() => router.push("/membership")}
+                    className="bg-[#006EF5] rounded-lg py-[15px] px-[25px] w-full text-[#fff] text-[14px] leading-[17px] font-semibold"
+                  >
                     Upgrade +
                   </button>
                 </div>
@@ -128,7 +134,7 @@ const MembershipPopup = ({ setPop }) => {
             </div>
             <div
               key="3"
-              className="w-full bg-[#fff] ring-2 ring-yellow-400 hover:scale-105 duration-100 scale-100 rounded-[10px] shadow-[0px 1px 2px #E1E3E5] p-1"
+              className="w-full bg-[#fff] ring-2 ring-yellow-400 sm:hover:scale-105 duration-100 scale-100 rounded-[10px] shadow-[0px 1px 2px #E1E3E5] p-1"
             >
               <div className="bg-[#f0f0f0] h-[150px] p-2 flex flex-col justify-center items-center rounded-[10px] w-full">
                 <div className="w-full">
@@ -144,7 +150,7 @@ const MembershipPopup = ({ setPop }) => {
                       <div className="px-2 flex justify-center items-center font-medium absolute text-black rounded-xl ">
                         <div className=" rounded-[20px] flex justify-center align-center ">
                           <p className="text-[#00153B] text-[12px] font-bold">
-                            most popular
+                            Most Popular
                           </p>
                         </div>
                       </div>
@@ -177,7 +183,10 @@ const MembershipPopup = ({ setPop }) => {
                   </p>
                 </div>
                 <div className="mt-[25px] -ml-1">
-                  <button onClick={() => router.push("/membership")} className="bg-yellow-400 rounded-lg py-[15px] px-[25px] w-full text-[#fff] text-[14px] leading-[17px] font-semibold">
+                  <button
+                    onClick={() => router.push("/membership")}
+                    className="bg-yellow-400 rounded-lg py-[15px] px-[25px] w-full text-[#fff] text-[14px] leading-[17px] font-semibold"
+                  >
                     Upgrade +
                   </button>
                 </div>
@@ -185,16 +194,28 @@ const MembershipPopup = ({ setPop }) => {
             </div>
             <div
               key="4"
-              className="w-full bg-[#fff] hover:scale-105 duration-100 rounded-[10px] shadow-[0px 1px 2px #E1E3E5] p-1"
+              className="w-full bg-[#fff] sm:hover:scale-105 duration-100 rounded-[10px] shadow-[0px 1px 2px #E1E3E5] p-1"
             >
               <div className="bg-[#f0f0f0] h-[150px] p-2 flex flex-col justify-center items-center rounded-[10px] w-full">
                 <div className="w-full">
-                  <div className="flex justify-between w-full">
-                    <p className="text-[#070707] text-[19px] font-bold">Premium</p>
-                    <div className="bg-[#F6F6F7] dark:bg-[#006EF5] rounded-[20px] flex justify-center align-center px-[12px]">
-                      <p className="text-[#00153B] text-[12px] leading-[28px] font-bold">
-                        Starter
-                      </p>
+                  <div className="flex justify-between  w-full">
+                    <p className="text-[#070707] w-full text-[19px] font-bold">
+                      Premium
+                    </p>
+                    <div className="sm:h-[20px] h-[20px] pp:w-[230px] w-[100px] relative flex justify-end  items-center">
+                      <Lottie
+                        animationData={Flow}
+                        className="sm:h-[30px] h-[30px] pp:w-[70px] w-[60px] relative flex justify-center items-center"
+                        loop={true}
+                      />
+
+                      <div className="px-2 flex justify-center items-center w-full max-w-[100px] left-8 font-medium absolute text-black rounded-xl ">
+                        <div className=" rounded-[20px] flex justify-center items-center w-full text-center align-center ">
+                          <p className="text-[#00153B] text-[12px] font-bold">
+                            VIP
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <p className="text-[#333333] text-[14px] font-medium">
@@ -224,7 +245,10 @@ const MembershipPopup = ({ setPop }) => {
                   </p>
                 </div>
                 <div className="mt-[25px] -ml-1">
-                  <button onClick={() => router.push("/membership")} className="bg-[#006EF5] rounded-lg py-[15px] px-[25px] w-full text-[#fff] text-[14px] leading-[17px] font-semibold">
+                  <button
+                    onClick={() => router.push("/membership")}
+                    className="bg-[#006EF5] rounded-lg py-[15px] px-[25px] w-full text-[#fff] text-[14px] leading-[17px] font-semibold"
+                  >
                     Upgrade +
                   </button>
                 </div>
@@ -238,11 +262,11 @@ const MembershipPopup = ({ setPop }) => {
               className="bg-[#006EF5] sm:-mt-9 flex justify-center items-center gap-1 rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold"
             >
               Learn More
-              <IoIosArrowRoundForward className='text-lg font-semibold text-white' />
+              <IoIosArrowRoundForward className="text-lg font-semibold text-white" />
             </button>
           </div>
         </div>
-      </div >
+      </div>
     </>
   );
 };

@@ -199,7 +199,6 @@ export default function Store() {
   }
   return (
     <>
-      {console.log(productdata?.collections.length > 0)}
       {pop && (
         <div className="fixed inset-0 z-50 w-screen flex justify-center items-center bg-black/50 sm:h-screen">
           <MembershipPopup setPop={setPop} />

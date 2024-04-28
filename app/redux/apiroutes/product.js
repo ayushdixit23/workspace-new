@@ -51,6 +51,13 @@ export const productApi = Api.injectEndpoints({
         body: formDataToSend,
       }),
     }),
+    updateProductvariant: builder.mutation({
+      query: ({ userid, collectionid, product, formDataToSend }) => ({
+        url: `/v1/updateaproductvariant/${userid}/${collectionid}/${product}`,
+        method: "POST",
+        body: formDataToSend,
+      }),
+    }),
   }),
 });
 
@@ -62,6 +69,7 @@ export const {
   useGetSingleProductQuery,
   useUpdateProductMutation,
   useRemoveCollectionMutation,
+  useUpdateProductvariantMutation,
   useCreateStoreMutation,
   useCheckStoreExistsQuery,
 } = productApi;
