@@ -187,7 +187,7 @@ const CreateStore = ({
                 </div>
               </div>
               <div className="flex flex-col gap-1 w-full">
-                <div className="text-sm flex gap-1 items-center font-medium">GST Number (Optional) <FaAsterisk className="text-[10px] text-red-800" /></div>
+                <div className="text-sm flex gap-1 items-center font-medium">GST Number (Optional)</div>
                 <input
                   type="text"
                   className="border-2 bg-[#FAFAFA] dark:bg-[#323d4e] dark:border-none outline-none p-1 rounded-lg"

@@ -272,11 +272,10 @@ const page = () => {
     <>
       <Toaster />
       <div
-        className={`${
-          open
+        className={`${open
             ? "fixed inset-0 w-screen z-50 bg-[#cccccc33] h-screen flex justify-center items-center"
             : "hidden -z-50"
-        }`}
+          }`}
       >
         <div className="flex justify-center shadow-md items-center w-[90%] pp:w-[65%] sm:max-w-[500px] lg:w-[30%] p-3 rounded-xl dark:bg-[#273142] bg-white">
           <div className="w-full flex flex-col gap-2">
@@ -587,11 +586,10 @@ const page = () => {
                               <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                                 <div
                                   style={{ width: `${(count.com / 1) * 100}%` }}
-                                  className={`absolute top-0 left-0 rounded-r-xl  ${
-                                    count.com >= 1
+                                  className={`absolute top-0 left-0 rounded-r-xl  ${count.com >= 1
                                       ? "bg-[#40CAB0]"
                                       : "bg-[#398faf]"
-                                  }  h-full `}
+                                    }  h-full `}
                                 ></div>
                               </div>
                             </div>
@@ -607,11 +605,10 @@ const page = () => {
                                   style={{
                                     width: `${(count.post / 1) * 100}%`,
                                   }}
-                                  className={`absolute top-0 left-0 rounded-r-xl  ${
-                                    count.post >= 1
+                                  className={`absolute top-0 left-0 rounded-r-xl  ${count.post >= 1
                                       ? "bg-[#40CAB0]"
                                       : "bg-[#398faf]"
-                                  }  h-full `}
+                                    }  h-full `}
                                 ></div>
                               </div>
                             </div>
@@ -625,11 +622,10 @@ const page = () => {
                                 onClick={() => {
                                   router.push("/main/store");
                                 }}
-                                className={`${
-                                  count.com < 1 || count.post < 1
+                                className={`${count.com < 1 || count.post < 1
                                     ? "bg-[#878b8f]"
                                     : "bg-[#2D9AFF]"
-                                }   text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}
+                                  }   text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}
                               >
                                 Create Store
                               </button>
@@ -691,8 +687,8 @@ const page = () => {
                     )}
                   <div className="flex text-sm flex-col gap-3">
                     {state1.members > 150 &&
-                    state1.engagementrate > 10 &&
-                    state1.topics > 2 ? (
+                      state1.engagementrate > 10 &&
+                      state1.topics > 2 ? (
                       <>
                         <div className="bg-[#f1f1f1] rounded-lg dark:bg-[#3d4654]">
                           <div className="flex flex-col py-2 text-[14px] font-semibold gap-1 justify-center items-center">
@@ -741,11 +737,10 @@ const page = () => {
                                   style={{
                                     width: `${(state1.members / 150) * 100}%`,
                                   }}
-                                  className={`absolute top-0 left-0 rounded-r-xl  ${
-                                    state1.members >= 150
+                                  className={`absolute top-0 left-0 rounded-r-xl  ${state1.members >= 150
                                       ? "bg-[#40CAB0]"
                                       : "bg-[#398faf]"
-                                  }  h-full `}
+                                    }  h-full `}
                                 ></div>
                               </div>
                             </div>
@@ -764,15 +759,13 @@ const page = () => {
                               <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                                 <div
                                   style={{
-                                    width: `${
-                                      (state1.engagementrate / 10) * 100
-                                    }%`,
+                                    width: `${(state1.engagementrate / 10) * 100
+                                      }%`,
                                   }}
-                                  className={`absolute top-0 left-0 rounded-r-xl  ${
-                                    state1.engagementrate >= 10
+                                  className={`absolute top-0 left-0 rounded-r-xl  ${state1.engagementrate >= 10
                                       ? "bg-[#40CAB0]"
                                       : "bg-[#398faf]"
-                                  }  h-full `}
+                                    }  h-full `}
                                 ></div>
                               </div>
                             </div>
@@ -797,12 +790,11 @@ const page = () => {
                                       "/main/community/editCommunity?topics=true"
                                     );
                                   }}
-                                  className={`${
-                                    state1.members < 150 ||
-                                    state1.engagementrate < 10
+                                  className={`${state1.members < 150 ||
+                                      state1.engagementrate < 10
                                       ? "bg-[#878b8f]"
                                       : "bg-[#2D9AFF]"
-                                  }   text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}
+                                    }   text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}
                                 >
                                   Create Topic!
                                 </button>
@@ -870,7 +862,7 @@ const page = () => {
                     </div>
 
                   </div> : */}
-                {console.log(state2.engagementrate, "state2 engagement")}
+
                 <div className="flex flex-col gap-3 bg-white dark:bg-[#273142] dark:border-[#3d4654] dark:border shadow-sm py-4 px-3 rounded-xl sm:max-w-[450px]">
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
@@ -930,7 +922,7 @@ const page = () => {
                         <div className="flex flex-col py-2 text-[14px] font-semibold gap-1 justify-center items-center">
                           <div>Total Earnings</div>
                           <div className="flex justify-center text-xl font-bold items-center gap-2">
-                            <div>₹{data?.earningStats?.adsearning}</div>
+                            <div>₹{data?.earningStats?.adsearning.toFixed(2)}</div>
                             <div className="flex justify-center items-center gap-1">
                               <RxCross1 />
                               {state2.engagementrate > 0 &&
@@ -962,42 +954,36 @@ const page = () => {
                             style={{ width: `${state2.engagementrate}%` }}
                             className={`absolute top-0 z-0 left-0  
                             ${state2.engagementrate <= 25 && "bg-[#ff718b]"}
-                            ${
-                              state2.engagementrate > 25 &&
+                            ${state2.engagementrate > 25 &&
                               state2.engagementrate <= 50 &&
                               "bg-[#ff8989]"
-                            } 
-                            ${
-                              state2.engagementrate > 50 &&
+                              } 
+                            ${state2.engagementrate > 50 &&
                               state2.engagementrate <= 75 &&
                               "bg-[#fce83a]"
-                            } 
-                            ${
-                              state2.engagementrate > 75 &&
+                              } 
+                            ${state2.engagementrate > 75 &&
                               state2.engagementrate <= 100 &&
                               "bg-[#7fe47e]"
-                            }
+                              }
                             h-full`}
                           ></div>
                           <div
                             style={{ width: `${state2.engagementrate}%` }}
                             className={`absolute top-0 z-0 left-0  
                             ${state2.engagementrate <= 25 && "bg-[#ff718b]"}
-                            ${
-                              state2.engagementrate > 25 &&
+                            ${state2.engagementrate > 25 &&
                               state2.engagementrate <= 50 &&
                               "bg-[#ff8989]"
-                            } 
-                            ${
-                              state2.engagementrate > 50 &&
+                              } 
+                            ${state2.engagementrate > 50 &&
                               state2.engagementrate <= 75 &&
                               "bg-[#fce83a]"
-                            } 
-                            ${
-                              state2.engagementrate > 75 &&
+                              } 
+                            ${state2.engagementrate > 75 &&
                               state2.engagementrate <= 100 &&
                               "bg-[#7fe47e]"
-                            }
+                              }
                             h-full`}
                           ></div>
 
@@ -1040,11 +1026,10 @@ const page = () => {
                                 style={{
                                   width: `${(state2.members / 500) * 100}%`,
                                 }}
-                                className={`absolute top-0 left-0 rounded-r-xl  ${
-                                  state2.members >= 500
+                                className={`absolute top-0 left-0 rounded-r-xl  ${state2.members >= 500
                                     ? "bg-[#40CAB0]"
                                     : "bg-[#398faf]"
-                                }  h-full `}
+                                  }  h-full `}
                               ></div>
                             </div>
                           </div>
@@ -1063,15 +1048,13 @@ const page = () => {
                             <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                               <div
                                 style={{
-                                  width: `${
-                                    (state2.engagementrate / 10) * 100
-                                  }%`,
+                                  width: `${(state2.engagementrate / 10) * 100
+                                    }%`,
                                 }}
-                                className={`absolute top-0 left-0 rounded-r-xl  ${
-                                  state2.engagementrate >= 10
+                                className={`absolute top-0 left-0 rounded-r-xl  ${state2.engagementrate >= 10
                                     ? "bg-[#40CAB0]"
                                     : "bg-[#398faf]"
-                                }  h-full `}
+                                  }  h-full `}
                               ></div>
                             </div>
                           </div>
@@ -1104,7 +1087,7 @@ const page = () => {
                                   disabled={
                                     state2.status == "rejected" &&
                                     new Date(Date.now()) <=
-                                      new Date(state2.reapplydate)
+                                    new Date(state2.reapplydate)
                                   }
                                   onClick={() =>
                                     sendRequestForMontenziation(id, state2.id)
@@ -1112,7 +1095,7 @@ const page = () => {
                                   className="bg-[#2D9AFF] text-white p-2 px-5 text-sm rounded-lg"
                                 >
                                   {state2.status == "rejected" &&
-                                  new Date(Date.now()) <=
+                                    new Date(Date.now()) <=
                                     new Date(state2.reapplydate)
                                     ? "Your Request Has Been Rejected"
                                     : "Apply for Monetization"}
@@ -1135,12 +1118,11 @@ const page = () => {
                                 onClick={() =>
                                   sendRequestForMontenziation(id, state2.id)
                                 }
-                                className={`${
-                                  state2.members < 500 ||
-                                  state2.engagementrate < 10
+                                className={`${state2.members < 500 ||
+                                    state2.engagementrate < 10
                                     ? "bg-[#878b8f]"
                                     : "bg-[#2D9AFF]"
-                                }  text-white p-2 px-5 text-sm rounded-lg`}
+                                  }  text-white p-2 px-5 text-sm rounded-lg`}
                               >
                                 Apply for Monetization
                               </button>
@@ -1151,7 +1133,7 @@ const page = () => {
 
                       {state2.status == "rejected" &&
                         new Date(Date.now()) <=
-                          new Date(state2.reapplydate) && (
+                        new Date(state2.reapplydate) && (
                           <div>
                             <div>Reason: {state2.reason}</div>
                             <div>

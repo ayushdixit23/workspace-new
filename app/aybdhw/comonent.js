@@ -9,7 +9,6 @@ import { encryptaes } from "../utilsHelper/security"
 
 const Component = () => {
 	const queryParams = useSearchParams()
-
 	const id = queryParams.get("zyxxpht")
 	const path = queryParams.get("path")
 	const dps = queryParams.get("dps")
@@ -28,7 +27,6 @@ const Component = () => {
 		type,
 		memberscount
 	}
-
 
 	const router = useRouter()
 	const waitkrnevalafunc = async (data) => {
@@ -57,7 +55,7 @@ const Component = () => {
 	const f = async () => {
 
 		const res = await axios.get(`https://work.grovyo.xyz/api/v1/fetchwithid/${id}`)
-		console.log(res.data)
+
 		if (res.data?.success) {
 			const a = await waitkrnevalafunc(res.data);
 			if (a === true) {
