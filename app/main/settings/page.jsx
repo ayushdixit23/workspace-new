@@ -8,7 +8,6 @@ import {
 import { storeInSessionStorage } from "@/app/utilsHelper/Tokenwrap";
 import { getData } from "@/app/utilsHelper/Useful";
 import Cookies from "js-cookie";
-// import Cookies from 'js-cookie'
 import { useRouter } from "next/navigation";
 import Link from "next/link"
 import React, { useEffect, useState } from "react";
@@ -98,8 +97,11 @@ const page = () => {
       Cookies.remove("excktn")
       Cookies.remove(`frhktn`);
 
-      Cookies.set(`excktn`, data.access_token);
-      Cookies.set(`frhktn`, data.refresh_token);
+      const expirationDate = new Date();
+      expirationDate.setDate(expirationDate.getDate() + 7);
+
+      Cookies.set(`excktn`, data.access_token, { expires: expirationDate });
+      Cookies.set(`frhktn`, data.refresh_token, { expires: expirationDate });
 
     } catch (e) {
       console.log(e);

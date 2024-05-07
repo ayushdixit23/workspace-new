@@ -139,8 +139,12 @@ const Sample5 = () => {
 							Cookies.remove("excktn")
 							Cookies.remove("frhktn")
 
-							Cookies.set(`excktn`, resp.data.access_token)
-							Cookies.set(`frhktn`, resp.data.refresh_token)
+							const expirationDate = new Date();
+							expirationDate.setDate(expirationDate.getDate() + 7);
+
+							Cookies.set(`excktn`, resp.data.access_token, { expires: expirationDate });
+							Cookies.set(`frhktn`, resp.data.refresh_token, { expires: expirationDate });
+
 							setTimeout(() => {
 								setMemberPop(false)
 							}, 2000)

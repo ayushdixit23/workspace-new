@@ -63,8 +63,12 @@ const useTokenAndData = () => {
     try {
       const newToken = await refreshAccessToken(refreshToken);
       if (newToken) {
-        Cookies.set(`excktn`, newToken.access_token)
-        Cookies.set(`frhktn`, newToken.refresh_token)
+
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + 7);
+
+        Cookies.set(`excktn`, newToken.access_token, { expires: expirationDate });
+        Cookies.set(`frhktn`, newToken.refresh_token, { expires: expirationDate })
 
         // Cookies.set(`excktn${sessionId}`, newToken.access_token)
       }

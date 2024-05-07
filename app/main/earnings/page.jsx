@@ -273,8 +273,8 @@ const page = () => {
       <Toaster />
       <div
         className={`${open
-            ? "fixed inset-0 w-screen z-50 bg-[#cccccc33] h-screen flex justify-center items-center"
-            : "hidden -z-50"
+          ? "fixed inset-0 w-screen z-50 bg-[#cccccc33] h-screen flex justify-center items-center"
+          : "hidden -z-50"
           }`}
       >
         <div className="flex justify-center shadow-md items-center w-[90%] pp:w-[65%] sm:max-w-[500px] lg:w-[30%] p-3 rounded-xl dark:bg-[#273142] bg-white">
@@ -415,8 +415,8 @@ const page = () => {
             />
           </div>
         </div>
-        <div className="grid w-full grid-cols-1">
-          <div className="grid w-full gap-4 grid-cols-1">
+        <div className="grid w-full  grid-cols-1">
+          <div className="grid w-full gap-4  grid-cols-1">
             <div className="grid w-full grid-cols-2 sm:grid-cols-3 gap-4">
               <div className="flex bg-white dark:bg-[#273142] items-center p-3 sm:px-5 rounded-xl gap-3 w-full">
                 <div>
@@ -479,13 +479,13 @@ const page = () => {
               </div>
             </div>
 
-            <div className="w-full sm:bg-white mb-[60px] sm:mb-0 dark:bg-[#273142] rounded-xl p-3">
-              <div className="flex sm:flex-row flex-col justify-between items-center">
-                {/* <div className="text-[#666666] dark:text-white pn:max-sm:text-center font-medium">
+            <div className="w-full sm:bg-white mb-[60px] dark:bg-[#273142] sm:mb-0 rounded-xl p-3">
+              {/* <div className="flex sm:flex-row  flex-col justify-between items-center">
+                <div className="text-[#666666] dark:text-white pn:max-sm:text-center font-medium">
                   You haven't met the criteria to apply for monetisation tool
                   access.
-                </div> */}
-              </div>
+                </div>
+              </div> */}
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 my-3 ">
                 <div className="flex flex-col gap-3 bg-white dark:bg-[#273142] sm:max-h-[310px] dark:border-[#3d4654] dark:border shadow-sm py-4 px-3 rounded-xl sm:max-w-[450px]">
                   <div className="flex items-center gap-2">
@@ -514,7 +514,7 @@ const page = () => {
                     )}
 
                   <div className="flex text-sm flex-col h-full gap-3">
-                    {comData?.store && count.com >= 1 && count.post >= 1 ? (
+                    {(comData?.store && (count.com >= 1 || count.post >= 1)) ? (
                       data?.length > 0 ? (
                         <>
                           <div className="bg-[#f1f1f1] rounded-lg dark:bg-[#3d4654]">
@@ -587,8 +587,8 @@ const page = () => {
                                 <div
                                   style={{ width: `${(count.com / 1) * 100}%` }}
                                   className={`absolute top-0 left-0 rounded-r-xl  ${count.com >= 1
-                                      ? "bg-[#40CAB0]"
-                                      : "bg-[#398faf]"
+                                    ? "bg-[#40CAB0]"
+                                    : "bg-[#398faf]"
                                     }  h-full `}
                                 ></div>
                               </div>
@@ -606,8 +606,8 @@ const page = () => {
                                     width: `${(count.post / 1) * 100}%`,
                                   }}
                                   className={`absolute top-0 left-0 rounded-r-xl  ${count.post >= 1
-                                      ? "bg-[#40CAB0]"
-                                      : "bg-[#398faf]"
+                                    ? "bg-[#40CAB0]"
+                                    : "bg-[#398faf]"
                                     }  h-full `}
                                 ></div>
                               </div>
@@ -623,8 +623,8 @@ const page = () => {
                                   router.push("/main/store");
                                 }}
                                 className={`${count.com < 1 || count.post < 1
-                                    ? "bg-[#878b8f]"
-                                    : "bg-[#2D9AFF]"
+                                  ? "bg-[#878b8f]"
+                                  : "bg-[#2D9AFF]"
                                   }   text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}
                               >
                                 Create Store
@@ -738,8 +738,8 @@ const page = () => {
                                     width: `${(state1.members / 150) * 100}%`,
                                   }}
                                   className={`absolute top-0 left-0 rounded-r-xl  ${state1.members >= 150
-                                      ? "bg-[#40CAB0]"
-                                      : "bg-[#398faf]"
+                                    ? "bg-[#40CAB0]"
+                                    : "bg-[#398faf]"
                                     }  h-full `}
                                 ></div>
                               </div>
@@ -763,8 +763,8 @@ const page = () => {
                                       }%`,
                                   }}
                                   className={`absolute top-0 left-0 rounded-r-xl  ${state1.engagementrate >= 10
-                                      ? "bg-[#40CAB0]"
-                                      : "bg-[#398faf]"
+                                    ? "bg-[#40CAB0]"
+                                    : "bg-[#398faf]"
                                     }  h-full `}
                                 ></div>
                               </div>
@@ -791,9 +791,9 @@ const page = () => {
                                     );
                                   }}
                                   className={`${state1.members < 150 ||
-                                      state1.engagementrate < 10
-                                      ? "bg-[#878b8f]"
-                                      : "bg-[#2D9AFF]"
+                                    state1.engagementrate < 10
+                                    ? "bg-[#878b8f]"
+                                    : "bg-[#2D9AFF]"
                                     }   text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}
                                 >
                                   Create Topic!
@@ -840,28 +840,7 @@ const page = () => {
                   </div>
                 </div>
 
-                {/* {state2.members >= 1000 && state2.engagementrate >= 10 ?
-                  <div className="p-4  bg-white dark:bg-[#273142] dark:border-[#3d4654] dark:border rounded-xl">
-                    <div className="flex flex-col">
-                      <div className="text-sm flex justify-between items-center">
-                        <div>Ad revenue</div>
-                        <div>
-                          <Selected setState={setState2} state={state2} data={comData?.communities} />
-                        </div>
-                      </div>
-                      <div className="text-2xl mt-4 font-semibold dark:text-white">
-                        ₹ 20,000
-                      </div>
 
-
-                      <div className="bg-white h-[1px] mt-2 w-full"></div>
-                      <div className="flex gap-2 mt-3">
-                        <CiCircleInfo className="mt-1" />
-                        <div className="text-sm font-bold text-[#0284FE] ">90% The percentage of ad revenue that  creator will receive.</div>
-                      </div>
-                    </div>
-
-                  </div> : */}
 
                 <div className="flex flex-col gap-3 bg-white dark:bg-[#273142] dark:border-[#3d4654] dark:border shadow-sm py-4 px-3 rounded-xl sm:max-w-[450px]">
                   <div className="flex justify-between items-center">
@@ -1001,9 +980,9 @@ const page = () => {
 
                       <div className="flex mt-2 gap-2 mb-2 text-sm flex-col">
                         {/* <div>Impressions : {state2.impressions}</div> */}
-                        <div>Earning from Views : ₹{state2?.cpm} (approx.)</div>
+                        <div>Earning from Views : ₹{state2?.cpm.toFixed(2)} (approx.)</div>
                         <div>
-                          Earnings from Clicks : ₹{state2?.cpc} (approx.)
+                          Earnings from Clicks : ₹{state2?.cpc.toFixed(2)} (approx.)
                         </div>
                       </div>
                     </>
@@ -1027,8 +1006,8 @@ const page = () => {
                                   width: `${(state2.members / 500) * 100}%`,
                                 }}
                                 className={`absolute top-0 left-0 rounded-r-xl  ${state2.members >= 500
-                                    ? "bg-[#40CAB0]"
-                                    : "bg-[#398faf]"
+                                  ? "bg-[#40CAB0]"
+                                  : "bg-[#398faf]"
                                   }  h-full `}
                               ></div>
                             </div>
@@ -1052,8 +1031,8 @@ const page = () => {
                                     }%`,
                                 }}
                                 className={`absolute top-0 left-0 rounded-r-xl  ${state2.engagementrate >= 10
-                                    ? "bg-[#40CAB0]"
-                                    : "bg-[#398faf]"
+                                  ? "bg-[#40CAB0]"
+                                  : "bg-[#398faf]"
                                   }  h-full `}
                               ></div>
                             </div>
@@ -1119,9 +1098,9 @@ const page = () => {
                                   sendRequestForMontenziation(id, state2.id)
                                 }
                                 className={`${state2.members < 500 ||
-                                    state2.engagementrate < 10
-                                    ? "bg-[#878b8f]"
-                                    : "bg-[#2D9AFF]"
+                                  state2.engagementrate < 10
+                                  ? "bg-[#878b8f]"
+                                  : "bg-[#2D9AFF]"
                                   }  text-white p-2 px-5 text-sm rounded-lg`}
                               >
                                 Apply for Monetization

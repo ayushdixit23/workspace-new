@@ -31,12 +31,14 @@ const Component = () => {
 	const router = useRouter()
 	const waitkrnevalafunc = async (data) => {
 		try {
-			// localStorage.removeItem("excktn")
-			// localStorage.removeItem("frhktn")
+
 
 			// storeInSessionStorage(data.sessionId)
-			Cookies.set(`excktn`, data.access_token)
-			Cookies.set(`frhktn`, data.refresh_token)
+			const expirationDate = new Date();
+			expirationDate.setDate(expirationDate.getDate() + 7);
+
+			Cookies.set(`excktn`, data.access_token, { expires: expirationDate });
+			Cookies.set(`frhktn`, data.refresh_token, { expires: expirationDate });
 
 			// localStorage.setItem(`excktn`, data.access_token)
 			// localStorage.setItem(`frhktn`, data.refresh_token)

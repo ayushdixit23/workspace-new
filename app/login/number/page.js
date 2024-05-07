@@ -93,6 +93,7 @@ function page() {
   //     console.log(e);
   //   }
   // };
+
   const waitkrnevalafunc = async (data) => {
     try {
       // if (localStorage.length > 20) {
@@ -101,8 +102,11 @@ function page() {
       // storeInSessionStorage(data.sessionId);
       // Cookies.set(`excktn${data.sessionId}`, data.access_token)
       // Cookies.set(`frhktn${data.sessionId}`, data.refresh_token)
-      Cookies.set(`excktn`, data.access_token);
-      Cookies.set(`frhktn`, data.refresh_token);
+      const expirationDate = new Date();
+      expirationDate.setDate(expirationDate.getDate() + 7);
+
+      Cookies.set(`excktn`, data.access_token, { expires: expirationDate });
+      Cookies.set(`frhktn`, data.refresh_token, { expires: expirationDate });
 
       // localStorage.setItem(`excktn`, data.access_token);
       // localStorage.setItem(`frhktn`, data.refresh_token);
@@ -153,7 +157,7 @@ function page() {
           callback: (response) => {
             onSignup();
           },
-          "expired-callback": () => {},
+          "expired-callback": () => { },
         }
       );
     }
@@ -351,11 +355,10 @@ function page() {
   return (
     <div className="h-screen flex flex-col sm:justify-center ">
       <div
-        className={`${
-          loadingqr
-            ? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md"
-            : "hidden -z-50"
-        } `}
+        className={`${loadingqr
+          ? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md"
+          : "hidden -z-50"
+          } `}
       >
         <div className="animate-spin">
           <RiLoader4Line className="text-3xl" />
@@ -398,9 +401,8 @@ function page() {
                   <div className="text-[#424242] dark:text-[#fff]">
                     Don't receive code ?{" "}
                     <button
-                      className={` text-blue-600 hover:text-blue-900 ${
-                        isActive ? "" : ""
-                      } `}
+                      className={` text-blue-600 hover:text-blue-900 ${isActive ? "" : ""
+                        } `}
                       onClick={toggleTimer}
                     >
                       Request Again
@@ -409,11 +411,10 @@ function page() {
                 </div>
               ) : (
                 <h1
-                  className={`${
-                    come === 1
-                      ? "hidden"
-                      : "text-[16px] font-normal dark:text-white text-[#3e3e3e]"
-                  } `}
+                  className={`${come === 1
+                    ? "hidden"
+                    : "text-[16px] font-normal dark:text-white text-[#3e3e3e]"
+                    } `}
                 >
                   Resend: <span className="font-semibold">00:{seconds}</span>
                 </h1>
@@ -481,11 +482,10 @@ function page() {
                 onClick={() => {
                   setChange(1);
                 }}
-                className={`m-1 flex justify-center items-center h-full w-full z-10 ${
-                  change === 1
-                    ? "font-bold border-b-2 border-blue-600"
-                    : "cursor-pointer"
-                }`}
+                className={`m-1 flex justify-center items-center h-full w-full z-10 ${change === 1
+                  ? "font-bold border-b-2 border-blue-600"
+                  : "cursor-pointer"
+                  }`}
               >
                 Phone no.
               </div>
@@ -493,11 +493,10 @@ function page() {
                 onClick={() => {
                   setChange(2);
                 }}
-                className={`m-1 flex justify-center items-center h-full w-full z-10 ${
-                  change === 2
-                    ? "font-bold border-b-2 border-blue-600"
-                    : "cursor-pointer"
-                }`}
+                className={`m-1 flex justify-center items-center h-full w-full z-10 ${change === 2
+                  ? "font-bold border-b-2 border-blue-600"
+                  : "cursor-pointer"
+                  }`}
               >
                 Email
               </div>
@@ -505,11 +504,10 @@ function page() {
           </div>
           {/* phone */}
           <div
-            className={`${
-              change === 1
-                ? "flex justify-start flex-col items-start  py-4"
-                : "hidden"
-            } `}
+            className={`${change === 1
+              ? "flex justify-start flex-col items-start  py-4"
+              : "hidden"
+              } `}
           >
             <div className="text-sm pb-3 px-1 dark:text-white font-semibold text-[#424856]">
               Enter Your Phone Number

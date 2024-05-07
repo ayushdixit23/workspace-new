@@ -27,6 +27,14 @@ const PostsWeb = ({
     }
   };
 
+  function generateRandomNumber() {
+    // Generate a random 10-digit number
+    const min = Math.pow(10, 9); // Minimum 10-digit number
+    const max = Math.pow(10, 10) - 1; // Maximum 10-digit number
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+
   const dataToSave = {
     id: d?.post?._id,
     title: d?.post.title,
@@ -37,11 +45,10 @@ const PostsWeb = ({
   return (
     <>
       <div
-        className={`${
-          pop
-            ? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md"
-            : "hidden -z-50"
-        }`}
+        className={`${pop
+          ? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md"
+          : "hidden -z-50"
+          }`}
       >
         <div className="flex justify-center items-center w-[90%] pp:w-[65%] sm:max-w-[500px] dark:text-white lg:w-[30%] p-3 rounded-xl dark:bg-[#273142] bg-white">
           <div className="flex flex-col flex-grow gap-3 justify-center items-center w-full">
@@ -77,9 +84,8 @@ const PostsWeb = ({
 
       <div
         onClick={() => setShowing(false)}
-        className={`${
-          showing ? "fixed z-50 w-screen h-screen" : "hidden  -z-30"
-        } `}
+        className={`${showing ? "fixed z-50 w-screen h-screen" : "hidden  -z-30"
+          } `}
       ></div>
       <tr className="bg-white pn:max-sm:hidden border-b h-[70px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
         <td className="font-medium w-[250px]  text-left">
@@ -118,11 +124,11 @@ const PostsWeb = ({
         <td className="text-center">
           <div className="flex justify-center gap-3 relative items-center">
             <div>
-              {/* <a target='_blank' href={`http://localhost:3000/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=1`
-							} className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a> */}
+              {/* <a target='_blank' href={`http://localhost:3001/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&loc=web&path=/createAd?adid=${generateRandomNumber()}&step=1`
+              } className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a> */}
               <a
                 target="_blank"
-                href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=1`}
+                href={`https://ads.grovyo.com/rederctmg?zray=${userid}&loc=web&pstiq=${d?.post?._id}&path=/createAd?adid=${generateRandomNumber()}&step=1`}
                 className="bg-blue-500 text-white p-2 px-4 rounded-2xl"
               >
                 Promote
@@ -132,11 +138,10 @@ const PostsWeb = ({
             <div className="flex text-center  relative mr-3 justify-around items-center">
               <BsThreeDotsVertical onClick={() => setShowing(!showing)} />
               <div
-                className={`${
-                  showing
-                    ? "absolute top-5 z-50 -left-20 h-[80px] rounded-lg w-[100px] bg-white dark:bg-[#273142] dark:border dark:border-[#3d4654] shadow-lg"
-                    : "hidden"
-                } `}
+                className={`${showing
+                  ? "absolute top-5 z-50 -left-20 h-[80px] rounded-lg w-[100px] bg-white dark:bg-[#273142] dark:border dark:border-[#3d4654] shadow-lg"
+                  : "hidden"
+                  } `}
               >
                 <div className="flex flex-col justify-start items-start gap-3 p-3">
                   <div
@@ -198,11 +203,10 @@ const PostsWeb = ({
           <div className="flex text-center  relative mr-3 justify-around items-center">
             <BsThreeDotsVertical onClick={() => setShowing(!showing)} />
             <div
-              className={`${
-                showing
-                  ? "absolute top-5 z-50 -left-20 h-[120px] rounded-lg w-[100px] bg-white dark:bg-[#273142] dark:border dark:border-[#3d4654] shadow-lg"
-                  : "hidden"
-              } `}
+              className={`${showing
+                ? "absolute top-5 z-50 -left-20 h-[120px] rounded-lg w-[100px] bg-white dark:bg-[#273142] dark:border dark:border-[#3d4654] shadow-lg"
+                : "hidden"
+                } `}
             >
               <div className="flex flex-col justify-start items-start gap-3 p-3">
                 <Link href={"/main/community/editCommunity"}>Edit</Link>
@@ -210,8 +214,8 @@ const PostsWeb = ({
                   {/* <a href='https://ads.grovyo.com' >Promote</a> */}
                   <a
                     target="_blank"
-                    href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?step=1`}
-                    className=" rounded-2xl"
+                    href={`https://ads.grovyo.com/rederctmg?zray=${userid}&loc=web&pstiq=${d?.post?._id}&path=/createAd?adid=${generateRandomNumber()}&step=1`}
+                    className="rounded-2xl"
                   >
                     Promote
                   </a>
