@@ -1,14 +1,20 @@
 import React from "react";
 import circle from "../assets/image/circle.svg";
 import Image from "next/image";
+import { FcInfo } from "react-icons/fc";
+import Hover from "./Hover";
 const Popularity = ({ state }) => {
   const rotationAngle =
     ((state.popularity ? state.popularity : 0) / 100) * 180 - 90;
   return (
     <>
-      <div className="rounded-xl w-full p-3 max-h-[300px] sm:max-h-[220px] dark:bg-[#323d4e] bg-white flex flex-col gap-3 flex-grow sm:bg-[#F9F9F9]">
+      <div className="rounded-xl w-full p-3 max-h-[300px] sm:max-h-[220px]  dark:bg-[#323d4e] bg-white  flex flex-col gap-3 flex-grow sm:bg-[#F9F9F9]">
         <div className="flex justify-between items-center p-1 px-3">
-          <div className="font-semibold">Popularity</div>
+          <div className="flex items-center w-full gap-1">
+            <Hover text={"Popularity"}
+              para={"Popularity Meter: Increase your earnings by building a strong and engaged community! Your popularity score directly affects your income."}
+            />
+          </div>
           <div className="text-2xl font-bold">
             {state?.popularity ? state?.popularity : 0}%
           </div>

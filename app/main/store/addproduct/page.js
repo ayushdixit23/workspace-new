@@ -12,6 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { IoChevronDownSharp, IoChevronUpSharp } from "react-icons/io5";
 import Cookies from "js-cookie";
 import Variants from "@/app/data/Variants";
+import Hover from "@/app/data/Hover";
 
 function page() {
   const router = useRouter();
@@ -81,7 +82,7 @@ function page() {
       });
     }
   };
-  
+
   const handleKeyDownColor = (e) => {
     if (e.key === "Enter" && variant.text2.trim() !== "") {
       setVariant({
@@ -271,18 +272,16 @@ function page() {
       <Toaster />
       {/**popUp */}
       <div
-        className={`${
-          by
-            ? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md"
-            : "-z-50 hidden"
-        }`}
+        className={`${by
+          ? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md"
+          : "-z-50 hidden"
+          }`}
       >
         <div
-          className={`${
-            by
-              ? "h-48 w-80 bg-[#F9F9F9] px-2 sm:bg-white dark:bg-[#273142] shadow-xl rounded-3xl flex flex-col items-center justify-center duration-100"
-              : "h-0 w-0 duration-100 text-[0px] hidden"
-          }`}
+          className={`${by
+            ? "h-48 w-80 bg-[#F9F9F9] px-2 sm:bg-white dark:bg-[#273142] shadow-xl rounded-3xl flex flex-col items-center justify-center duration-100"
+            : "h-0 w-0 duration-100 text-[0px] hidden"
+            }`}
         >
           <div className="font-semibold">Sure you want to Discard?</div>
           <div className="text-[12px]">
@@ -321,15 +320,14 @@ function page() {
             onClick={(e) => handleSubmit(e)}
             className=" vs:max-sm:px-10 py-2 px-10 font-semibold bg-[#5570F1] text-white rounded-xl"
           >
-            Save
+            Publish
           </div>
         </div>
       </div>
 
       <div
-        className={`fixed flex justify-center  items-center ${
-          by ? "-z-50" : "z-50"
-        } h-16 dark:bg-[#273142] bg-white dark:border-t dark:border-[#3d4654] w-full sm:hidden bottom-0 left-0`}
+        className={`fixed flex justify-center  items-center ${by ? "-z-50" : "z-50"
+          } h-16 dark:bg-[#273142] bg-white dark:border-t dark:border-[#3d4654] w-full sm:hidden bottom-0 left-0`}
       >
         <div className="flex justify-center gap-3 w-full px-3 items-center">
           <div
@@ -342,7 +340,7 @@ function page() {
             className="w-full flex justify-center p-2 bg-[#4880FF] rounded-lg text-white items-center"
             onClick={(e) => handleSubmit(e)}
           >
-            Save
+            Publish
           </div>
         </div>
       </div>
@@ -354,7 +352,12 @@ function page() {
             <div className="pn:max-pp:px-2 w-full pp:max-sm:px-10 min-w-[250px]">
               <div className="bg-white dark:bg-[#273142] p-4 w-full rounded-2xl">
                 <div className="font-semibold text-[20px] pt-1">
-                  General Information
+
+                  <Hover text={"General Information"}
+                    w2={"sm:w-[350px]"}
+                    mobile="pn:max-sm:-left-[180px]"
+
+                    para={"Product Details: Fill in essential information like title, description.Images and Videos: Showcase your products with high-quality visuals.Pricing and Inventory: Set competitive prices and track your stock levels.Variants (Optional): Offer variations like sizes, colors, or bundles to cater to diverse customer preferences.Publish and Sell! Once you're happy, hit 'Publish' to make your product available in your store."} />
                 </div>
                 <div>
                   <div className="font-semibold pt-4">Product name</div>
@@ -600,7 +603,11 @@ function page() {
               )}
               <div className="bg-white dark:bg-[#273142] p-4 rounded-2xl mt-2">
                 <div className="font-semibold text-[14px]">
-                  Different Options
+
+                  <Hover text={"Different Options"}
+                    mobile={"left-0"}
+                    pc={"sm:-left-[70px]"}
+                    para={"Create product variations to cater to diverse customer preferences.  For example, you can offer your T-shirts in different sizes (S, M, L) and colors (red, blue). This allows customers to find the perfect fit and style!"} />
                 </div>
                 <div className="flex items-center gap-2">
                   <div>
@@ -794,11 +801,10 @@ function page() {
                           )}
 
                           <div
-                            className={`${
-                              productInfo.shipping
-                                ? "absolute top-10 sm:max-w-[250px] left-0 w-full bg-white dark:bg-[#273142] rounded-lg p-3 shadow-md"
-                                : "hidden"
-                            } `}
+                            className={`${productInfo.shipping
+                              ? "absolute top-10 sm:max-w-[250px] left-0 w-full bg-white dark:bg-[#273142] rounded-lg p-3 shadow-md"
+                              : "hidden"
+                              } `}
                           >
                             <div className="flex gap-3 font-semibold cursor-pointer flex-col">
                               <div

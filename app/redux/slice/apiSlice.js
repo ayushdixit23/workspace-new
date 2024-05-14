@@ -4,7 +4,7 @@ export const Api = createApi({
   reducerPath: "Api",
   baseQuery:
     // fetchBaseQuery({
-    //   baseUrl: "http://192.168.1.11:7190/api"
+    //   baseUrl: "http://192.168.1.3:7190/api"
     // }),
     // fetchBaseQuery({
     //   baseUrl: "http://192.168.63.195:7190/api",

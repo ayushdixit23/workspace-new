@@ -37,6 +37,8 @@ import Link from "next/link";
 import BuiltSelected from "@/app/componentsWorkSpace/BuiltSelected";
 import { Switch } from "@/components/ui/switch";
 import { RxCross1 } from "react-icons/rx";
+import { FcInfo } from "react-icons/fc";
+import Hover from "@/app/data/Hover";
 
 const page = () => {
   const { id } = getData();
@@ -426,8 +428,14 @@ const page = () => {
                     alt="image"
                   />
                 </div>
+
                 <div className="flex flex-col gap-1">
-                  <div className="text-sm">Total Earnings</div>
+                  <div className="text-sm">
+                    <Hover text={"Total Earnings"}
+                      mobile={"left-0"}
+                      pc={"sm:-left-[70px]"}
+                      para={"Overall Earnings: Get a comprehensive view of your total income from both store sales and community monetization (ad revenue & paid topics)."} />
+                  </div>
                   <div className="font-semibold">
                     ₹{data?.earningStats?.earnings.toFixed(2)}
                   </div>
@@ -465,7 +473,9 @@ const page = () => {
                       <div className="sm:text-sm font-semibold">
                         {bank.verified == "approved"
                           ? "Bank Add Successfully !"
-                          : "Add Bank"}
+                          :
+                          <Hover para={"Add Bank Account: Securely link your bank account for easy withdrawal of your earnings.Once your bank account is linked, you can seamlessly transfer your hard-earned income."} text={"Add Bank"} pc={"sm:-left-[80px]"} />
+                        }
                       </div>
                     </div>
                     {bank.verified !== "approved" &&
@@ -496,7 +506,12 @@ const page = () => {
                         className="w-[60px] h-[60px] object-cover rounded-xl"
                       />
                     </div>
-                    <div className="text-lg font-semibold">Sell Products</div>
+                    <div className="text-lg font-semibold">
+                      <Hover text={"Sell Products"}
+                        mobile={"left-0"}
+                        pc={"sm:-left-[80px]"}
+                        para={"Showcase and sell your own products directly within your community. Whether it's handmade crafts, digital downloads, or exclusive merchandise, the possibilities are endless!"} />
+                    </div>
                   </div>
                   {(count.com < 1 || count.post < 1 || !comData.store) && (
                     <div className="text-sm">
@@ -506,7 +521,7 @@ const page = () => {
                   )}
                   {(count.com >= 1 || count.post >= 1) &&
                     comData.store &&
-                    data.length < 0 && (
+                    data?.length < 0 && (
                       <div className="text-sm">
                         "Congratulations! You can now add products in your
                         Store."
@@ -657,7 +672,12 @@ const page = () => {
                           className="w-[60px] h-[60px] object-cover rounded-xl"
                         />
                       </div>
-                      <div className="text-lg font-semibold">Topics</div>
+                      <div className="text-lg font-semibold">
+                        <Hover text={"Topics"}
+                          mobile={"left-0"}
+                          pc={"sm:-left-[80px]"}
+                          para={"Paid Topics (Unlock Topic Creation): After unlocking topic creation, create exclusive, in-depth content (guides, tutorials) and charge a fee for access. This allows you to directly monetize your expertise. (Example: You could offer a premium investment guide for Rs. 50)"} />
+                      </div>
                     </div>
                     {comData?.communities?.length > 0 && (
                       <div>
@@ -753,7 +773,7 @@ const page = () => {
                                   {state1.engagementrate
                                     ? state1.engagementrate
                                     : 0}
-                                  %
+                                  % / 10%
                                 </div>
                               </div>
                               <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
@@ -852,7 +872,12 @@ const page = () => {
                           className="w-[60px] h-[60px] object-cover rounded-xl"
                         />
                       </div>
-                      <div className="text-lg font-semibold">Ads Revenue</div>
+                      <div className="text-lg font-semibold">
+                        <Hover text={"Ads Revenue"}
+                          mobile={"left-0"}
+                          pc={"sm:-left-[180px]"}
+                          para={"Community Ads (500+ Members, 10% Popularity): Once your community reaches 500 members and a 25% popularity score, unlock the power of community ads. Display targeted ads relevant to your audience and earn revenue with every impression or click. (Example: You could earn Rs. 0.50 per ad impression)"} />
+                      </div>
                     </div>
                     {comData?.communities?.length > 0 && (
                       <div>
@@ -980,9 +1005,9 @@ const page = () => {
 
                       <div className="flex mt-2 gap-2 mb-2 text-sm flex-col">
                         {/* <div>Impressions : {state2.impressions}</div> */}
-                        <div>Earning from Views : ₹{state2?.cpm.toFixed(2)} (approx.)</div>
+                        <div>Earning from Views : ₹{state2?.cpm?.toFixed(2)} (approx.)</div>
                         <div>
-                          Earnings from Clicks : ₹{state2?.cpc.toFixed(2)} (approx.)
+                          Earnings from Clicks : ₹{state2?.cpc?.toFixed(2)} (approx.)
                         </div>
                       </div>
                     </>
@@ -1021,7 +1046,7 @@ const page = () => {
                                 {state2.engagementrate
                                   ? state2.engagementrate
                                   : 0}{" "}
-                                %
+                                % / 10%
                               </div>
                             </div>
                             <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">

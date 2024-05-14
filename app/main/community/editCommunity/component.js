@@ -51,6 +51,8 @@ function page() {
 		nature: "post",
 		topicidForEdit: null
 	})
+	const [td, setTd] = useState(false)
+	const [tdid, setTdid] = useState(false)
 	const [by, setBy] = useState(false);
 	const [selectImage, setSelectImage] = useState("");
 	const [selectedImage, setSelectedImage] = useState(null);
@@ -185,6 +187,15 @@ function page() {
 
 	};
 
+	const popDelete = async (tId) => {
+		try {
+			setTd(true)
+			setTdid(tId)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	const deleteTopic = async (tId) => {
 		try {
 			const data = {
@@ -199,6 +210,7 @@ function page() {
 				topicId: tId,
 				data,
 			});
+			setTd(false)
 
 		} catch (err) {
 			console.log(err);
@@ -263,6 +275,40 @@ function page() {
 					</div>
 				</div>
 			</div>
+
+			<div
+				className={`${td
+					? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md"
+					: "-z-50 hidden"
+					}`}
+			>
+				<div
+					className={`${td
+						? "h-48 w-80 bg-[#F9F9F9] px-2 sm:bg-white dark:bg-[#273142] shadow-xl rounded-3xl flex flex-col items-center justify-center duration-100"
+						: "h-0 w-0 duration-100 text-[0px] hidden"
+						}`}
+				>
+					<div className="font-semibold">Sure you want to delete this Topic?</div>
+					<div className="text-[12px]">
+						This process cannot be undone.
+					</div>
+					<div className="flex gap-4 mt-4">
+						<div
+							onClick={() => setTd(false)}
+							className="ring-1 cursor-pointer ring-black px-6 py-2 rounded-2xl hover:bg-black hover:text-white"
+						>
+							No, cancel
+						</div>
+						<button
+							onClick={() => deleteTopic(tdid)}
+							className=" px-6 py-2 cursor-pointer rounded-2xl bg-black text-white hover:bg-[#3f3f3f]"
+						>
+							Yes, Confirm
+						</button>
+					</div>
+				</div>
+			</div>
+
 			{/* popup 2 */}
 			<div
 				onClick={() => setBy(false)}
@@ -798,7 +844,8 @@ function page() {
 																<MdEdit size={20} />
 															</div>
 															<div
-																onClick={() => deleteTopic(d?._id)}
+																onClick={() => popDelete(d?._id)}
+																// onClick={() => deleteTopic(d?._id)}
 																title="Delete"
 																className="cursor-pointer"
 															>

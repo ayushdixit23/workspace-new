@@ -24,6 +24,8 @@ import Monetization from "../../assets/image/Monetization.png";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import Cookies from "js-cookie";
+import { FcInfo } from "react-icons/fc";
+import Hover from "@/app/data/Hover";
 
 // import BlurredComponent from "@/app/componentsWorkSpace/Blur";
 
@@ -689,7 +691,9 @@ function Dashboard() {
                                   <Image src={p3} alt="p1" />
                                 </div>
                                 <div>
-                                  <div className="font-medium">Earnings</div>
+                                  <div className="flex items-center gap-1">
+                                    <Hover text={"Earnings"} para={"Store Earnings: See your total income from selling products in your store."} />
+                                  </div>
                                   <div className="flex gap-1 text-xs  items-center">
                                     <div className="text-base font-medium">
                                       ₹{getorderdata?.earnings.toFixed(2)}

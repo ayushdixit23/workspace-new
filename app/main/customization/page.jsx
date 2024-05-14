@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react'
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { useDefaultPrositeMutation, useFetchValueQuery } from '@/app/redux/apiroutes/prosite'
+import Hover from '@/app/data/Hover'
 
 const page = () => {
 	const { id } = getData()
@@ -21,7 +22,7 @@ const page = () => {
 		try {
 			setIsChecked(!isChecked)
 			await defaultProsite({
-				id, checked: !isChecked
+				id, checked: isChecked
 			})
 		} catch (error) {
 			console.log(error)
@@ -30,9 +31,10 @@ const page = () => {
 
 	useEffect(() => {
 		if (data) {
-			setIsChecked(data?.useDefaultProsite)
+			console.log(data?.useDefaultProsite, "data?.useDefaultProsite", !data?.useDefaultProsite, data)
+			setIsChecked(!data?.useDefaultProsite)
 		}
-	}, [data])
+	}, [data, id])
 
 	return (
 		<>
@@ -40,11 +42,22 @@ const page = () => {
 			
 			dark:bg-[#273142] flex flex-col'>
 				<div className='flex justify-between border-b px-4 sm:px-7 dark:border-[#3d4654] items-center w-full'>
-					<div className=' pb-2 w-full font-medium text-[#4880FF]'>Prosite Templates</div>
+					<div className=' pb-2 w-full font-medium text-[#4880FF]'>
+						<Hover text={"Prosite Templates"}
+							para={"Craft Your Online Presence with Ease: Grovyo Prosites offer a selection of pre-made layouts to jumpstart your prosite creation. These layouts provide a foundation of pre-arranged content blocks (text, images, calls to action, backgrounds) that you can easily customize with your own content and branding.  This allows you to quickly build a professional-looking prosite without needing to start from scratch."}
+							w2={"sm:w-[380px]"}
+
+						/>
+					</div>
 					<div className=' w-full flex justify-end items-center'>
 						<div><div className="flex items-center space-x-2">
-							<Label htmlFor="airplane-mode">Set Live</Label>
-							<Switch checked={isChecked} onCheckedChange={changeprosite} id="airplane-mode" />
+
+							<Hover text={"Set Live"}
+								para={"Click 'Set Live' to publish your Prosite and showcase your brand or portfolio online!"}
+								mobile='-left-[180px]'
+							/>
+
+							<Switch checked={isChecked} onCheckedChange={changeprosite} />
 						</div>
 						</div>
 					</div>

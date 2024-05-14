@@ -7,6 +7,8 @@ import Cookies from "js-cookie";
 
 function productinformation({ handleDelete, data, userid, collectionid, index }) {
   const [open, setOpen] = useState()
+
+  console.log(data, "products")
   return (
     <>
       <div className={`${open ? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md" : "hidden -z-50"}`}>
@@ -70,7 +72,7 @@ function productinformation({ handleDelete, data, userid, collectionid, index })
           <>
             <div className="vs:max-sm:hidden sm:max-md:w-24  sm:max-md:justify-start w-36 flex justify-center ">
               <div className="space-y-4">
-                <div className="vs:max-sm:hidden">{data?.quantity}</div>
+                <div className="vs:max-sm:hidden">{data?.isvariant ? data.variants[0].category[0].quantity : data?.quantity}</div>
               </div>
             </div>
             {/* <div className="vs:max-sm:hidden w-36  flex justify-center ">
@@ -82,7 +84,7 @@ function productinformation({ handleDelete, data, userid, collectionid, index })
               </div>
             </div> */}
             <div className=" vs:max-sm:hidden w-36  flex justify-center">
-              &#8377; {data?.discountedprice}
+              &#8377; {data?.isvariant ? data.variants[0].category[0].discountedprice : data?.discountedprice}
             </div>
             <div className="vs:max-sm:hidden sm:max-md:w-24 sm:max-md:justify-start w-36 flex justify-center ">
               <div className="space-y-4">

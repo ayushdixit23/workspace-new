@@ -13,6 +13,7 @@ import PostsWeb from '@/app/componentsWorkSpace/PostsWeb'
 import toast from 'react-hot-toast'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import Cookies from 'js-cookie'
+import Hover from '@/app/data/Hover'
 
 const page = () => {
 	const path = usePathname()
@@ -83,7 +84,12 @@ const page = () => {
 			<div className={`${open ? "pn:max-sm:hidden " : null}`}>
 				<div className="flex px-4 py-2 justify-between dark:text-white items-center">
 					<div className=" p-2 text-[22px] text-[#202224] dark:text-white sm:font-semibold  ">
-						Posts
+
+						<Hover text={"Posts"}
+							para={"Create Post: Share text, images, videos, or polls to engage your community!"}
+							mobile='left-0'
+
+						/>
 					</div>
 					<div
 						onClick={() => { sessionStorage.removeItem("postdata"); setOpen(true) }}

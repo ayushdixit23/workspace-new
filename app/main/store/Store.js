@@ -30,6 +30,7 @@ import { useGetFetchOrderQuery } from "@/app/redux/apiroutes/userLoginAndSetting
 import dynamic from "next/dynamic";
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import Flow from "../../assets/icons/Flow.json";
+import Hover from "@/app/data/Hover";
 
 export default function Store() {
   const [data, setData] = useState([]);
@@ -295,7 +296,7 @@ export default function Store() {
                         className="py-2 flex justify-center items-center dark:bg-[#323d4e] dark:text-white gap-1 border light:border-[#f1f1f1] vs:max-pp:text-[12px] px-2.5 sm:px-5 font-medium bg-white text-black rounded-xl"
                       >
                         {checkstore?.exist
-                          ? "Create Collection"
+                          ? <Hover text={"Create Collection"} para={"Build collections to categorize your products for a better shopping experience. Click here to create a new collection"} mobile="-left-[220px]" />
                           : "Create Store"}
                         <GoPlus />
                       </Link>
@@ -322,7 +323,13 @@ export default function Store() {
                             <Image src={p3} alt="p1" />
                           </div>
                           <div className="flex flex-col gap-1">
-                            <div className="font-medium">Earnings</div>
+                            <div className="font-medium">
+                              <Hover
+                                text={"Earnings"}
+                                para={"Store Earnings: See your total income from selling products in your store."}
+                                mobile="left-0"
+                              />
+                            </div>
                             <div className="flex gap-1 text-xs  items-center">
                               <div className="text-base font-medium">
                                 ₹{Number(getorderdata?.earnings).toFixed(2)}
@@ -387,7 +394,13 @@ export default function Store() {
                             <Image src={p3} alt="p1" />
                           </div>
                           <div>
-                            <div className="font-medium">Earnings</div>
+                            <div className="font-medium">
+                              <Hover
+                                text={"Earnings"}
+                                para={"Store Earnings: See your total income from selling products in your store."}
+                                mobile="left-0"
+                              />
+                            </div>
                             <div className="flex gap-1 text-xs  items-center">
                               <div className="text-base font-medium">
                                 ₹{Number(getorderdata?.earnings).toFixed(2)}
