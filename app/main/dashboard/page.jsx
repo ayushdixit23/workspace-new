@@ -70,9 +70,6 @@ function Dashboard() {
     activemembers: "",
   });
 
-  console.log(analyticsdata?.commerged)
-
-
   useEffect(() => {
     if (
       analyticsdata?.commerged[0]?.image &&

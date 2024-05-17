@@ -492,7 +492,7 @@ function page() {
 
                         <div>Public</div>
                         <div className="relative group cursor-pointer inline-block"><FcInfo />
-                          <div className="hidden group-hover:block text-[14px] w-[250px] sm:w-[350px] shadow-lg -left-[80px] font-semibold absolute top-0 z-20 mt-[30px] dark:bg-[#323d4e] bg-white  text-black dark:text-white opacity-0 group-hover:opacity-100 transition p-3 rounded-lg">
+                          <div className="hidden group-hover:block text-[14px] w-[250px] sm:w-[350px] shadow-lg -left-11 sm:-left-[80px] font-semibold absolute top-0 z-20 mt-[30px] dark:bg-[#323d4e] bg-white  text-black dark:text-white opacity-0 group-hover:opacity-100 transition p-3 rounded-lg">
                             Create a public community where anyone can join. This helps you reach a wider audience and grow your network.
                           </div>
                         </div>
@@ -500,7 +500,7 @@ function page() {
                       <div onClick={() => setCreateCommunity({ ...createCommunity, type: "private" })} className={`p-2 flex items-center gap-1 px-4 ${createCommunity.type === "private" ? "bg-blue-600 text-white" : "text-black bg-white border-2 "} rounded-xl text-sm  font-semibold `}>
                         <div>Private</div>
                         <div className="relative group cursor-pointer inline-block"><FcInfo />
-                          <div className="hidden group-hover:block text-[14px] w-[250px] sm:w-[350px] shadow-lg -left-[80px] font-semibold absolute top-0 z-20 mt-[30px] dark:bg-[#323d4e] bg-white text-black dark:text-white opacity-0 group-hover:opacity-100 transition p-3 rounded-lg">
+                          <div className="hidden group-hover:block text-[14px] w-[250px] sm:w-[350px] shadow-lg sm:-left-[80px] -left-[150px] font-semibold absolute top-0 z-20 mt-[30px] dark:bg-[#323d4e] bg-white text-black dark:text-white opacity-0 group-hover:opacity-100 transition p-3 rounded-lg">
                             Build a private community where you personally invite members
                           </div>
                         </div>
@@ -512,7 +512,7 @@ function page() {
                       <div className="font-semibold text-sm flex items-center gap-1 dark:text-[#fff] text-[#606060]">
                         <div>Topics</div>
                         <div className="relative group cursor-pointer inline-block"><FcInfo />
-                          <div className="hidden group-hover:block text-[14px] w-[250px] shadow-lg font-semibold absolute top-0 z-20 mt-[20px] dark:bg-[#323d4e] bg-white text-black dark:text-white opacity-0 group-hover:opacity-100 transition p-3 rounded-lg">
+                          <div className="hidden group-hover:block text-[14px] w-[250px] -left-7 sm:left-0 -top-[190px] shadow-lg font-semibold absolute sm:top-0 z-20 mt-[20px] dark:bg-[#323d4e] bg-white text-black dark:text-white opacity-0 group-hover:opacity-100 transition p-3 rounded-lg">
                             Turn your expertise into income. Create in-depth guides, tutorials, or exclusive content for your community, and charge a fee for access.  Grow your earnings alongside your engaged audience.
                           </div>
                         </div>
@@ -520,7 +520,7 @@ function page() {
                       <div className="font-semibold flex items-center gap-1 text-sm dark:text-[#fff] text-[#606060]">
                         <div>Actions</div>
                         <div className="relative group cursor-pointer inline-block"><FcInfo />
-                          <div className="hidden group-hover:block text-[14px] w-[250px] shadow-lg -left-[240px] sm:-left-[180px] font-semibold absolute top-0 z-20 mt-[30px] dark:bg-[#323d4e] bg-white text-black dark:text-white opacity-0 group-hover:opacity-100 transition p-3 rounded-lg">
+                          <div className="hidden group-hover:block text-[14px] w-[250px] shadow-lg -top-[170px] sm:top-0 -left-[240px] sm:-left-[180px] font-semibold absolute z-20 mt-[30px] dark:bg-[#323d4e] bg-white text-black dark:text-white opacity-0 group-hover:opacity-100 transition p-3 rounded-lg">
                             Manage Your Topics: Edit or delete topics to keep your community organized and focused. This ensures you can maintain a clear and streamlined content flow
                           </div>
                         </div>

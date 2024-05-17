@@ -415,7 +415,7 @@ function NavBar() {
       </aside>
 
       {/*Tabbar*/}
-      <div className="h-14 sm:hidden bottom-0 dark:text-white border-t-2 dark:border-[#3d4654] dark:bg-[#1b2431] z-10 border-[#f5f5f5] bg-white fixed w-[100%] ">
+      <div className={`h-14 sm:hidden bottom-0 dark:text-white border-t-2 dark:border-[#3d4654] dark:bg-[#1b2431] ${path == "/main/earnings" ? "z-30" : "z-10"}  border-[#f5f5f5] bg-white fixed w-[100%] `}>
         <nav className="z-20">
           <ul className="flex justify-between px-4">
             {navItems.map((item, index) => (

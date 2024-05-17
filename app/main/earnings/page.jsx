@@ -432,7 +432,7 @@ const page = () => {
                 <div className="flex flex-col gap-1">
                   <div className="text-sm">
                     <Hover text={"Total Earnings"}
-                      mobile={"left-0"}
+                      mobile={"-left-[70px]"}
                       pc={"sm:-left-[70px]"}
                       para={"Overall Earnings: Get a comprehensive view of your total income from both store sales and community monetization (ad revenue & paid topics)."} />
                   </div>
@@ -474,7 +474,7 @@ const page = () => {
                         {bank.verified == "approved"
                           ? "Bank Add Successfully !"
                           :
-                          <Hover para={"Add Bank Account: Securely link your bank account for easy withdrawal of your earnings.Once your bank account is linked, you can seamlessly transfer your hard-earned income."} text={"Add Bank"} pc={"sm:-left-[80px]"} />
+                          <Hover para={"Add Bank Account: Securely link your bank account for easy withdrawal of your earnings.Once your bank account is linked, you can seamlessly transfer your hard-earned income."} text={"Add Bank"} mobile={"-left-[150px]"} pc={"sm:-left-[80px]"} />
                         }
                       </div>
                     </div>
@@ -508,8 +508,9 @@ const page = () => {
                     </div>
                     <div className="text-lg font-semibold">
                       <Hover text={"Sell Products"}
-                        mobile={"left-0"}
+                        mobile={"-left-[170px]"}
                         pc={"sm:-left-[80px]"}
+                        w2={"sm:w-[350px]"}
                         para={"Showcase and sell your own products directly within your community. Whether it's handmade crafts, digital downloads, or exclusive merchandise, the possibilities are endless!"} />
                     </div>
                   </div>
@@ -674,8 +675,10 @@ const page = () => {
                       </div>
                       <div className="text-lg font-semibold">
                         <Hover text={"Topics"}
-                          mobile={"left-0"}
+
+                          mobile={"-left-[120px]"}
                           pc={"sm:-left-[80px]"}
+                          w2={"sm:w-[350px]"}
                           para={"Paid Topics (Unlock Topic Creation): After unlocking topic creation, create exclusive, in-depth content (guides, tutorials) and charge a fee for access. This allows you to directly monetize your expertise. (Example: You could offer a premium investment guide for Rs. 50)"} />
                       </div>
                     </div>
@@ -874,8 +877,9 @@ const page = () => {
                       </div>
                       <div className="text-lg font-semibold">
                         <Hover text={"Ads Revenue"}
-                          mobile={"left-0"}
+                          mobile={"-left-[170px]"}
                           pc={"sm:-left-[180px]"}
+                          w2={"sm:w-[350px]"}
                           para={"Community Ads (500+ Members, 10% Popularity): Once your community reaches 500 members and a 25% popularity score, unlock the power of community ads. Display targeted ads relevant to your audience and earn revenue with every impression or click. (Example: You could earn Rs. 0.50 per ad impression)"} />
                       </div>
                     </div>
