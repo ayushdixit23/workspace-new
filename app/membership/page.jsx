@@ -5,7 +5,6 @@ import axios from "axios"
 import useRazorpay from "react-razorpay";
 import { useMemfinalizeMutation } from "../redux/apiroutes/payment";
 import { useRouter } from "next/navigation";
-import { storeInSessionStorage } from "../utilsHelper/Tokenwrap";
 import toast, { Toaster } from "react-hot-toast";
 // import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
@@ -28,6 +27,8 @@ const Sample5 = () => {
 	const [proy, setProy] = useState(null)
 	const [premiumy, setPremiumy] = useState(null)
 
+	console.log(process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, "key")
+
 	const [d, setD] = useState({
 		plus: 10,
 		pro: 30,
@@ -48,20 +49,6 @@ const Sample5 = () => {
 	const router = useRouter()
 
 	const [membershipFinalise] = useMemfinalizeMutation()
-
-	// const fetchmemberShip = async () => {
-	// 	try {
-	// 		const res = await axios.get("https://work.grovyo.xyz/api/v1/fetchmembership")
-	// 		console.log(res.data.ids)
-	// 		setMembership({
-	// 			free: res.data.ids.free,
-	// 			pro: res.data.ids.pro,
-	// 			premium: res.data.ids.premium
-	// 		})
-	// 	} catch (error) {
-	// 		console.log(error)
-	// 	}
-	// }
 
 	const handlePlus = (type, number) => {
 		setD(prevState => ({
@@ -102,6 +89,7 @@ const Sample5 = () => {
 			// const res = await axios.post(`http://localhost:7190/api/v1/membershipbuy/${id}/${mId}`, { amount: amounttosend })
 			console.log(res.data)
 			const membershipId = res.data.memid
+			console.log("1")
 			if (res.data.success) {
 				let options = {
 					"key": process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
@@ -132,7 +120,7 @@ const Sample5 = () => {
 						setTimeout(() => {
 							setMemberPop(false)
 						}, 1000)
-
+						console.log("2")
 						if (resp.data.success) {
 							// localStorage.removeItem(`excktn`)
 							// localStorage.removeItem(`frhktn`)
@@ -160,6 +148,7 @@ const Sample5 = () => {
 						"color": "#3399cc"
 					}
 				};
+				console.log("3")
 				let rpay = new Razorpay(options);
 				rpay.on('payment.failed', async function (response) {
 					const data = {
@@ -175,6 +164,8 @@ const Sample5 = () => {
 					})
 				})
 				rpay.open();
+
+				console.log("4")
 			} else {
 				toast.error(res.data.message)
 			}

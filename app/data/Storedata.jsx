@@ -105,8 +105,8 @@ const Storedata = ({ getorderdata, sales }) => {
           // </div>
           <></>
         ) : (
-          <Link
-            href={"/main/order"}
+          <div
+
             className="w-full rounded-xl dark:bg-[#273142] bg-white sm:max-h-[200px] max-w-full overflow-y-scroll no-scrollbar sm:min-h-[200px] "
           >
             <div className="flex justify-end sm:justify-between items-center">
@@ -130,7 +130,7 @@ const Storedata = ({ getorderdata, sales }) => {
               </div>}
             </div>
 
-            <div className="pn:max-sm:hidden max-w-full min-w-[700px] overflow-scroll no-scrollbar dark:bg-[#273142] p-2 rounded-lg bg-white sm:px-3">
+            <Link href={"/main/order"} className="pn:max-sm:hidden max-w-full min-w-[700px] overflow-scroll no-scrollbar dark:bg-[#273142] p-2 rounded-lg bg-white sm:px-3">
               <Table>
                 <TableHeader className="dark:text-[#cfcfcf]">
                   <TableRow>
@@ -175,7 +175,7 @@ const Storedata = ({ getorderdata, sales }) => {
                   ))}
                 </TableBody>
               </Table>
-            </div>
+            </Link>
             <div className="sm:hidden rounded-xl dark:bg-[#273142] bg-white">
               <div>
                 <div className="flex justify-between font-semibold p-3 px-4 dark:text-white items-center text-[#4A4C56]">
@@ -186,7 +186,7 @@ const Storedata = ({ getorderdata, sales }) => {
                   <div className="mr-4 text-sm">Status</div>
                 </div>
 
-                <div>
+                <Link href={"/main/order"}>
                   {getorderdata?.mergedOrder?.map((d, i) => (
                     <div
                       key={i}
@@ -219,10 +219,10 @@ const Storedata = ({ getorderdata, sales }) => {
                       </div>
                     </div>
                   ))}
-                </div>
+                </Link>
               </div>
             </div>
-          </Link>
+          </div>
         )
       }
     </div >

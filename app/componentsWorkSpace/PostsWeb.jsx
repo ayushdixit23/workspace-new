@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { formatISOStringToDMY, formatNumber } from "../utilsHelper/Useful";
+import { formatISOStringToDMY, formatNumber, getData } from "../utilsHelper/Useful";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Link from "next/link";
 import { LoadThis } from "@/app/redux/slice/userData";
@@ -16,6 +16,7 @@ const PostsWeb = ({
 }) => {
   const [showing, setShowing] = useState(false);
   const [pop, setPop] = useState(false);
+  const { id } = getData()
   const handlePostId = (id) => {
     try {
       setShowing(false);
@@ -128,7 +129,7 @@ const PostsWeb = ({
               } className='bg-blue-500 text-white p-2 px-4 rounded-2xl'>Promote</a> */}
               <a
                 target="_blank"
-                href={`https://ads.grovyo.com/rederctmg?zray=${userid}&loc=web&pstiq=${d?.post?._id}&path=/createAd?adid=${generateRandomNumber()}&step=1`}
+                href={`https://ads.grovyo.com/rederctmg?zray=${userid}&pstiq=${d?.post?._id}&path=/createAd?adid=${generateRandomNumber()}&step=1`}
                 className="bg-blue-500 text-white p-2 px-4 rounded-2xl"
               >
                 Promote
@@ -171,6 +172,7 @@ const PostsWeb = ({
         </td>
       </tr>
 
+      {/* mobile */}
       <div
         className={`light:border-b mb-[10%] sm:hidden light:border-[#eaecf0] px-2 flex flex-col justify-center items-center gap-4 w-full`}
       >
@@ -214,7 +216,7 @@ const PostsWeb = ({
                   {/* <a href='https://ads.grovyo.com' >Promote</a> */}
                   <a
                     target="_blank"
-                    href={`https://ads.grovyo.com/rederctmg?zray=${userid}&loc=web&pstiq=${d?.post?._id}&path=/createAd?adid=${generateRandomNumber()}&step=1`}
+                    href={`https://ads.grovyo.com/rederctmg?zray=${id}&pstiq=${d?.post?._id}&path=/createAd?adid=${generateRandomNumber()}&step=1`}
                     className="rounded-2xl"
                   >
                     Promote

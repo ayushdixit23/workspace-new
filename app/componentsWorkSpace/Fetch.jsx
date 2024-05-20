@@ -109,7 +109,7 @@ const Fetch = ({ data }) => {
                           </div>
                         ))}
                         {d?.productId?.length > 2 && <span>And more...</span>} */}
-                        {d?.productId.name.length > 17 ? `${d?.productId.name.slice(0, 17)}...` : d?.productId.name}
+                        {d?.productId?.name?.length > 17 ? `${d?.productId?.name?.slice(0, 17)}...` : d?.productId?.name}
                       </div>
                     </div>
                   </TableCell>
@@ -155,7 +155,7 @@ const Fetch = ({ data }) => {
                             </div>
                           ))} */}
                           {/* {d?.productId?.length > 2 && <span>And more...</span>} */}
-                          {d?.productId.name.length > 12 ? `${d?.productId.name.slice(0, 12)}...` : d?.productId.name}
+                          {d?.productId?.name?.length > 12 ? `${d?.productId?.name?.slice(0, 12)}...` : d?.productId?.name}
                         </div>
 
                         <div className="text-[#667085] text-sm">

@@ -50,7 +50,7 @@ const Communitydata = ({ state, analyticsdata, setState, setDateValue, dateValue
                 <div className='text-lg '>{toggle ? <IoIosArrowUp onClick={() => setToggle(!toggle)} /> : <IoIosArrowDown onClick={() => setToggle(!toggle)} />}
                 </div>
 
-                <div className={`${toggle ? "top-[45px]" : "top-0 border-none text-[0px] w-[0px] h-[0px]"} absolute left-0 bg-[#f7f7f7] duration-100 dark:bg-[#323d4e] rounded-xl z-50 w-full`}>
+                <div className={`${toggle ? "top-[45px]" : "top-0 border-none hidden text-[0px] w-[0px] h-[0px]"} absolute left-0 bg-[#f7f7f7] duration-100 dark:bg-[#323d4e] rounded-xl z-50 w-full`}>
                   <div className='flex flex-col gap-3 px-2 py-1 max-h-[300px] overflow-y-scroll no-scrollbar'>
                     <div onClick={() => setDateValue(7)}>7 Days</div>
                     <div onClick={() => setDateValue(30)}>30 Days</div>

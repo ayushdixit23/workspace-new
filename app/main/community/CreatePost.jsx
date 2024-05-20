@@ -41,6 +41,7 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 			data.append("title", post.title)
 			data.append("desc", post.desc)
 			data.append("tags", post.tags)
+			data.append("topicId", topicId)
 			data.append("thumbnail", thumbnail)
 			data.append("thumbnailImage", thumbnailImage)
 			post.image.forEach((d) => {
@@ -52,7 +53,6 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
 			const res = await postAnything({
 				id,
 				comid,
-				topicid: topicId,
 				data
 			})
 			if (res.data.success) {
