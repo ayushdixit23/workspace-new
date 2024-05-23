@@ -495,6 +495,7 @@ const page = () => {
                   access.
                 </div>
               </div> */}
+
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 my-3 ">
                 <div className="flex flex-col gap-3 bg-white dark:bg-[#273142] sm:max-h-[310px] dark:border-[#3d4654] dark:border shadow-sm py-4 px-3 rounded-xl sm:max-w-[450px]">
                   <div className="flex items-center gap-2">
@@ -662,14 +663,15 @@ const page = () => {
                     )}
                   </div>
                 </div>
+
                 <div className="flex flex-col gap-3 bg-white sm:max-h-[310px] dark:bg-[#273142] dark:border-[#3d4654] dark:border shadow-sm py-4 px-3 rounded-xl sm:max-w-[450px]">
-                  <div className="flex justify-between items-center">
+                  <div className="flex pp:flex-row flex-col gap-3 justify-between pp:items-center">
                     <div className="flex items-center gap-2">
                       <div>
                         <Image
                           src={Cl}
                           alt="image"
-                          className="w-[60px] h-[60px] object-cover rounded-xl"
+                          className="min-w-[60px] min-h-[60px] max-w-[60px] max-h-[60px] object-cover rounded-xl"
                         />
                       </div>
                       <div className="text-lg font-semibold">
@@ -683,7 +685,7 @@ const page = () => {
                     </div>
                     {comData?.communities?.length > 0 && (
                       <div>
-                        <div className="w-[155px] ring-[1px] ring-[#d1d1d1] rounded-xl">
+                        <div className="pp:w-[155px] w-full dark:border-[#3d4654] border-[#d1d1d1] border rounded-xl">
                           <BuiltSelected
                             type={"earnings"}
                             data={comData?.communities}
@@ -865,13 +867,13 @@ const page = () => {
 
 
                 <div className="flex flex-col gap-3 bg-white dark:bg-[#273142] dark:border-[#3d4654] dark:border shadow-sm py-4 px-3 rounded-xl sm:max-w-[450px]">
-                  <div className="flex justify-between items-center">
+                  <div className="flex pp:flex-row flex-col gap-3 justify-between pp:items-center">
                     <div className="flex items-center gap-2">
                       <div>
                         <Image
                           src={ads}
                           alt="image"
-                          className="w-[60px] h-[60px] object-cover rounded-xl"
+                          className="min-w-[60px] min-h-[60px] max-w-[60px] max-h-[60px] object-cover rounded-xl"
                         />
                       </div>
                       <div className="text-lg font-semibold">
@@ -885,7 +887,7 @@ const page = () => {
                     {comData?.communities?.length > 0 && (
                       <div>
                         {/* <Selected setState={setState2} state={state2} data={comData?.communities} /> */}
-                        <div className="w-[155px]  ring-[1px] ring-[#d1d1d1] rounded-xl">
+                        <div className="pp:w-[155px] w-full dark:border-[#3d4654] border-[#d1d1d1] border rounded-xl">
                           <BuiltSelected
                             type={"earnings"}
                             data={comData?.communities}

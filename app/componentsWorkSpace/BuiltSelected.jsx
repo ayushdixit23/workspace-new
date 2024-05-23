@@ -7,9 +7,8 @@ const BuiltSelected = ({ data, state, setState, type }) => {
     <>
       <div
         onClick={() => setToggle(false)}
-        className={`fixed inset-0 w-screen ${
-          toggle ? "z-50" : "-z-40"
-        } h-screen`}
+        className={`fixed inset-0 w-screen ${toggle ? "z-50" : "-z-40"
+          } h-screen`}
       ></div>
       {type === "dashboard" && (
         <div className="flex flex-col w-full bg-[#f7f7f7] dark:bg-[#323d4e] rounded-xl">
@@ -40,11 +39,10 @@ const BuiltSelected = ({ data, state, setState, type }) => {
             </div>
 
             <div
-              className={` ${
-                toggle
-                  ? "top-[45px]"
-                  : "top-0 border-none text-[0px] w-[0px] h-[0px]"
-              } absolute left-0 bg-[#f7f7f7] duration-100 dark:bg-[#323d4e] rounded-xl z-50 w-full`}
+              className={` ${toggle
+                ? "top-[45px]"
+                : "top-0 border-none text-[0px] w-[0px] h-[0px]"
+                } absolute left-0 bg-[#f7f7f7] duration-100 dark:bg-[#323d4e] rounded-xl z-50 w-full`}
             >
               <div className="flex flex-col gap-3 px-2 py-1 max-h-[300px] overflow-y-scroll no-scrollbar">
                 {data?.map((d, i) => (
@@ -77,11 +75,10 @@ const BuiltSelected = ({ data, state, setState, type }) => {
                     <div className="">
                       <img
                         src={d?.image}
-                        className={`${
-                          toggle
-                            ? "max-w-[30px] bg-[#f8f8f8] dark:bg-[#181c24] rounded-lg min-h-[30px] min-w-[30px] max-h-[30px]"
-                            : "w-0 h-0"
-                        } duration-100`}
+                        className={`${toggle
+                          ? "max-w-[30px] bg-[#f8f8f8] dark:bg-[#181c24] rounded-lg min-h-[30px] min-w-[30px] max-h-[30px]"
+                          : "w-0 h-0"
+                          } duration-100`}
                         alt="image"
                       />
                     </div>
@@ -113,7 +110,10 @@ const BuiltSelected = ({ data, state, setState, type }) => {
                   className="max-w-[30px] rounded-lg min-h-[30px] min-w-[30px] max-h-[30px]"
                 />
               </div>
-              <div className="text-[#0d0d0d]  dark:text-white text-xs font-semibold">
+              <div className="text-[#0d0d0d]  dark:text-white pp:hidden text-xs font-semibold">
+                {state.name}
+              </div>
+              <div className="text-[#0d0d0d]  dark:text-white pn:max-pp:hidden text-xs font-semibold">
                 {state?.name?.length > 8
                   ? `${state?.name?.slice(0, 8)}...`
                   : state?.name}
@@ -129,11 +129,10 @@ const BuiltSelected = ({ data, state, setState, type }) => {
             </div>
 
             <div
-              className={` ${
-                toggle
-                  ? "dark:border dark:border-white top-[45px]"
-                  : "top-0 border-none text-[0px] w-[0px] h-[0px]"
-              } absolute left-0 bg-[#f7f7f7] duration-100 dark:bg-[#273142] rounded-lg z-50 w-full`}
+              className={` ${toggle
+                ? "dark:border-[#3d4654] dark:border top-[45px]"
+                : "top-0 border-none text-[0px] w-[0px] h-[0px]"
+                } absolute left-0 bg-[#f7f7f7] duration-100 dark:bg-[#273142] rounded-lg z-50 w-full`}
             >
               <div className="flex flex-col gap-3 p-2 max-h-[300px] overflow-y-scroll no-scrollbar">
                 {data?.map((d, i) => (
@@ -167,19 +166,23 @@ const BuiltSelected = ({ data, state, setState, type }) => {
                     <div>
                       <img
                         src={d?.dps}
-                        className={`${
-                          toggle
-                            ? "max-w-[30px] rounded-xl min-h-[30px] min-w-[30px] max-h-[30px]"
-                            : "w-0 h-0"
-                        } duration-100`}
+                        className={`${toggle
+                          ? "max-w-[30px] rounded-xl min-h-[30px] min-w-[30px] max-h-[30px]"
+                          : "w-0 h-0"
+                          } duration-100`}
                         alt="image"
                       />
                     </div>
                     <div className="flex flex-col">
                       <div
-                        className={`text-xs ${
-                          toggle ? "" : "text-[0px] hidden"
-                        }`}
+                        className={`pp:hidden  text-xs ${toggle ? "" : "text-[0px] hidden"
+                          }`}
+                      >
+                        {d?.name}
+                      </div>
+                      <div
+                        className={`text-xs pn:max-pp:hidden  ${toggle ? "" : "text-[0px] hidden"
+                          }`}
                       >
                         {d?.name?.length > 8
                           ? `${d?.name?.slice(0, 8)}...`
