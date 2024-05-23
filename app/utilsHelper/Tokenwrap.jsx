@@ -61,7 +61,11 @@ const TokenDataWrapper = ({ children }) => {
       disableTransitionOnChange
     >
 
-      {loading ? <Loader /> : <>{children}</>}
+      {loading ? <Loader /> : <>
+        <div className="w-screen h-screen overflow-y-scroll no-scrollbar">
+          {children}
+        </div>
+      </>}
 
     </ThemeProvider >
   </>;

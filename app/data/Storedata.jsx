@@ -45,8 +45,8 @@ const Storedata = ({ getorderdata, sales }) => {
         {getorderdata?.storeexistornot ? (
           getorderdata?.isStoreVerified ? (
             <>
-              <div className="flex pt-2 px-2 items-center gap-1">
-                <Hover text={"Store Analytics"} para={"Sales Trend: Track your daily sales performance over time. See how your sales fluctuate and identify trends to optimize your strategy."}
+              <div className="flex pt-2 px-2 text-lg font-semibold items-center gap-1">
+                <Hover text={"Sales Analytics"} para={"Sales Trend: Track your daily sales performance over time. See how your sales fluctuate and identify trends to optimize your strategy."}
                   w2={"sm:w-[350px]"} />
               </div>
               <div className="w-full relative -left-10 pp:-left-8 sm:-left-6 top-2">

@@ -1,14 +1,15 @@
 import React from "react";
 import MemorizedDontHave from "./DontHave";
 import BlurredComponent from "./Blur";
+import Prem from "./Prem";
 
 const LocationCom = ({ data, state, memberships }) => {
   const { location } = state
   return (
     <div className="w-full h-full">
       {memberships === "Free" ?
-        <div className="w-full pn:max-sm:h-[240px] sm:h-full">
-          <BlurredComponent />
+        <div className="w-full pn:max-sm:h-[240px] sm:h-full ">
+          <Prem height="h-full" buttontext={"Unlock Locations"} text={"Discover where your community members are based to plan local events, target specific regions, and enhance your outreach efforts."} bgimage={"bg-locationlight dark:bg-locationdark"} />
         </div>
         :
 

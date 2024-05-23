@@ -1,6 +1,7 @@
 import React from "react";
 import MemorizedDontHave from "./DontHave";
 import BlurredComponent from "./Blur";
+import Prem from "./Prem";
 
 const Demographics = ({ demo, data, member, ages, memberships }) => {
 
@@ -8,7 +9,10 @@ const Demographics = ({ demo, data, member, ages, memberships }) => {
     <>
       <div className="w-full sm:h-full">
         {memberships === "Free" ? <div className="w-full pn:max-sm:h-[240px] sm:h-full">
-          <BlurredComponent />
+          {/* <BlurredComponent /> */}
+          <Prem height="h-full" buttontext={"Unlock Demographics"} text={"Know your community’s members age, gender, and interests to tailor your content perfectly! "}
+            bgimage={"bg-customerlight  dark:bg-customerdark "}
+          />
         </div> :
           <div className="w-full sm:h-full">
 

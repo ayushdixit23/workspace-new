@@ -65,13 +65,13 @@ const page = () => {
 
 				<div className='grid pn:max-sm:mb-[3%] grid-cols-1 mt-5 px-5 w-full'>
 
-					<div className='flex justify-center items-center bg-[#f1f1f1] text-black dark:text-white dark:bg-black/70 rounded-xl'>
+					{/* <div className='flex justify-center items-center bg-membership bg-cover bg-[#fafafa] dark:bg-[#2] rounded-xl'>
 						<div className='flex justify-center text-sm sm:text-base font-semibold items-center pt-4 pb-5 flex-col gap-2'>
 							<div className='text-center'>Choose templates that suits you and your profession</div>
 							<div>to form your own Prosite</div>
 							<div className=''>Profile + Website</div>
 						</div>
-					</div>
+					</div> */}
 
 					<div className='flex flex-col'>
 						<div className='my-2 text-xl font-bold'></div>
@@ -79,7 +79,7 @@ const page = () => {
 							<div className='grid grid-cols-2 sm:grid-cols-3 gap-4 md:grid-cols-4 w-full'>
 
 								<div className="pm:max-pp:max-w-[275px] flex flex-col bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain bg-black" src={t1} alt="" />
+									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain dark:bg-black" src={t1} alt="" />
 									<div className="p-2 flex pp:flex-row flex-col justify-between items-center px-2">
 										<div className='font-semibold text-sm sm:text-base '>Basic layout</div>
 										{/* <a target='_blank' href={`http://localhost:3000/lwozxip?id=${encodeURIComponent(id)}&temp=1`} className="inline-flex mt-2 pn:max-pp:w-full justify-center items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -92,7 +92,7 @@ const page = () => {
 								</div >
 
 								<div className="pm:max-pp:max-w-[275px] bg-white border flex flex-col border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain bg-black" src={t2} alt="" />
+									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain dark:bg-black" src={t2} alt="" />
 
 									<div className="p-2 flex pp:flex-row flex-col justify-between px-2 items-center">
 										<div className='font-semibold text-sm sm:text-base'>Panoramic Layout</div>
@@ -103,7 +103,7 @@ const page = () => {
 									</div>
 								</div>
 								<div className="pm:max-pp:max-w-[275px] bg-white border flex flex-col border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain bg-black" src={t3} alt="" />
+									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain dark:bg-black" src={t3} alt="" />
 
 									<div className="p-2 flex pp:flex-row flex-col justify-between px-2 items-center">
 										<div className='font-semibold text-sm sm:text-base'>L-Basic Layout</div>
@@ -114,7 +114,7 @@ const page = () => {
 									</div>
 								</div>
 								<div className="pm:max-pp:max-w-[275px] bg-white border flex flex-col border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain bg-black" src={t4} alt="" />
+									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain dark:bg-black" src={t4} alt="" />
 
 									<div className="p-2 flex pp:flex-row flex-col justify-between px-2 items-center">
 										<div className='font-semibold text-sm sm:text-base'>Immersive Layout</div>
@@ -125,7 +125,7 @@ const page = () => {
 									</div>
 								</div>
 								<div className="pm:max-pp:max-w-[275px] bg-white border flex flex-col border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain bg-black" src={t5} alt="" />
+									<Image className="rounded-t-lg pm:max-pp:max-w-[275px] h-[150px] w-full object-contain dark:bg-black" src={t5} alt="" />
 
 									<div className="p-2 flex pp:flex-row flex-col justify-between px-2 items-center">
 										<div className='font-semibold text-sm sm:text-base'>3D Layout</div>

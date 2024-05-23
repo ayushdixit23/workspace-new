@@ -19,6 +19,9 @@ import { useTheme } from "next-themes";
 // import Cookies from "js-cookie";
 import MembershipPopup from "./MembershipPopup";
 import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { sendData } from "../redux/slice/userData";
+import { getData } from "../utilsHelper/Useful";
 
 function NavBar() {
   const MemoizedDashIconLight = useMemo(() => DashboardLight, []);
@@ -38,8 +41,10 @@ function NavBar() {
   const [pop, setPop] = useState(false);
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const { memberships } = getData()
   const path = usePathname();
   const { theme, systemTheme } = useTheme();
+  const dispatch = useDispatch()
   const colorToPut = path.split("/").pop().toLowerCase();
   const [location, setLocation] = useState(colorToPut);
 
@@ -106,7 +111,10 @@ function NavBar() {
       // localStorage.removeItem(`excktn`);
       // localStorage.removeItem(`frhktn`);
       setOpen(false);
+
       router.push("/login");
+      setTimeout(() => { dispatch(sendData("")) }, 2500)
+
     } catch (error) {
     }
   };
@@ -401,21 +409,26 @@ function NavBar() {
             </div> */}
           </nav>
 
-          <button
+          {memberships !== "Free" && <button
             onClick={() => setOpen(true)}
             className="flex items-center px-4"
           >
-            {/* <img className="object-cover mx-2 rounded-full h-9 w-9" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar" /> */}
+
             <MdOutlineLogout className="text-2xl" />
             <span className="mx-2  sm:max-md:hidden font-medium text-gray-800 dark:text-gray-200">
               Log Out
             </span>
-          </button>
+          </button>}
+          {memberships === "Free" && < Link href={"/membership"} className="flex justify-center gap-4 bg-premiumM bg-cover bg-center text-white p-2 px-3 rounded-xl items-center">
+            <div className="text-xs font-semibold">Upgrade To Premium</div>
+            <div className="p-1 px-3 bg-[#4880FF] text-white text-sm font-semibold rounded-lg">{memberships === "Free" && "Plus"} {memberships === "Plus" && "Pro"} {memberships === "Pro" && "Premium"}</div>
+          </Link>}
         </div>
-      </aside>
+      </aside >
 
       {/*Tabbar*/}
-      <div className={`h-14 sm:hidden bottom-0 dark:text-white border-t-2 dark:border-[#3d4654] dark:bg-[#1b2431] ${path == "/main/earnings" ? "z-30" : "z-10"}  border-[#f5f5f5] bg-white fixed w-[100%] `}>
+      < div className={`h-14 sm:hidden bottom-0 dark:text-white border-t-2 dark:border-[#3d4654] dark:bg-[#1b2431] ${path == "/main/earnings" ? "z-30" : "z-10"}  border-[#f5f5f5] bg-white fixed w-[100%] `
+      }>
         <nav className="z-20">
           <ul className="flex justify-between px-4">
             {navItems.map((item, index) => (
@@ -506,8 +519,8 @@ function NavBar() {
             ))}
           </ul>
         </nav>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 

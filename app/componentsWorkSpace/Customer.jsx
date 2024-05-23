@@ -1,7 +1,7 @@
 import React from "react";
 // import { FaAngleDown } from "react-icons/fa";
 import { Pie, PieChart, ResponsiveContainer, Label, Cell, Legend } from "recharts";
-import BlurredComponent from "./Blur";
+import Prem from "./Prem";
 
 const Customer = ({ data, memberships }) => {
   const colors = ['#5a6acf', '#7fcce5', '#96d38c'];
@@ -10,9 +10,26 @@ const Customer = ({ data, memberships }) => {
     <>
       <div className="w-full h-full">
         {memberships === "Free" ?
-          <div className="w-full h-[220px]">
-            < BlurredComponent />
-          </div>
+          // <div className="w-full bg-customerlight bg-cover dark:bg-customerdark h-[220px]">
+
+
+          //   <div className="flex flex-col h-full justify-center p-2 items-center">
+          //     <div style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.5)' }} className="font-semibold text-center">Gain insights into your target audience's behaviour.</div>
+          //     <div className="sm:h-[60px] h-[40px] pp:w-[230px] w-[150px] rounded-2xl relative flex justify-center items-center">
+          //       <Lottie
+          //         animationData={Flow}
+          //         width={200}
+          //         height={200}
+          //         loop={true}
+          //       />
+          //       <div className="py-2 text-[14px] flex justify-center items-center gap-1 px-2.5 sm:px-5 font-medium absolute text-black rounded-2xl ">
+          //         Buy premium to Unlock
+          //       </div>
+          //     </div>
+          //   </div>
+          // </div>
+
+          <Prem text={"Gain insights into your target audience's behaviour."} bgimage={"bg-customerlight  dark:bg-customerdark "} />
 
           :
           <div className="w-full h-full">

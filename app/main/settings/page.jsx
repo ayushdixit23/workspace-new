@@ -15,10 +15,13 @@ import toast, { Toaster } from "react-hot-toast";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FaCamera, FaPen } from "react-icons/fa";
 import { MdOutlineLogout, MdVerified } from "react-icons/md";
+import { sendData } from "@/app/redux/slice/userData";
+import { useDispatch } from "react-redux";
 
 const page = () => {
   const { id, memberships } = getData();
   const [profileDetails] = usePostProfileMutation();
+  const dispatch = useDispatch()
   const [loading, setLoading] = useState(true);
   const [loading2, setLoading2] = useState(false);
   const router = useRouter();
@@ -138,6 +141,7 @@ const page = () => {
       Cookies.remove(`frhktn`);
       setOpen(false);
       router.push("/login");
+      setTimeout(() => { dispatch(sendData("")) }, 2500)
     } catch (error) {
       console.log(error);
     }
@@ -211,13 +215,19 @@ const page = () => {
       <div className="md:h-[83vh] flex flex-1 flex-col dark:bg-[#273142] h-full sm:rounded-2xl bg-white">
         <div className="flex justify-between border-b px-2 sm:px-7 py-2 dark:border-[#3d4654] items-center w-full">
           <div className=" w-full font-medium text-[#4880FF]">Edit Profile</div>
-          <div className="flex justify-end items-center w-full flex-grow">
-            <div
-              className="flex  px-2  justify-center  
+          <div className="flex justify-end items-center gap-3 w-full flex-grow">
+            <div className="flex justify-center items-center gap-2">
+              <div
+                className="flex  px-2  justify-center  
            items-center"
-            >
-              <ModeToggle />
+              >
+                <ModeToggle />
+              </div>
+
+              <MdOutlineLogout onClick={() => setOpen(true)} className="text-2xl hidden cursor-pointer sm:block text-red-800" />
             </div>
+
+
             {isProfileChangedAnswer ? (
               <button
                 onClick={(e) => sendDetails(e)}

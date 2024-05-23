@@ -423,7 +423,7 @@ function page() {
           </div>
           <div
             onClick={onOTPVerify}
-            className="h-[50px] w-[250px] select-none cursor-pointer bg-black mt-8 flex items-center justify-center rounded-2xl text-white"
+            className="h-[50px] w-[250px] select-none cursor-pointer bg-[#0066ff] mt-8 flex items-center justify-center rounded-2xl text-white"
           >
             {loading && <CgSpinner size={20} className="m-1 animate-spin" />}
             <span className={`${loading ? "hidden" : ""} `}>Continue</span>
@@ -433,12 +433,13 @@ function page() {
         <div className="flex flex-col justify-between gap-2 items-center">
           {/* web Qr  */}
           <div className="mb-5 flex gap-3 pn:max-sm:hidden justify-center  items-center flex-col">
-            <div className="relative bg-white border-4 border-[#f3f3f3] dark:border-white p-3 rounded-3xl">
+            <div className="relative bg-white border-2 border-[#f3f3f3] dark:border-white p-3 rounded-3xl">
               <QRCodeSVG
-                style={{
-                  width: "200px",
-                  height: "200px",
-                }}
+                // style={{
+                //   width: "200px",
+                //   height: "200px",
+                // }}
+                className="w-[180px] h-[180px]"
                 value={qrCodeValue}
               />
             </div>
@@ -453,7 +454,7 @@ function page() {
           {/* web Or Sign in with bar */}
           <div className="flex pn:max-sm:hidden items-center justify-center w-full">
             <hr className="flex-grow border-t text-[#9095A0] border-[#9095A0] " />
-            <span className="px-3 font-medium text-[#9095A0] dark:bg-[#273142] bg-white ">
+            <span className="px-3 font-medium text-[#9095A0] bg-transparent ">
               or Sign in with
             </span>
             <hr className="flex-grow border-t text-[#9095A0] border-[#9095A0]" />
@@ -483,7 +484,7 @@ function page() {
                   setChange(1);
                 }}
                 className={`m-1 flex justify-center items-center h-full w-full z-10 ${change === 1
-                  ? "font-bold border-b-2 border-blue-600"
+                  ? "font-bold border-b-2 border-[#0066ff]"
                   : "cursor-pointer"
                   }`}
               >
@@ -494,7 +495,7 @@ function page() {
                   setChange(2);
                 }}
                 className={`m-1 flex justify-center items-center h-full w-full z-10 ${change === 2
-                  ? "font-bold border-b-2 border-blue-600"
+                  ? "font-bold border-b-2 border-[#0066ff]"
                   : "cursor-pointer"
                   }`}
               >
@@ -520,15 +521,16 @@ function page() {
                 className=" p-2 outline-none rounded-xl dark:bg-[#323d4e] bg-[#f7f7f7]" />
 
             </div> */}
-            <div className="flex justify-center dark:bg-[#323d4e] w-[300px] h-[50px] rounded-2xl  bg-[#f7f7f7] items-center">
+            <div className="flex justify-center dark:bg-[#323d4e] w-[300px] h-[50px] rounded-2xl bg-[#fff] dark:border-none border light:border-[#dddddd] items-center">
               <div className="p-2 pl-2 pr-2 ">+91</div>
               <div className="h-[80%] w-[1px] bg-[#dddddd] rounded-full dark:bg-[#5a6277]" />
               <input
                 value={number}
+                placeholder="1234 567 890"
                 id="send-otp"
                 onChange={(e) => setNumber(e.target.value)}
                 type="tel"
-                className=" p-2 outline-none w-full rounded-xl dark:bg-[#323d4e] bg-[#f7f7f7]"
+                className=" p-2 outline-none w-full rounded-xl dark:bg-[#323d4e] bg-[#fff]  "
               />
             </div>
           </div>
@@ -537,28 +539,28 @@ function page() {
             <div
               onClick={onSignup}
               // onClick={fetchid}
-              className="h-[50px] w-[300px] select-none cursor-pointer bg-black flex items-center justify-center rounded-2xl text-white "
+              className="h-[50px] w-[300px] select-none cursor-pointer bg-[#0066ff] flex items-center justify-center rounded-2xl text-white "
             >
               {loading && <CgSpinner size={20} className="m-1 animate-spin" />}
-              <span className={`${loading ? "hidden" : ""} `}>Send Otp</span>
+              <span className={`${loading ? "hidden" : ""} `}>Continue</span>
             </div>
           </div>
           {/* email */}
           <div className={`${change === 2 ? "" : "hidden"} `}>
             <div>
-              <div className="text-black dark:text-[#fff] pn:max-sm:text-[15px] text-[15px] py-2">
+              <div className="text-sm pb-3 px-1 dark:text-white font-semibold text-[#424856]">
                 Email
               </div>
 
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="py-3 w-[300px] dark:bg-[#3d4654] bg-[#f7f7f7] rounded-2xl px-4 "
+                className="py-3 w-[300px] dark:bg-[#3d4654] bg-[#fff] dark:border-none border light:border-[#dddddd] rounded-2xl px-4 "
                 placeholder="Enter your email"
               />
             </div>
-            <div>
-              <div className="text-black dark:text-[#fff] pn:max-sm:text-[15px] text-[15px] py-2">
+            <div className="mt-2">
+              <div className="text-sm pb-3 px-1 dark:text-white font-semibold text-[#424856]">
                 Password
               </div>
 
@@ -566,14 +568,14 @@ function page() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="py-3 w-[300px]  bg-[#f7f7f7] dark:bg-[#3d4654]  rounded-2xl px-4 "
+                className="py-3 w-[300px]  bg-[#fff] dark:bg-[#3d4654] dark:border-none border light:border-[#dddddd] rounded-2xl px-4 "
                 placeholder="Enter your Password"
               />
             </div>
             <div className="py-5 ">
               <div
                 onClick={handleEmailLogin}
-                className="py-3 w-[300px] select-none cursor-pointer bg-black  flex items-center justify-center rounded-2xl text-white "
+                className="py-3 w-[300px] select-none cursor-pointer bg-[#0066ff]  flex items-center justify-center rounded-2xl text-white "
               >
                 {loading && (
                   <CgSpinner size={20} className="m-1 animate-spin" />

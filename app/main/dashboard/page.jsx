@@ -751,27 +751,27 @@ function Dashboard() {
                             <div className="flex justify-between text-sm light:bg-white pn:max-sm:rounded-xl text-[12px] my-1 py-2 items-center gap-2">
                               <div
                                 onClick={() => setProchange(1)}
-                                className={`rounded-xl p-1 px-3 cursor-pointer ${prochange == 1
-                                  ? " bg-[#f9f9f9] p-3 dark:bg-[#3276ea]  font-semibold shadow-def"
-                                  : "dark:bg-[#323d4e] dark:border-2 dark:border-[#323d4e] p-3"
+                                className={`rounded-xl text-xs pp:text-base p-0.5 px-2 cursor-pointer ${prochange == 1
+                                  ? " bg-[#f9f9f9] p-2 px-4 dark:bg-[#3276ea]  font-semibold shadow-def"
+                                  : "dark:bg-[#323d4e] dark:border-2 dark:border-[#323d4e] p-2 px-4"
                                   }`}
                               >
                                 Top Products
                               </div>
                               <div
                                 onClick={() => setProchange(2)}
-                                className={`rounded-xl p-1 px-3 cursor-pointer ${prochange == 2
-                                  ? "bg-[#f9f9f9] p-3 dark:bg-[#3276ea]  font-semibold shadow-def"
-                                  : "dark:bg-[#323d4e] dark:border-2 dark:border-[#323d4e] p-3"
+                                className={`rounded-xl  text-xs pp:text-base p-0.5 px-2 cursor-pointer ${prochange == 2
+                                  ? "bg-[#f9f9f9] p-2 px-4 dark:bg-[#3276ea]  font-semibold shadow-def"
+                                  : "dark:bg-[#323d4e] dark:border-2 dark:border-[#323d4e] p-2 px-4"
                                   }`}
                               >
                                 Customer
                               </div>
                               <div
                                 onClick={() => setProchange(3)}
-                                className={`rounded-xl p-1 px-3 cursor-pointer ${prochange == 3
-                                  ? "bg-[#f9f9f9] p-3 dark:bg-[#3276ea]  font-semibold shadow-def"
-                                  : "dark:bg-[#323d4e] dark:border-2 dark:border-[#323d4e] p-3"
+                                className={`rounded-xl text-xs pp:text-base p-0.5 px-2 cursor-pointer ${prochange == 3
+                                  ? "bg-[#f9f9f9] p-2 px-4 dark:bg-[#3276ea]  font-semibold shadow-def"
+                                  : "dark:bg-[#323d4e] dark:border-2 dark:border-[#323d4e] p-2 px-4"
                                   }`}
                               >
                                 Location

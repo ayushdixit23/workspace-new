@@ -1,13 +1,15 @@
 import React from "react";
 import { FaAngleDown } from "react-icons/fa";
 import BlurredComponent from "./Blur";
+import Prem from "./Prem";
 
 const LocationStore = ({ data, memberships }) => {
 
   return (
     <>
-      {memberships === "Free" ? <div className="h-[220px]">
-        <BlurredComponent />
+      {memberships === "Free" ? <div className="h-[220px] ">
+        {/* <BlurredComponent /> */}
+        <Prem text={"Pinpoint customer locations for strategic marketing."} bgimage={"bg-locationlight dark:bg-locationdark"} />
       </div> : <div className="overflow-y-scroll dark:text-white sm:max-h-[200px] no-scrollbar">
         <div className="flex justify-between mt-3 px-3 items-center">
           <div className="text-lg font-semibold">Top Location</div>

@@ -20,9 +20,21 @@ module.exports = {
       xl: "1536px",
     },
     extend: {
+      fontFamily: {
+        montserrat: ['var(--font-montserrat)'],
+      },
       backgroundImage: {
         bggg: "url('./assets/image/memberback.png')",
         prosite: "url('./assets/image/prositepopup.png')",
+        loginbg: "url('./assets/image/loginbg.png')",
+        membership: "url('./assets/image/somem.png')",
+        customerlight: "url('./assets/image/customerlight.png')",
+        customerdark: "url('./assets/image/customer.png')",
+        locationlight: "url('./assets/image/locationlight.png')",
+        locationdark: "url('./assets/image/location.png')",
+        communitymemberdark: "url('./assets/image/community-member.png')",
+        communitymemberlight: "url('./assets/image/members.png')",
+        premiumM: "url('./assets/image/premiumM.png')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
@@ -30,6 +42,10 @@ module.exports = {
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
+        'gradient-start': '#A2FACF',
+        'gradient-end': '#64ACFF',
+        'gradient-month-1': '#4880FF',
+        'gradient-month-2': '#EC009C',
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

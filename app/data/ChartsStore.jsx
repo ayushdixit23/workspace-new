@@ -1,9 +1,10 @@
 "use client"
+import { useTheme } from 'next-themes';
 import React from 'react';
 import {
 	Bar,
 	BarChart,
-
+	Legend,
 	ResponsiveContainer,
 	Tooltip,
 	XAxis,
@@ -11,6 +12,7 @@ import {
 } from 'recharts';
 
 const ChartsStore = ({ data }) => {
+	const { theme } = useTheme()
 	const reversedData = data.reverse()
 
 	const calculateYAxisDomain = (data) => {
@@ -32,12 +34,17 @@ const ChartsStore = ({ data }) => {
 				<BarChart width={730} height={250} data={reversedData}>
 					<XAxis dataKey="Dates" className='text-xs' />
 					<YAxis domain={calculateYAxisDomain(reversedData)} className='text-xs' />
-					<Tooltip cursor={{ fill: '#171717' }} />
+					<Tooltip contentStyle={{
+						backgroundColor: theme === "dark" ? "#273142" : "#f1f1f1",
+						border: "none"
+					}} cursor={{ fill: theme === "light" ? "#f8f9fc" : '#1B2431' }} />
 					<Bar dataKey="Sales" fill="#5a6acf" />
+
 				</BarChart>
 			</ResponsiveContainer>
 		</div>
 	);
+	
 };
 
 export default ChartsStore;

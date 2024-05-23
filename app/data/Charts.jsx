@@ -1,4 +1,5 @@
 "use client"
+import { useTheme } from 'next-themes';
 import React from 'react';
 import {
 	Bar,
@@ -11,7 +12,7 @@ import {
 } from 'recharts';
 
 const Charts = ({ data, uniqueMonths }) => {
-
+	const { theme } = useTheme()
 	function getDeviceWidth() {
 		return window.screen.width;
 	}
@@ -49,14 +50,19 @@ const Charts = ({ data, uniqueMonths }) => {
 					{getDeviceWidth() > 810 && < XAxis dataKey="X" className='text-xs' />}
 					{getDeviceWidth() < 810 && <XAxis dataKey="X" className='text-xs' axisLine={false} tick={null} />}
 					<YAxis axisLine={false} domain={calculateYAxisDomain(reversedData)} allowDecimals={false} fill="#000000" className='text-xs' />
-					<Tooltip cursor={{ fill: '#f7f7f7' }} />
+					<Tooltip contentStyle={{
+						backgroundColor: theme === "dark" ? "#273142" : "#f1f1f1",
+						border: "none"
+					}} cursor={{ fill: theme === "light" ? "#f8f9fc" : '#1B2431' }} />
+
+
+
 					<Bar dataKey="members" fill="#40CAB0" />
 					<Bar dataKey="visitors" fill="#7765d4" />
 					<Bar dataKey="leave" fill="#ff718b" />
 				</BarChart>
 			</ResponsiveContainer>
 			<div className="flex justify-center gap-2 text-sm items-center">
-
 				{months.map((month, index) => (
 					<React.Fragment key={index}>
 						<div>{month}</div>

@@ -84,7 +84,7 @@ function Header() {
 
             <ModeToggle />
           </div> */}
-          {memberships === "Free" && <div class="relative group">
+          {/* {memberships === "Free" && <div class="relative group">
             <div className="absolute transition-all duration-500 opacity-50 -inset-1 bg-gradient-to-r from-[#44BCFF] rounded-xl blur-sm group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
             </div>
             <button onClick={() => setPop(true)} href="#" title="Get your premium membership now" className="relative inline-flex items-center gap-3 text-sm justify-center px-4 py-3 font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none" role="button">
@@ -93,7 +93,15 @@ function Header() {
             </button>
 
 
-          </div>}
+          </div>} */}
+
+          {memberships === "Free" && < Link href={"/membership"} className="flex justify-center sm:hidden gap-4 bg-premiumM bg-cover bg-center text-white p-2 px-3 rounded-xl items-center">
+            <div className="text-xs flex justify-center items-center gap-1 font-semibold">
+              <div>Upgrade</div>
+              <FaCrown />
+            </div>
+            {/* <div className="p-1 px-3 bg-[#4880FF] text-white text-sm font-semibold rounded-lg">{memberships === "Free" && "Plus"} {memberships === "Plus" && "Pro"} {memberships === "Pro" && "Premium"}</div> */}
+          </Link>}
 
           <div className="sm:hidden">
 
