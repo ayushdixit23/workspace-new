@@ -12,8 +12,6 @@ const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import membership from "../assets/image/membership.json"
 import { TbTruckDelivery } from "react-icons/tb";
 import Cookies from "js-cookie";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { GoTag } from "react-icons/go";
 import Link from "next/link";
@@ -21,6 +19,9 @@ import { MdVerified } from "react-icons/md";
 import Hover from "../data/Hover";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
+import Image from "next/image";
+import logo from "../assets/image/grovyo.png"
+import { RxCross2 } from "react-icons/rx";
 
 const Sample5 = () => {
 	const [monthprice, setMonthPrice] = useState(true);
@@ -36,8 +37,10 @@ const Sample5 = () => {
 		t7: false,
 		t8: false,
 	})
+	const [state, setState] = useState(1)
 	const [plus, setPlus] = useState(null)
 	const [pro, setPro] = useState(null)
+	const [popup, setPopup] = useState(false)
 	const [premium, setPremium] = useState(null)
 	const [plusy, setPlusy] = useState(null)
 	const [proy, setProy] = useState(null)
@@ -220,6 +223,10 @@ const Sample5 = () => {
 		setPremiumy(41613 + sum)
 	}, [d.premium, dc.premium])
 
+	useEffect(() => {
+		setTimeout(() => { setPopup(true) }, 1300)
+	}, [])
+
 	return (
 		<>
 
@@ -234,11 +241,113 @@ const Sample5 = () => {
 
 				</div>
 			}
-			{/* style={{ backgroundImage: 'linear-gradient(to right, #000000, #111827, #000000)' }}  */}
+
 			<Toaster />
-			<div style={{ backgroundImage: 'linear-gradient(to right, #000000, #111827, #000000)' }} className="h-auto min-h-[100vh] overflow-hidden no-scrollbar text-white no-scrollbar flex items-center w-full flex-col justify-center">
+			<div
+				style={{ backgroundImage: 'linear-gradient(to right, #000000, #111827, #000000)' }}
+				className="h-auto min-h-[100vh] overflow-hidden no-scrollbar text-white no-scrollbar flex items-center w-full flex-col justify-center">
+				{popup && <div className="w-full animate-popup bg-[#111827] relative py-4 justify-center items-center text-sm px-6 flex">
+					<div className="font-medium">
+						Don't miss out! Get 500 Rs in FREE Grovyo Ads Credit to jumpstart your campaigns.
+					</div>
+					<div className="absolute right-12 top-0 flex items-center h-full">
+						<RxCross2 className="text-xl" onClick={() => setPopup(false)} />
+					</div>
+				</div>}
+				<div className="w-full py-4 px-6 flex justify-between items-center">
+					<div className="max-w-[150px] ">
+						<Image src={logo} className="w-full h-full object-cover" />
+					</div>
+					{/* <div
+						className="flex p-1 bg-[#f9f9f9] px-4 rounded-full relative pn:max-sm:hidden text-white shadow-lg shadow-white-500/5 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 ring-1 ring-[#f4f4f452] py-2
+"
+					>
+						<div
+							onClick={() => {
+								setState(1);
+							}}
+							className={`flex flex-col cursor-pointer justify-center items-center w-[100px] ${state === 1 ? "" : ""
+								}`}
+						>
+							<div
+								onClick={() => {
+									setState(1);
+								}}
+								className={`${state === 1
+									? "text-[#ffffff] [text-shadow:1px_1px_2px_var(--tw-shadow-color)] shadow-white"
+									: "text-[#8C96A8]"
+									}`}
+							>
+								Search
+							</div>
+							<div
+								className={`${state === 1
+									? "h-[2px] w-[20px] bg-white rounded-t-md"
+									: "hidden"
+									}`}
+							></div>
+						</div>
+						<div
+							onClick={() => {
+								setState(2);
+							}}
+							className={`flex flex-col cursor-pointer justify-start items-start pl-3 w-[100px] ${state === 2 ? "" : ""
+								}`}
+						>
+							<div
+								onClick={() => {
+									setState(2);
+								}}
+								className={`${state === 2
+									? "text-[#ffffff] [text-shadow:1px_1px_2px_var(--tw-shadow-color)] shadow-white"
+									: "text-[#8C96A8]"
+									}`}
+							>
+								Features
+							</div>
+							<div
+								className={`${state === 2
+									? "h-[2px] w-[20px] bg-white rounded-t-md ml-6"
+									: "hidden"
+									}`}
+							></div>
+						</div>
+						<div
+							onClick={() => {
+								setState(3);
+							}}
+							className={`flex flex-col cursor-pointer justify-center items-center w-[100px] ${state === 3 ? "" : ""
+								}`}
+						>
+							<div
+								className={`${state === 3
+									? " text-[#ffffff] [text-shadow:1px_1px_2px_var(--tw-shadow-color)] shadow-white"
+									: " text-[#8C96A8]"
+									}`}
+							>
+								For Business
+							</div>
+							<div
+								className={`${state === 3
+									? "h-[2px] w-[20px] bg-white rounded-t-md"
+									: "hidden"
+									}`}
+							></div>
+						</div>
+					</div>
+					<div className="flex justify-center items-center px-5 gap-2 sm:gap-4">
+						<a
+							target="_blank"
+							href="https://play.google.com/store/apps/details?id=com.grovyomain&hl=en_IN&gl=US"
+							className="bg-[#0A7CFF] shadow-lg shadow-blue-500/50 text-white px-4 py-2 font-semibold rounded-full"
+						>
+							Download now
+						</a>
+
+					</div> */}
+				</div>
 				<div className="sm:mx-5 pn:max-sm:w-full mx-2 pb-7 sm:pb-10">
-					<div className="mt-[40px] flex justify-center px-3 items-center flex-col" >
+					<div className="flex justify-center px-3 items-center flex-col" >
 						<div className="flex flex-col gap-6">
 							<div className="md:text-6xl sm:text-4xl text-3xl text-center font-extrabold font-montserrat pt-10 ">Simple & Transparent Pricing</div>
 							<div className="md:text-2xl sm:text-xl text-center font-medium sm:font-semibold">Plans exclusively focused on your Growth.</div>
@@ -846,7 +955,7 @@ const Sample5 = () => {
 										<div className=" border-b border-[#E6E9F5]/10 flex pn:max-xl:justify-between px-4 font-semibold text-sm items-center h-[71px]">
 											<div className="xl:hidden block">
 												<Hover color={"bg-[#1b2431] text-white"} text={"Direct Messaging"} para={"Send direct messages to any user  in chat conversations without needing a request."} icon={<IoInformationCircleOutline />} /></div>
-											<div>Not available </div>
+											<div>10</div>
 
 										</div>
 										<div className=" border-b border-[#E6E9F5]/10 flex pn:max-xl:justify-between px-4 font-semibold text-sm items-center h-[71px]">
@@ -923,7 +1032,7 @@ const Sample5 = () => {
 										<div className=" border-b border-[#E6E9F5]/10 flex pn:max-xl:justify-between px-4 font-semibold text-sm items-center h-[71px]">
 											<div className="xl:hidden block max-w-[50%]">
 												<Hover color={"bg-[#1b2431] text-white"} text={"Tag Multiple Communities"} para={"Collaborate and engage with multiple communities seamlessly by tagging them in your posts and Topics."} icon={<IoInformationCircleOutline />} /></div>
-											<div>Not available</div>
+											<div>2</div>
 
 										</div>
 										<div className=" border-b border-[#E6E9F5]/10 flex pn:max-xl:justify-between px-4 font-semibold text-sm items-center h-[77px]">
@@ -1121,7 +1230,10 @@ const Sample5 = () => {
 										<div className=" border-b border-[#E6E9F5]/10 flex pn:max-xl:justify-between px-4 font-semibold text-sm items-center h-[71px]">
 											<div className="xl:hidden block">
 												<Hover color={"bg-[#1b2431] text-white"} text={"Direct Messaging"} para={"Send direct messages to any user  in chat conversations without needing a request."} icon={<IoInformationCircleOutline />} /></div>
-											<div><MdVerified className="text-[#27AE60] text-2xl " /></div>
+											<div>
+												{/* <MdVerified className="text-[#27AE60] text-2xl " /> */}
+												27
+											</div>
 
 										</div>
 										<div className=" border-b border-[#E6E9F5]/10 flex pn:max-xl:justify-between px-4 font-semibold text-sm items-center h-[71px]">
@@ -1200,7 +1312,7 @@ const Sample5 = () => {
 										<div className=" border-b border-[#E6E9F5]/10 flex pn:max-xl:justify-between px-4 font-semibold text-sm items-center h-[71px]">
 											<div className="xl:hidden block max-w-[50%]">
 												<Hover color={"bg-[#1b2431] text-white"} text={"Tag Multiple Communities"} para={"Collaborate and engage with multiple communities seamlessly by tagging them in your posts and Topics."} icon={<IoInformationCircleOutline />} /></div>
-											<div><MdVerified className="text-[#27AE60] text-2xl " /></div>
+											<div>5</div>
 
 										</div>
 										<div className=" border-b border-[#E6E9F5]/10 flex pn:max-xl:justify-between px-4 font-semibold text-sm items-center h-[77px]">
@@ -1396,7 +1508,10 @@ const Sample5 = () => {
 										<div className=" border-b border-[#E6E9F5]/10 flex pn:max-xl:justify-between px-4 font-semibold text-sm items-center h-[71px]">
 											<div className="xl:hidden block">
 												<Hover color={"bg-[#1b2431] text-white"} text={"Direct Messaging"} para={"Send direct messages to any user  in chat conversations without needing a request."} icon={<IoInformationCircleOutline />} /></div>
-											<div><MdVerified className="text-[#27AE60] text-2xl " /></div>
+											<div>
+												{/* <MdVerified className="text-[#27AE60] text-2xl " /> */}
+												55
+											</div>
 
 										</div>
 										<div className=" border-b border-[#E6E9F5]/10 flex pn:max-xl:justify-between px-4 font-semibold text-sm items-center h-[71px]">
@@ -1475,7 +1590,7 @@ const Sample5 = () => {
 										<div className=" border-b border-[#E6E9F5]/10 flex pn:max-xl:justify-between px-4 font-semibold text-sm items-center h-[71px]">
 											<div className="xl:hidden block max-w-[50%]">
 												<Hover color={"bg-[#1b2431] text-white"} text={"Tag Multiple Communities"} para={"Collaborate and engage with multiple communities seamlessly by tagging them in your posts and Topics."} icon={<IoInformationCircleOutline />} /></div>
-											<div><MdVerified className="text-[#27AE60] text-2xl " /></div>
+											<div>15</div>
 
 										</div>
 										<div className=" border-b border-[#E6E9F5]/10 flex pn:max-xl:justify-between px-4 font-semibold text-sm items-center h-[77px]">

@@ -503,7 +503,7 @@ const page = () => {
                       <Image
                         src={order}
                         alt="image"
-                        className="w-[60px] h-[60px] object-cover rounded-xl"
+                        className="min-w-[45px] min-h-[45px] max-w-[45px] max-h-[45px] object-cover rounded-xl"
                       />
                     </div>
                     <div className="text-lg font-semibold">
@@ -671,7 +671,7 @@ const page = () => {
                         <Image
                           src={Cl}
                           alt="image"
-                          className="min-w-[60px] min-h-[60px] max-w-[60px] max-h-[60px] object-cover rounded-xl"
+                          className="min-w-[45px] min-h-[45px] max-w-[45px] max-h-[45px] object-cover rounded-xl"
                         />
                       </div>
                       <div className="text-lg font-semibold">
@@ -873,7 +873,7 @@ const page = () => {
                         <Image
                           src={ads}
                           alt="image"
-                          className="min-w-[60px] min-h-[60px] max-w-[60px] max-h-[60px] object-cover rounded-xl"
+                          className="min-w-[40px] min-h-[40px] max-w-[40px] max-h-[40px] object-cover rounded-xl"
                         />
                       </div>
                       <div className="text-lg font-semibold">
