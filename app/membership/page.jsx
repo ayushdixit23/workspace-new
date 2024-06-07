@@ -12,7 +12,7 @@ const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import membership from "../assets/image/membership.json"
 import { TbTruckDelivery } from "react-icons/tb";
 import Cookies from "js-cookie";
-import { FaMinus, FaPlus } from "react-icons/fa";
+import { FaMinus, FaPlus, FaTruckMoving } from "react-icons/fa";
 import { GoTag } from "react-icons/go";
 import Link from "next/link";
 import { MdVerified } from "react-icons/md";
@@ -376,9 +376,15 @@ const Sample5 = () => {
 								</div>}
 							</div>
 						</div>
-						<div className="flex justify-between  pp:flex-row flex-col gap-5 pp:items-center mt-[45px] w-[98%]">
+						<div className="flex justify-between bg-[#242832] p-4 rounded-xl pp:flex-row flex-col gap-5 pp:items-center mt-[45px] w-[98%]">
 							<div className="flex flex-col gap-2">
-								<div className="text-2xl font-semibold">Deliveries</div>
+								<div className="text-2xl flex items-center gap-3 font-semibold">
+									<div>
+										<FaTruckMoving className="text-3xl" />
+
+									</div>
+									<div>Deliveries</div>
+								</div>
 								<div>Deliver Your products with Grovyo Flash</div>
 							</div>
 							<div className="flex gap-2 justify-between pp:justify-center items-center">
@@ -401,9 +407,6 @@ const Sample5 = () => {
 											})
 										}} className="text-4xl" /> : <BsToggleOff onClick={() => { setIsDelivery(true) }} className="text-4xl" />
 									}
-
-
-
 								</div>
 							</div>
 						</div>

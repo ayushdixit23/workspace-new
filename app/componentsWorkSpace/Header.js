@@ -25,8 +25,6 @@ function Header() {
     setPic(dp)
   }, [fullname])
 
-  console.log(memberships, "me")
-
   return (
 
     <>

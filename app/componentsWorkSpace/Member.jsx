@@ -8,9 +8,6 @@ const Member = ({ state, data, memberships }) => {
   const [more, setMore] = useState(false);
   const [mores, setMores] = useState(false);
 
-  console.log(stats[0]?.X, "stats member")
-  console.log(stats[stats.length - 1]?.X, "stats member")
-
   return (
     <>
       {data > 0 ? (
@@ -18,22 +15,20 @@ const Member = ({ state, data, memberships }) => {
           {memberships === "Free" ? <Prem height="sm:h-[250px]" buttontext={"Unlock Members"} text={"See who's active, purchasing, unique, and more. Tailor your strategies!"} bgimage={"dark:bg-communitymemberdark bg-communitymemberlight"} />
             :
             <>
-              <div className="flex justify-between items-center group dark:hover:bg-[#1F2937] overflow-hidden hover:bg-[#f9f9f9] py-2 px-2 rounded-xl w-full">
+              <div className="flex justify-between border-b border-[#323d4e] items-center group  overflow-hidden py-1 px-2 w-full">
                 <div className="font-medium">Joined Members</div>
                 <div className="flex justify-center items-center gap-2">
                   <div>{totalmembers}</div>
-                  <div
-                    onClick={() => {
-                      setMore(!more);
-                    }}
+                  {/* <div
+
                     className="text-[#688ffc] -mr-20 group-hover:mr-0 group-hover:duration-1000 hover:text-[#5572c0]"
                   >
                     more info
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div
-                className={`mt-1 ${more === true ? "gap-2 flex flex-col " : "hidden"}`}
+                className={`mt-3 gap-2 flex flex-col `}
               >
                 <div className="flex justify-between items-center pl-3 px-1 w-full">
                   <div>Active Members</div>
@@ -52,25 +47,26 @@ const Member = ({ state, data, memberships }) => {
                   {memberships === "Free" ? < FaCrown className="bg-[#FFEB33] text-[#323d4e] rounded-full h-[25px] p-1.5 w-[25px] " /> : <div>{stats[0]?.paidmembers}</div>}
                 </div>
               </div>
-              <div className="flex justify-between items-center mt-2  overflow-hidden group dark:hover:bg-[#1F2937] hover:bg-[#f9f9f9] py-2 px-2 rounded-xl w-full">
+
+              <div className="border-dashed border border-[#fff]/10 mt-3"></div>
+
+              <div className="flex justify-between items-center mt-2 border-b border-[#323d4e] overflow-hidden group  py-1 px-2 w-full">
                 <div className="font-medium">Visitors</div>
 
                 <div className="flex justify-center items-center gap-2">
                   {" "}
                   <div>{stats[0]?.returningvisitor + stats[0]?.newvisitor}</div>{" "}
-                  <div
-                    onClick={() => {
-                      setMores(!mores);
-                    }}
+                  {/* <div
+
                     className="text-[#688ffc] -mr-20 group-hover:mr-0 group-hover:duration-1000 hover:text-[#5572c0]"
                   >
                     more info
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div
-                className={`${mores === true ? "gap-2 mt-1 flex flex-col " : "hidden"
-                  }`}
+                className={`gap-2 mt-3 flex flex-col 
+                  `}
               >
                 <div className="flex justify-between items-center pl-3 px-1 w-full">
                   <div>Returning visitors</div>

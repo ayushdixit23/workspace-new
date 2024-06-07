@@ -33,7 +33,7 @@ const Customer = ({ data, memberships }) => {
 
           :
           <div className="w-full h-full">
-            {data ?
+            {(data[0].value || data[1].value) ?
               <div className="overflow-y-scroll sm:max-h-[220px] no-scrollbar">
                 <div className="flex justify-between w-full p-2 items-center">
                   <div className="text-lg font-semibold">Customers</div>
@@ -62,13 +62,13 @@ const Customer = ({ data, memberships }) => {
                           <Cell key={`cell-${entry.name}`} fill={colors[index % colors.length]} />
                         ))}
                       </Pie>
-                      {/* <Legend align="center" className="relative top-3 left-2" verticalAlign="bottom" layout="horizontal" iconSize={10} iconType="square" /> */}
+                      <Legend align="center" className="relative top-3 left-2" verticalAlign="bottom" layout="horizontal" iconSize={10} iconType="square" />
                     </PieChart>
                   </ResponsiveContainer>
                 </div >
               </div >
               :
-              <div className="text-center flex justify-center h-[200px] font-semibold text-xl items-center text-gray-600 my-4">
+              <div className="text-center flex justify-center h-[180px] font-semibold text-xl items-center text-gray-600 my-4">
                 No Data available at the moment.
               </div>
             }
