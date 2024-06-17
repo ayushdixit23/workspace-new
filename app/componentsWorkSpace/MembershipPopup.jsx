@@ -1,10 +1,6 @@
 import React from "react";
 import { RxCross1 } from "react-icons/rx";
 import { getData } from "../utilsHelper/Useful";
-import useRazorpay from "react-razorpay";
-import { storeInSessionStorage } from "../utilsHelper/Tokenwrap";
-import axios from "axios";
-import { useMemfinalizeMutation } from "../redux/apiroutes/payment";
 import { useRouter } from "next/navigation";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { useDispatch } from "react-redux";
@@ -12,10 +8,9 @@ import { LoadThis } from "../redux/slice/userData";
 import dynamic from "next/dynamic";
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import Flow from "../assets/icons/Flow.json";
-import Cookies from "js-cookie";
 
 const MembershipPopup = ({ setPop }) => {
-  const { id, fullname, memberships } = getData();
+  const { memberships } = getData();
   const router = useRouter();
   const dispatch = useDispatch();
 

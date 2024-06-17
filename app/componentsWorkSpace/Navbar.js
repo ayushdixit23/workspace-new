@@ -22,6 +22,7 @@ import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { sendData } from "../redux/slice/userData";
 import { getData } from "../utilsHelper/Useful";
+import NewMembershipPopup from "./NewMembershipPopup";
 
 function NavBar() {
   const MemoizedDashIconLight = useMemo(() => DashboardLight, []);
@@ -137,11 +138,12 @@ function NavBar() {
     <div>
       {/*sidebar*/}
 
-      {pop && (
-        <div className="fixed inset-0 flex justify-center items-center bg-black/60 backdrop-blur-md z-50 w-screen min-h-screen">
-          <MembershipPopup setPop={setPop} />
+      {pop &&
+        <div className='fixed inset-0 z-50 w-screen flex justify-center items-center bg-black bg-opacity-10 backdrop-blur'>
+          <NewMembershipPopup setPop={setPop} />
+          {/* <MembershipPopup setPop={setPop} /> */}
         </div>
-      )}
+      }
 
       <div
         className={`${open
@@ -419,10 +421,12 @@ function NavBar() {
               Log Out
             </span>
           </button>}
-          {memberships === "Free" && < Link href={"/membership"} className="flex justify-center gap-4 bg-premiumM bg-cover bg-center text-white p-2 px-3 rounded-xl items-center">
+          {memberships === "Free" && < div onClick={() => {
+            setPop(true)
+          }} className="flex justify-center gap-4 bg-premiumM bg-cover bg-center text-white p-2 px-3 rounded-xl items-center">
             <div className="text-xs font-semibold">Upgrade To Premium</div>
             <div className="p-1 px-3 bg-[#4880FF] text-white text-sm font-semibold rounded-lg">{memberships === "Free" && "Plus"} {memberships === "Plus" && "Pro"} {memberships === "Pro" && "Premium"}</div>
-          </Link>}
+          </div>}
         </div>
       </aside >
 

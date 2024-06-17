@@ -7,9 +7,9 @@ import Image from "next/image";
 import { getData } from "../utilsHelper/Useful"
 import { FaCrown } from "react-icons/fa";;
 // import { ModeToggle } from "./ModeToggle";
-import MembershipPopup from "./MembershipPopup";
 import Link from "next/link";
 import { MdVerified } from "react-icons/md";
+import NewMembershipPopup from "./NewMembershipPopup";
 
 function Header() {
   const [prof, setProf] = useState(true);
@@ -29,8 +29,9 @@ function Header() {
 
     <>
       {pop &&
-        <div className='fixed inset-0 z-50 w-screen flex justify-center items-center bg-black/50 sm:h-screen'>
-          <MembershipPopup setPop={setPop} />
+        <div className='fixed inset-0 z-50 w-screen flex justify-center items-center bg-black bg-opacity-10 backdrop-blur'>
+          <NewMembershipPopup setPop={setPop} />
+          {/* <MembershipPopup setPop={setPop} /> */}
         </div>
       }
 
@@ -93,13 +94,13 @@ function Header() {
 
           </div>} */}
 
-          {memberships === "Free" && < Link href={"/membership"} className="flex justify-center sm:hidden gap-4 bg-premiumM bg-cover bg-center text-white p-2 px-3 rounded-xl items-center">
+          {memberships === "Free" && < div onClick={() => { setPop(true) }} className="flex justify-center sm:hidden gap-4 bg-premiumM bg-cover bg-center text-white p-2 px-3 rounded-xl items-center">
             <div className="text-xs flex justify-center items-center gap-1 font-semibold">
               <div>Upgrade</div>
               <FaCrown />
             </div>
             {/* <div className="p-1 px-3 bg-[#4880FF] text-white text-sm font-semibold rounded-lg">{memberships === "Free" && "Plus"} {memberships === "Plus" && "Pro"} {memberships === "Pro" && "Premium"}</div> */}
-          </Link>}
+          </div>}
 
           <div className="sm:hidden">
 
