@@ -10,11 +10,18 @@ export const prositeApi = Api.injectEndpoints({
     }),
     fetchValue: builder.query({
       query: ({ id }) => `/v1/checkfordefault/${id}`
-    })
+    }),
+    deleteRecentProsites: builder.mutation({
+      query: ({ id, prositeId }) => ({
+        url: `/v1/deleteRecentProsites/${id}/${prositeId}`,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
 export const {
   useDefaultPrositeMutation,
-  useFetchValueQuery
+  useFetchValueQuery,
+  useDeleteRecentPrositesMutation
 } = prositeApi;
