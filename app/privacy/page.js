@@ -7,6 +7,7 @@ const page = () => {
 				<div className="grid grid-cols-1 w-[85%] sm:w-[70%] my-2 sm:my-6">
 					<div>
 						<h1 className="sm:text-4xl text-3xl font-bold my-5">Privacy Policy</h1>
+						<div className="text-xl font-bold mb-5">This website operates under Grovyo Platforms Pvt Ltd</div>
 						<p>
 							This Privacy Policy describes Our policies and procedures on the
 							collection, use and disclosure of Your information when You use the
