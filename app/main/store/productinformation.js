@@ -63,7 +63,7 @@ function productinformation({ handleDelete, data, userid, collectionid, index })
                 </div>
               </div> */}
               <div className="font-medium sm:hidden">
-                &#8377; {data?.discountedprice}
+                &#8377; {data?.isvariant ? data.variants[0].category[0].discountedprice : data?.discountedprice}
               </div>
             </div>
           </div>

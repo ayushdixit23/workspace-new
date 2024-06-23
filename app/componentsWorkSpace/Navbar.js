@@ -17,7 +17,6 @@ import SettingsDark from "../assets/icons/SettingsDark";
 import StoreDark from "../assets/icons/StoreDark";
 import { useTheme } from "next-themes";
 // import Cookies from "js-cookie";
-import MembershipPopup from "./MembershipPopup";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { sendData } from "../redux/slice/userData";

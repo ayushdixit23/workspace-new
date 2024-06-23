@@ -9,34 +9,36 @@ import Cookies from "js-cookie";
 
 const useTokenAndData = () => {
   const [isValid, setIsValid] = useState(false);
-  const token = Cookies.get(`excktn`)
+  const token = Cookies.get(`excktn`);
   const path = useSelector((state) => state.userData.path);
   const router = useRouter();
   const [data, setData] = useState(null);
   const dispatch = useDispatch();
-  const [refreshedtokenAgain] = useGetRefreshTokenMutation()
+  const [refreshedtokenAgain] = useGetRefreshTokenMutation();
 
-  const refreshAccessToken = useCallback(async (refreshToken) => {
-    try {
-      const res = await refreshedtokenAgain({ refresh_token: refreshToken });
-      const { access_token, success } = res.data;
-      if (success) {
-        return { access_token, refresh_token: refreshToken };
+  const refreshAccessToken = useCallback(
+    async (refreshToken) => {
+      try {
+        const res = await refreshedtokenAgain({ refresh_token: refreshToken });
+        const { access_token, success } = res.data;
 
-      } else {
-        console.error("Failed to refresh token");
+        if (success) {
+          return { access_token, refresh_token: refreshToken };
+        } else {
+          console.error("Failed to refresh token");
+          return Promise.reject("Failed to refresh token");
+        }
+      } catch (err) {
+        console.error(err);
         return Promise.reject("Failed to refresh token");
       }
-    } catch (err) {
-      console.error(err);
-      return Promise.reject("Failed to refresh token");
-    }
-  }, [refreshedtokenAgain]);
-
+    },
+    [refreshedtokenAgain]
+  );
 
   const checkRefreshTokenValidity = useCallback(() => {
     try {
-      const refreshToken = Cookies.get(`frhktn`)
+      const refreshToken = Cookies.get(`frhktn`);
       // const refreshToken = Cookies.get(`frhktn${sessionId}`)
       if (!refreshToken) {
         console.error("No refresh token found");
@@ -45,6 +47,7 @@ const useTokenAndData = () => {
       const decodedRefreshToken = jwt.decode(refreshToken);
       const currentTimestamp = Math.floor(Date.now() / 1000);
       const expiration = decodedRefreshToken.exp;
+
       const isValid = currentTimestamp <= expiration;
       return isValid;
     } catch (error) {
@@ -54,7 +57,7 @@ const useTokenAndData = () => {
   }, []);
 
   const refresh = useCallback(async () => {
-    const refreshToken = Cookies.get(`frhktn`)
+    const refreshToken = Cookies.get(`frhktn`);
     // const refreshToken = Cookies.get(`frhktn${sessionId}`)
     if (!refreshToken) {
       console.error("No refresh token found");
@@ -63,12 +66,15 @@ const useTokenAndData = () => {
     try {
       const newToken = await refreshAccessToken(refreshToken);
       if (newToken) {
-
         const expirationDate = new Date();
         expirationDate.setDate(expirationDate.getDate() + 7);
 
-        Cookies.set(`excktn`, newToken.access_token, { expires: expirationDate });
-        Cookies.set(`frhktn`, newToken.refresh_token, { expires: expirationDate })
+        Cookies.set(`excktn`, newToken.access_token, {
+          expires: expirationDate,
+        });
+        Cookies.set(`frhktn`, newToken.refresh_token, {
+          expires: expirationDate,
+        });
 
         // Cookies.set(`excktn${sessionId}`, newToken.access_token)
       }
@@ -80,23 +86,24 @@ const useTokenAndData = () => {
   const generateData = useCallback(
     async (qrtoken) => {
       try {
-        const tokentoInclude = token || qrtoken
+        const tokentoInclude = token || qrtoken;
+
         if (tokentoInclude) {
-          const { isValid, payload } = await checkToken(tokentoInclude)
+          const { isValid, payload } = await checkToken(tokentoInclude);
           if (isValid) {
             setIsValid(true);
-            dispatch(changelaoding({ loading: false }))
-            setData(payload)
-            dispatch(sendData(payload))
+            dispatch(changelaoding({ loading: false }));
+            setData(payload);
+            dispatch(sendData(payload));
             if (path) {
               router.push(`${path}`);
             }
           } else if (checkRefreshTokenValidity()) {
-            await refresh()
+            await refresh();
           } else {
             setIsValid(false);
-            Cookies.remove(`excktn`)
-            Cookies.remove(`frhktn`)
+            Cookies.remove(`excktn`);
+            Cookies.remove(`frhktn`);
             // Cookies.remove(`excktn${sessionId}`)
             // Cookies.remove(`frhktn${sessionId}`)
           }
@@ -104,8 +111,8 @@ const useTokenAndData = () => {
       } catch (e) {
         console.error(e);
         setIsValid(false);
-        Cookies.remove(`excktn`)
-        Cookies.remove(`frhktn`)
+        Cookies.remove(`excktn`);
+        Cookies.remove(`frhktn`);
         // Cookies.remove(`excktn${sessionId}`)
         // Cookies.remove(`frhktn${sessionId}`)
       }

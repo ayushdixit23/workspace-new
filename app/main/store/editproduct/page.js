@@ -78,22 +78,25 @@ function page() {
     }
   );
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && variant.text1.trim() !== "") {
-      setVariant({
-        ...variant,
-        size: [...variant.size, variant.text1],
+  const handleSubmitSize = (e) => {
+    e.preventDefault();
+    if (variant.text1.trim() !== "") {
+      setVariant((prevVariant) => ({
+        ...prevVariant,
+        size: [...prevVariant.size, prevVariant.text1],
         text1: "",
-      });
+      }));
     }
   };
-  const handleKeyDownColor = (e) => {
-    if (e.key === "Enter" && variant.text2.trim() !== "") {
-      setVariant({
-        ...variant,
-        color: [...variant.color, variant.text2],
+
+  const handleSubmitColor = (e) => {
+    e.preventDefault();
+    if (variant.text2.trim() !== "") {
+      setVariant((prevVariant) => ({
+        ...prevVariant,
+        color: [...prevVariant.color, prevVariant.text2],
         text2: "",
-      });
+      }));
     }
   };
 
@@ -431,7 +434,7 @@ function page() {
       </div>
 
       {/**main */}
-      <div className="grid grid-cols-1 w-full dark:bg-[#1b2431] bg-[#FAFAFA]">
+      <div className="grid grid-cols-1 w-full dark:bg-[#1b2431] ">
         <div className="sm:px-3 gap-4 grid sm:grid-cols-2 rounded-xl pt-3">
           <div className="w-[100%] flex flex-col sm:items-center">
             <div className="bg-white dark:bg-[#273142] p-4 w-full rounded-2xl">
@@ -709,7 +712,7 @@ function page() {
                       <div className="text-[14px] mt-3 font-semibold">
                         Options 1
                       </div>
-                      <div className="w-full pn:max-pp:flex-col mt-1 flex gap-3 justify-center items-center">
+                      <form onSubmit={handleSubmitSize} className="w-full pn:max-pp:flex-col mt-1 flex gap-3 justify-center items-center">
                         <div className="flex flex-col w-full">
                           <div className="font-semibold text-sm pb-2">Type</div>
                           <div className="w-full">
@@ -736,16 +739,16 @@ function page() {
                                   text1: e.target.value,
                                 })
                               }
-                              onKeyDown={handleKeyDown}
+                            // onKeyDown={handleKeyDown}
                             />
                           </div>
                         </div>
-                      </div>
+                      </form>
                       <div className="flex w-full mt-3 items-center gap-2">
                         {variant.size.map((d, i) => (
                           <div
                             key={i}
-                            className="flex justify-center items-center gap-2 bg-[#fff] px-2 text-black rounded-xl"
+                            className="flex justify-center items-center gap-2 bg-[#f1f1f1] p-1 dark:bg-[#323d4e] px-2 text-black rounded-xl"
                           >
                             <div>{d}</div>
                             <div onClick={() => removeSize(i)}>
@@ -761,7 +764,7 @@ function page() {
                       <div className="text-[14px] mt-3 font-semibold">
                         Options 2
                       </div>
-                      <div className="w-full pn:max-pp:flex-col mt-1 flex gap-3 justify-center items-center">
+                      <form onSubmit={handleSubmitColor} className="w-full pn:max-pp:flex-col mt-1 flex gap-3 justify-center items-center">
                         <div className="flex flex-col w-full">
                           <div className="font-semibold text-sm pb-2">Type</div>
                           <div className="w-full">
@@ -788,17 +791,16 @@ function page() {
                                   text2: e.target.value,
                                 })
                               }
-                              onKeyDown={handleKeyDownColor}
                             />
                           </div>
                         </div>
-                      </div>
+                      </form>
                     </div>
                     <div className="flex mt-3 w-full items-center gap-2">
                       {variant.color.map((d, i) => (
                         <div
                           key={i}
-                          className="flex justify-center items-center gap-2 bg-[#fff] px-2 text-black rounded-xl"
+                          className="flex justify-center items-center gap-2 bg-[#f1f1f1] p-1 dark:bg-[#323d4e]  px-2 text-black rounded-xl"
                         >
                           <div>{d}</div>
                           <div onClick={() => removeColor(i)}>

@@ -11,10 +11,10 @@ import { GoPlus } from "react-icons/go";
 import toast, { Toaster } from "react-hot-toast";
 import NoCommunity from "@/app/data/NoCommunity";
 import { FaCrown } from "react-icons/fa";
-import MembershipPopup from "@/app/componentsWorkSpace/MembershipPopup";
 import dynamic from "next/dynamic";
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import Flow from "../../assets/icons/Flow.json"
+import NewMembershipPopup from "@/app/componentsWorkSpace/NewMembershipPopup";
 
 function page() {
   const { id, memberships } = getData()
@@ -29,7 +29,6 @@ function page() {
   const [deletecom] = useDeleteCommunityMutation();
   const handleDelete = async ({ dat, comid, index }) => {
     try {
-
       const res = await deletecom({
         id,
         comid
@@ -78,7 +77,7 @@ function page() {
     <>
       {pop &&
         <div className='fixed inset-0 z-50 w-screen flex justify-center items-center bg-black/50 sm:h-screen'>
-          <MembershipPopup setPop={setPop} />
+          <NewMembershipPopup setPop={setPop} />
         </div>
       }
       {/* <Post /> */}

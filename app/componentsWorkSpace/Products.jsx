@@ -4,8 +4,8 @@ import React from "react";
 const Products = ({ data }) => {
   return (
     <>
-      {
-        data?.length ? <div className="w-full  ">
+      {data?.length ? (
+        <div className="w-full  ">
           <div className="flex justify-between w-full p-2 items-center ">
             {/* <div className="text-lg font-semibold">Top Products</div> */}
             {/* <div className="flex justify-center items-center gap-1 p-2 rounded-xl bg-[#FAFAFA]">
@@ -56,13 +56,20 @@ const Products = ({ data }) => {
                           />
                         </div>
                         <div className="flex flex-col items-start text-xs font-medium gap-1">
-                          <div className="font-semibold dark:text-white text-[14px] sm:text-sm">{d?.name.length > 10 ? `${d?.name.slice(0, 10)}...` : d?.name}</div>
+                          <div className="font-semibold dark:text-white text-[14px] sm:text-sm">
+                            {d?.name.length > 10
+                              ? `${d?.name.slice(0, 10)}...`
+                              : d?.name}
+                          </div>
                           {/* <div>{d?.brandname}</div> */}
                         </div>
                       </div>
                     </td>
                     <td className="min-w-[60px] text-sm text-[#3276E8] font-medium leading-5 py-2 px-3 text-center">
-                      ₹ {d?.discountedprice}
+                      ₹{" "}
+                      {d?.isvariant
+                        ? d.variants[0].category[0].discountedprice
+                        : d?.discountedprice}
                     </td>
                     <td className=" text-sm leading-5 py-2 px-3 text-center">
                       {d?.itemsold}
@@ -72,11 +79,12 @@ const Products = ({ data }) => {
               </tbody>
             </table>
           </div>
-        </div> :
-          <div className="text-center flex justify-center h-[200px] font-semibold text-xl items-center text-gray-600 my-4">
-            No top products available at the moment.
-          </div>
-      }
+        </div>
+      ) : (
+        <div className="text-center flex justify-center h-[200px] font-semibold text-xl items-center text-gray-600 my-4">
+          No top products available at the moment.
+        </div>
+      )}
     </>
   );
 };

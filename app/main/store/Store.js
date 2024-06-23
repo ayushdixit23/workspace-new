@@ -25,12 +25,12 @@ import { LoadThis } from "@/app/redux/slice/userData";
 import { useSearchParams, useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { FaCrown } from "react-icons/fa";
-import MembershipPopup from "@/app/componentsWorkSpace/MembershipPopup";
 import { useGetFetchOrderQuery } from "@/app/redux/apiroutes/userLoginAndSetting";
 import dynamic from "next/dynamic";
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import Flow from "../../assets/icons/Flow.json";
 import Hover from "@/app/data/Hover";
+import NewMembershipPopup from "@/app/componentsWorkSpace/NewMembershipPopup";
 
 export default function Store() {
   const [data, setData] = useState([]);
@@ -202,7 +202,7 @@ export default function Store() {
     <>
       {pop && (
         <div className="fixed inset-0 z-50 w-screen flex justify-center items-center bg-black/50 sm:h-screen">
-          <MembershipPopup setPop={setPop} />
+          <NewMembershipPopup setPop={setPop} />
         </div>
       )}
 
