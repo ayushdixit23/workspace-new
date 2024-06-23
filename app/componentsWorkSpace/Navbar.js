@@ -16,12 +16,12 @@ import EarningDark from "../assets/icons/MonetizationDark";
 import SettingsDark from "../assets/icons/SettingsDark";
 import StoreDark from "../assets/icons/StoreDark";
 import { useTheme } from "next-themes";
-// import Cookies from "js-cookie";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { sendData } from "../redux/slice/userData";
 import { getData } from "../utilsHelper/Useful";
 import NewMembershipPopup from "./NewMembershipPopup";
+import { FaCrown } from "react-icons/fa";
 
 function NavBar() {
   const MemoizedDashIconLight = useMemo(() => DashboardLight, []);
@@ -360,10 +360,6 @@ function NavBar() {
               </span>
             </Link>
 
-            {/* <Link onClick={() => ChangeColor("settings")} className={`flex ${open ? "-z-30" : null} ${location == "settings" ? "dark:bg-[#4880ff] dark:text-white bg-[#4880ff] text-white" : "hover:bg-gray-100 dark:hover:bg-gray-800"} items-center px-4 py-2 gap-2 mt-5 rounded-md dark:text-gray-400 `} href="/main/settings" >
-              <FaCrown />
-              <span className=" sm:max-md:hidden sm:max-md:text-sm font-medium">Premium</span>
-            </Link > */}
             <Link
               onClick={() => ChangeColor("settings")}
               className={`flex ${open ? "-z-30" : null} ${location == "settings"
@@ -395,19 +391,7 @@ function NavBar() {
                 Settings
               </span>
             </Link>
-            {/* <div className={`flex dark:text-gray-400 text-lg font-semibold dark:hover:text-white text-center text-white  items-center px-4 py-2 gap-2 mt-5 rounded-md  `}>
-              Premium
-            </div> */}
-            {/* <div class="relative left-4 mt-5 inline-flex group">
-              <div className="absolute transition-all duration-500 opacity-50 -inset-1 bg-gradient-to-r from-[#44BCFF] rounded-xl blur-sm group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
-              </div>
-              <button onClick={() => setPop(true)} href="#" title="Get quote now" className="relative inline-flex items-center gap-3 text-sm justify-center px-4 py-3 font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none" role="button">
-                <FaCrown />
-                Premium
-              </button>
 
-             
-            </div> */}
           </nav>
 
           {memberships !== "Free" && <button
@@ -420,11 +404,20 @@ function NavBar() {
               Log Out
             </span>
           </button>}
+
           {memberships === "Free" && < div onClick={() => {
             setPop(true)
-          }} className="flex justify-center gap-4 bg-premiumM bg-cover bg-center text-white p-2 px-3 rounded-xl items-center">
+          }} className="md:flex justify-center gap-4 bg-premiumM hidden bg-cover bg-center text-white p-2 px-3 rounded-xl items-center">
             <div className="text-xs font-semibold">Upgrade To Premium</div>
             <div className="p-1 px-3 bg-[#4880FF] text-white text-sm font-semibold rounded-lg">{memberships === "Free" && "Plus"} {memberships === "Plus" && "Pro"} {memberships === "Pro" && "Premium"}</div>
+          </div>}
+
+
+          {memberships === "Free" && < div onClick={() => {
+            setPop(true)
+          }} className="sm:max-md:flex hidden justify-center gap-4 bg-premiumM  bg-cover bg-center text-white p-2 px-3 rounded-xl items-center">
+
+            <FaCrown />
           </div>}
         </div>
       </aside >
@@ -481,42 +474,7 @@ function NavBar() {
                         <div>{item.lighticon}</div>
                       </Link>
                     ))}
-                  {/* {theme != "system" && (
-                    theme == "dark" ?
-                      <Link
-                        href={item.path}
-                        className="flex justify-center items-center"
-                      >
 
-                        <div>{item.darkicon}</div>
-                      </Link>
-                      :
-                      <Link
-                        href={item.path}
-                        className="flex justify-center items-center"
-                      >
-
-                        <div>{item.lighticon}</div>
-                      </Link>
-                  )} */}
-                  {/* {theme == "system" && (
-                    isDarkTheme ? <Link
-                      href={item.path
-                      }
-                      className="flex justify-center items-center"
-                    >
-
-                      <div>{item.darkicon}</div>
-                    </Link>
-                      :
-                      <Link
-                        href={item.path}
-                        className="flex justify-center items-center"
-                      >
-
-                        <div>{item.lighticon}</div>
-                      </Link>
-                  )} */}
                 </div>
               </li>
             ))}
