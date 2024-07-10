@@ -44,6 +44,7 @@ function Dashboard() {
 	const [loading, setLoading] = useState(true);
 	const { id, memberships } = getData();
 	const { generateData } = useTokenAndData()
+	const [update, setUpdate] = useState(null)
 
 	const dispatch = useDispatch()
 	const searchparams = useSearchParams()
@@ -93,9 +94,7 @@ function Dashboard() {
 				);
 
 				await generateData(cookie)
-
-			
-
+				setUpdate("update")
 			} else {
 				console.error("Failed to refresh token");
 				return Promise.reject("Failed to refresh token");
