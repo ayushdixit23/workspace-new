@@ -73,6 +73,8 @@ function Dashboard() {
 				Cookies.set(`excktn`, access_token, { expires: expirationDate });
 				Cookies.set(`frhktn`, refresh_token, { expires: expirationDate });
 
+				window.location.reload()
+
 				router.push("/main/dashboard")
 			} else {
 				console.error("Failed to refresh token");
