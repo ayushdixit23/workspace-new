@@ -14,14 +14,12 @@ import { MdAdd, MdOutlineNotifications } from "react-icons/md";
 import {
   useAddBankMutation,
   useChangeMontentMutation,
+  useCreateWithDrawRequestMutation,
   //  useBankRequestMutation,
   useGetEarningStatsQuery,
 } from "@/app/redux/apiroutes/payment";
 import Loader from "@/app/data/Loader";
-import {
-  formatISOStringToDMY,
-  getData,
-} from "@/app/utilsHelper/Useful";
+import { formatISOStringToDMY, getData } from "@/app/utilsHelper/Useful";
 import toast, { Toaster } from "react-hot-toast";
 import {
   useFetchCommunityQuery,
@@ -54,6 +52,7 @@ const page = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [changeMontentizationCommunity] = useChangeMontentMutation();
+  const [withdrawalRequest] = useCreateWithDrawRequestMutation();
   const [bank, setBank] = useState({
     bankname: "",
     branchname: "",
@@ -180,6 +179,29 @@ const page = () => {
     setLoad(false);
   }, [comData]);
 
+  const createWithdrawRequest = async () => {
+    try {
+      const res = await withdrawalRequest({
+        id,
+        amount: data?.earningStats?.pendingpayments,
+      });
+      if (
+        res.data?.success &&
+        res.data?.message === "Withdraw request created successfully!"
+      ) {
+        toast.success("Withdrawal Request Created!");
+      }
+      if (res.error) {
+        toast.error("Somthing Went Wrong!");
+      }
+      setOpen(false);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setOpen(false);
+    }
+  };
+
   const handleBankDetails = async (e) => {
     e.preventDefault();
     if (
@@ -273,10 +295,11 @@ const page = () => {
     <>
       <Toaster />
       <div
-        className={`${open
-          ? "fixed inset-0 w-screen z-50 bg-[#cccccc33] h-screen flex justify-center items-center"
-          : "hidden -z-50"
-          }`}
+        className={`${
+          open
+            ? "fixed inset-0 w-screen z-50 bg-[#cccccc33] h-screen flex justify-center items-center"
+            : "hidden -z-50"
+        }`}
       >
         <div className="flex justify-center shadow-md items-center w-[90%] pp:w-[65%] sm:max-w-[500px] lg:w-[30%] p-3 rounded-xl dark:bg-[#273142] bg-white">
           <div className="w-full flex flex-col gap-2">
@@ -367,7 +390,7 @@ const page = () => {
                   <div>Bank Verification is in under process.</div>
                 </div>
               )}
-              <div className="flex justify-center gap-3 items-center">
+              <div className="flex justify-center  gap-3 items-center">
                 <button
                   onClick={() => {
                     setOpen(false);
@@ -376,6 +399,16 @@ const page = () => {
                 >
                   Discard
                 </button>
+
+                {/* <button
+                  onClick={() => {
+                    createWithdrawRequest();
+                  }}
+                  className=" bg-blue-600 font-bold w-full p-2 rounded-lg"
+                >
+                  Withdraw
+                </button> */}
+
                 {bank.verified !== "approved" && (
                   <button
                     disabled={bank.verified === "pending"}
@@ -430,10 +463,14 @@ const page = () => {
 
                 <div className="flex flex-col gap-1">
                   <div className="text-sm">
-                    <Hover text={"Total Earnings"}
+                    <Hover
+                      text={"Total Earnings"}
                       mobile={"-left-[70px]"}
                       pc={"sm:-left-[70px]"}
-                      para={"Overall Earnings: Get a comprehensive view of your total income from both store sales and community monetization (ad revenue & paid topics)."} />
+                      para={
+                        "Overall Earnings: Get a comprehensive view of your total income from both store sales and community monetization (ad revenue & paid topics)."
+                      }
+                    />
                   </div>
                   <div className="font-semibold">
                     ₹{data?.earningStats?.earnings.toFixed(2)}
@@ -470,11 +507,18 @@ const page = () => {
                         <BsBank className="text-xl" />
                       </div>
                       <div className="sm:text-sm font-semibold">
-                        {bank.verified == "approved"
-                          ? "Bank Add Successfully !"
-                          :
-                          <Hover para={"Add Bank Account: Securely link your bank account for easy withdrawal of your earnings.Once your bank account is linked, you can seamlessly transfer your hard-earned income."} text={"Add Bank"} mobile={"-left-[150px]"} pc={"sm:-left-[80px]"} />
-                        }
+                        {bank.verified == "approved" ? (
+                          "Bank Add Successfully !"
+                        ) : (
+                          <Hover
+                            para={
+                              "Add Bank Account: Securely link your bank account for easy withdrawal of your earnings.Once your bank account is linked, you can seamlessly transfer your hard-earned income."
+                            }
+                            text={"Add Bank"}
+                            mobile={"-left-[150px]"}
+                            pc={"sm:-left-[80px]"}
+                          />
+                        )}
                       </div>
                     </div>
                     {bank.verified !== "approved" &&
@@ -507,11 +551,15 @@ const page = () => {
                       />
                     </div>
                     <div className="text-lg font-semibold">
-                      <Hover text={"Sell Products"}
+                      <Hover
+                        text={"Sell Products"}
                         mobile={"-left-[170px]"}
                         pc={"sm:-left-[80px]"}
                         w2={"sm:w-[350px]"}
-                        para={"Showcase and sell your own products directly within your community. Whether it's handmade crafts, digital downloads, or exclusive merchandise, the possibilities are endless!"} />
+                        para={
+                          "Showcase and sell your own products directly within your community. Whether it's handmade crafts, digital downloads, or exclusive merchandise, the possibilities are endless!"
+                        }
+                      />
                     </div>
                   </div>
                   {(count.com < 1 || count.post < 1 || !comData.store) && (
@@ -530,7 +578,7 @@ const page = () => {
                     )}
 
                   <div className="flex text-sm flex-col h-full gap-3">
-                    {(comData?.store && (count.com >= 1 || count.post >= 1)) ? (
+                    {comData?.store && (count.com >= 1 || count.post >= 1) ? (
                       data?.length > 0 ? (
                         <>
                           <div className="bg-[#f1f1f1] rounded-lg dark:bg-[#3d4654]">
@@ -602,10 +650,11 @@ const page = () => {
                               <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                                 <div
                                   style={{ width: `${(count.com / 1) * 100}%` }}
-                                  className={`absolute top-0 left-0 rounded-r-xl  ${count.com >= 1
-                                    ? "bg-[#40CAB0]"
-                                    : "bg-[#398faf]"
-                                    }  h-full `}
+                                  className={`absolute top-0 left-0 rounded-r-xl  ${
+                                    count.com >= 1
+                                      ? "bg-[#40CAB0]"
+                                      : "bg-[#398faf]"
+                                  }  h-full `}
                                 ></div>
                               </div>
                             </div>
@@ -621,10 +670,11 @@ const page = () => {
                                   style={{
                                     width: `${(count.post / 1) * 100}%`,
                                   }}
-                                  className={`absolute top-0 left-0 rounded-r-xl  ${count.post >= 1
-                                    ? "bg-[#40CAB0]"
-                                    : "bg-[#398faf]"
-                                    }  h-full `}
+                                  className={`absolute top-0 left-0 rounded-r-xl  ${
+                                    count.post >= 1
+                                      ? "bg-[#40CAB0]"
+                                      : "bg-[#398faf]"
+                                  }  h-full `}
                                 ></div>
                               </div>
                             </div>
@@ -638,10 +688,11 @@ const page = () => {
                                 onClick={() => {
                                   router.push("/main/store");
                                 }}
-                                className={`${count.com < 1 || count.post < 1
-                                  ? "bg-[#878b8f]"
-                                  : "bg-[#2D9AFF]"
-                                  }   text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}
+                                className={`${
+                                  count.com < 1 || count.post < 1
+                                    ? "bg-[#878b8f]"
+                                    : "bg-[#2D9AFF]"
+                                }   text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}
                               >
                                 Create Store
                               </button>
@@ -675,12 +726,15 @@ const page = () => {
                         />
                       </div>
                       <div className="text-lg font-semibold">
-                        <Hover text={"Topics"}
-
+                        <Hover
+                          text={"Topics"}
                           mobile={"-left-[120px]"}
                           pc={"sm:-left-[80px]"}
                           w2={"sm:w-[350px]"}
-                          para={"Paid Topics (Unlock Topic Creation): After unlocking topic creation, create exclusive, in-depth content (guides, tutorials) and charge a fee for access. This allows you to directly monetize your expertise. (Example: You could offer a premium investment guide for Rs. 50)"} />
+                          para={
+                            "Paid Topics (Unlock Topic Creation): After unlocking topic creation, create exclusive, in-depth content (guides, tutorials) and charge a fee for access. This allows you to directly monetize your expertise. (Example: You could offer a premium investment guide for Rs. 50)"
+                          }
+                        />
                       </div>
                     </div>
                     {comData?.communities?.length > 0 && (
@@ -711,8 +765,8 @@ const page = () => {
                     )}
                   <div className="flex text-sm flex-col gap-3">
                     {state1.members > 150 &&
-                      state1.engagementrate > 10 &&
-                      state1.topics > 2 ? (
+                    state1.engagementrate > 10 &&
+                    state1.topics > 2 ? (
                       <>
                         <div className="bg-[#f1f1f1] rounded-lg dark:bg-[#3d4654]">
                           <div className="flex flex-col py-2 text-[14px] font-semibold gap-1 justify-center items-center">
@@ -761,10 +815,11 @@ const page = () => {
                                   style={{
                                     width: `${(state1.members / 150) * 100}%`,
                                   }}
-                                  className={`absolute top-0 left-0 rounded-r-xl  ${state1.members >= 150
-                                    ? "bg-[#40CAB0]"
-                                    : "bg-[#398faf]"
-                                    }  h-full `}
+                                  className={`absolute top-0 left-0 rounded-r-xl  ${
+                                    state1.members >= 150
+                                      ? "bg-[#40CAB0]"
+                                      : "bg-[#398faf]"
+                                  }  h-full `}
                                 ></div>
                               </div>
                             </div>
@@ -783,13 +838,15 @@ const page = () => {
                               <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                                 <div
                                   style={{
-                                    width: `${(state1.engagementrate / 10) * 100
-                                      }%`,
+                                    width: `${
+                                      (state1.engagementrate / 10) * 100
+                                    }%`,
                                   }}
-                                  className={`absolute top-0 left-0 rounded-r-xl  ${state1.engagementrate >= 10
-                                    ? "bg-[#40CAB0]"
-                                    : "bg-[#398faf]"
-                                    }  h-full `}
+                                  className={`absolute top-0 left-0 rounded-r-xl  ${
+                                    state1.engagementrate >= 10
+                                      ? "bg-[#40CAB0]"
+                                      : "bg-[#398faf]"
+                                  }  h-full `}
                                 ></div>
                               </div>
                             </div>
@@ -814,11 +871,12 @@ const page = () => {
                                       "/main/community/editCommunity?topics=true"
                                     );
                                   }}
-                                  className={`${state1.members < 150 ||
+                                  className={`${
+                                    state1.members < 150 ||
                                     state1.engagementrate < 10
-                                    ? "bg-[#878b8f]"
-                                    : "bg-[#2D9AFF]"
-                                    }   text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}
+                                      ? "bg-[#878b8f]"
+                                      : "bg-[#2D9AFF]"
+                                  }   text-white p-2 text-center font-semibold px-5 text-sm rounded-lg`}
                                 >
                                   Create Topic!
                                 </button>
@@ -864,8 +922,6 @@ const page = () => {
                   </div>
                 </div>
 
-
-
                 <div className="flex flex-col gap-3 bg-white dark:bg-[#273142] dark:border-[#3d4654] dark:border shadow-sm py-4 px-3 rounded-xl sm:max-w-[450px]">
                   <div className="flex pp:flex-row flex-col gap-3 justify-between pp:items-center">
                     <div className="flex items-center gap-2">
@@ -877,11 +933,15 @@ const page = () => {
                         />
                       </div>
                       <div className="text-lg font-semibold">
-                        <Hover text={"Ads Revenue"}
+                        <Hover
+                          text={"Ads Revenue"}
                           mobile={"-left-[170px]"}
                           pc={"sm:-left-[180px]"}
                           w2={"sm:w-[350px]"}
-                          para={"Community Ads (500+ Members, 10% Popularity): Once your community reaches 500 members and a 25% popularity score, unlock the power of community ads. Display targeted ads relevant to your audience and earn revenue with every impression or click. (Example: You could earn Rs. 0.50 per ad impression)"} />
+                          para={
+                            "Community Ads (500+ Members, 10% Popularity): Once your community reaches 500 members and a 25% popularity score, unlock the power of community ads. Display targeted ads relevant to your audience and earn revenue with every impression or click. (Example: You could earn Rs. 0.50 per ad impression)"
+                          }
+                        />
                       </div>
                     </div>
                     {comData?.communities?.length > 0 && (
@@ -931,7 +991,9 @@ const page = () => {
                         <div className="flex flex-col py-2 text-[14px] font-semibold gap-1 justify-center items-center">
                           <div>Total Earnings</div>
                           <div className="flex justify-center text-xl font-bold items-center gap-2">
-                            <div>₹{data?.earningStats?.adsearning.toFixed(2)}</div>
+                            <div>
+                              ₹{data?.earningStats?.adsearning.toFixed(2)}
+                            </div>
                             <div className="flex justify-center items-center gap-1">
                               <RxCross1 />
                               {state2.engagementrate > 0 &&
@@ -963,36 +1025,42 @@ const page = () => {
                             style={{ width: `${state2.engagementrate}%` }}
                             className={`absolute top-0 z-0 left-0  
                             ${state2.engagementrate <= 25 && "bg-[#ff718b]"}
-                            ${state2.engagementrate > 25 &&
+                            ${
+                              state2.engagementrate > 25 &&
                               state2.engagementrate <= 50 &&
                               "bg-[#ff8989]"
-                              } 
-                            ${state2.engagementrate > 50 &&
+                            } 
+                            ${
+                              state2.engagementrate > 50 &&
                               state2.engagementrate <= 75 &&
                               "bg-[#fce83a]"
-                              } 
-                            ${state2.engagementrate > 75 &&
+                            } 
+                            ${
+                              state2.engagementrate > 75 &&
                               state2.engagementrate <= 100 &&
                               "bg-[#7fe47e]"
-                              }
+                            }
                             h-full`}
                           ></div>
                           <div
                             style={{ width: `${state2.engagementrate}%` }}
                             className={`absolute top-0 z-0 left-0  
                             ${state2.engagementrate <= 25 && "bg-[#ff718b]"}
-                            ${state2.engagementrate > 25 &&
+                            ${
+                              state2.engagementrate > 25 &&
                               state2.engagementrate <= 50 &&
                               "bg-[#ff8989]"
-                              } 
-                            ${state2.engagementrate > 50 &&
+                            } 
+                            ${
+                              state2.engagementrate > 50 &&
                               state2.engagementrate <= 75 &&
                               "bg-[#fce83a]"
-                              } 
-                            ${state2.engagementrate > 75 &&
+                            } 
+                            ${
+                              state2.engagementrate > 75 &&
                               state2.engagementrate <= 100 &&
                               "bg-[#7fe47e]"
-                              }
+                            }
                             h-full`}
                           ></div>
 
@@ -1010,9 +1078,13 @@ const page = () => {
 
                       <div className="flex mt-2 gap-2 mb-2 text-sm flex-col">
                         {/* <div>Impressions : {state2.impressions}</div> */}
-                        <div>Earning from Views : ₹{state2?.cpm?.toFixed(2)} (approx.)</div>
                         <div>
-                          Earnings from Clicks : ₹{state2?.cpc?.toFixed(2)} (approx.)
+                          Earning from Views : ₹{state2?.cpm?.toFixed(2)}{" "}
+                          (approx.)
+                        </div>
+                        <div>
+                          Earnings from Clicks : ₹{state2?.cpc?.toFixed(2)}{" "}
+                          (approx.)
                         </div>
                       </div>
                     </>
@@ -1035,10 +1107,11 @@ const page = () => {
                                 style={{
                                   width: `${(state2.members / 500) * 100}%`,
                                 }}
-                                className={`absolute top-0 left-0 rounded-r-xl  ${state2.members >= 500
-                                  ? "bg-[#40CAB0]"
-                                  : "bg-[#398faf]"
-                                  }  h-full `}
+                                className={`absolute top-0 left-0 rounded-r-xl  ${
+                                  state2.members >= 500
+                                    ? "bg-[#40CAB0]"
+                                    : "bg-[#398faf]"
+                                }  h-full `}
                               ></div>
                             </div>
                           </div>
@@ -1057,13 +1130,15 @@ const page = () => {
                             <div className="w-full h-3 relative overflow-hidden min-w-[100px] bg-[#F8F8FF] rounded-full">
                               <div
                                 style={{
-                                  width: `${(state2.engagementrate / 10) * 100
-                                    }%`,
+                                  width: `${
+                                    (state2.engagementrate / 10) * 100
+                                  }%`,
                                 }}
-                                className={`absolute top-0 left-0 rounded-r-xl  ${state2.engagementrate >= 10
-                                  ? "bg-[#40CAB0]"
-                                  : "bg-[#398faf]"
-                                  }  h-full `}
+                                className={`absolute top-0 left-0 rounded-r-xl  ${
+                                  state2.engagementrate >= 10
+                                    ? "bg-[#40CAB0]"
+                                    : "bg-[#398faf]"
+                                }  h-full `}
                               ></div>
                             </div>
                           </div>
@@ -1096,7 +1171,7 @@ const page = () => {
                                   disabled={
                                     state2.status == "rejected" &&
                                     new Date(Date.now()) <=
-                                    new Date(state2.reapplydate)
+                                      new Date(state2.reapplydate)
                                   }
                                   onClick={() =>
                                     sendRequestForMontenziation(id, state2.id)
@@ -1104,7 +1179,7 @@ const page = () => {
                                   className="bg-[#2D9AFF] text-white p-2 px-5 text-sm rounded-lg"
                                 >
                                   {state2.status == "rejected" &&
-                                    new Date(Date.now()) <=
+                                  new Date(Date.now()) <=
                                     new Date(state2.reapplydate)
                                     ? "Your Request Has Been Rejected"
                                     : "Apply for Monetization"}
@@ -1127,11 +1202,12 @@ const page = () => {
                                 onClick={() =>
                                   sendRequestForMontenziation(id, state2.id)
                                 }
-                                className={`${state2.members < 500 ||
+                                className={`${
+                                  state2.members < 500 ||
                                   state2.engagementrate < 10
-                                  ? "bg-[#878b8f]"
-                                  : "bg-[#2D9AFF]"
-                                  }  text-white p-2 px-5 text-sm rounded-lg`}
+                                    ? "bg-[#878b8f]"
+                                    : "bg-[#2D9AFF]"
+                                }  text-white p-2 px-5 text-sm rounded-lg`}
                               >
                                 Apply for Monetization
                               </button>
@@ -1142,7 +1218,7 @@ const page = () => {
 
                       {state2.status == "rejected" &&
                         new Date(Date.now()) <=
-                        new Date(state2.reapplydate) && (
+                          new Date(state2.reapplydate) && (
                           <div>
                             <div>Reason: {state2.reason}</div>
                             <div>

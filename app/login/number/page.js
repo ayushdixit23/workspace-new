@@ -82,34 +82,15 @@ function page() {
     setSeconds(30);
   };
 
-  // const waitkrnevalafunc = async (data) => {
-  //   try {
-  //     storeInSessionStorage(data.sessionId)
-  //     setCookie(`excktn${data.sessionId}`, data.access_token)
-  //     setCookie(`frhktn${data.sessionId}`, data.refresh_token)
-  //     // toast.success("success");
-  //     return true;
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
   const waitkrnevalafunc = async (data) => {
     try {
-      // if (localStorage.length > 20) {
-      //   localStorage.clear();
-      // }
-      // storeInSessionStorage(data.sessionId);
-      // Cookies.set(`excktn${data.sessionId}`, data.access_token)
-      // Cookies.set(`frhktn${data.sessionId}`, data.refresh_token)
+
       const expirationDate = new Date();
       expirationDate.setDate(expirationDate.getDate() + 7);
 
       Cookies.set(`excktn`, data.access_token, { expires: expirationDate });
       Cookies.set(`frhktn`, data.refresh_token, { expires: expirationDate });
 
-      // localStorage.setItem(`excktn`, data.access_token);
-      // localStorage.setItem(`frhktn`, data.refresh_token);
       return true;
     } catch (e) {
       console.error("Error during login:", e);
