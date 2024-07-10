@@ -29,10 +29,9 @@ import { redirect, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
 
 import Hover from "@/app/data/Hover";
-
-import useTokenAndData from "@/app/utilsHelper/tokens";
-import { changelaoding } from "@/app/redux/slice/userData";
+import { changelaoding, sendData } from "@/app/redux/slice/userData";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 // import BlurredComponent from "@/app/componentsWorkSpace/Blur";
 
@@ -43,8 +42,7 @@ function Dashboard() {
 	const [prochange, setProchange] = useState("1");
 	const [loading, setLoading] = useState(true);
 	const { id, memberships } = getData();
-	const { generateData } = useTokenAndData()
-	const [update, setUpdate] = useState(null)
+
 
 	const dispatch = useDispatch()
 	const searchparams = useSearchParams()
@@ -67,51 +65,18 @@ function Dashboard() {
 		{ skip: !id }
 	);
 
-	const refreshAccessToken = async (refreshToken) => {
-		try {
-			const res = await refreshedtokenAgain({ refresh_token: refreshToken });
-			const { access_token, success, refresh_token } = res.data;
-
-			if (success) {
-
-				console.log("success")
-				Cookies.remove("excktn")
-				Cookies.remove("frhktn")
-
+	useEffect(() => {
+		if (searchparams.get("membership")) {
+			axios.post(`https://work.grovyo.xyz/api/v1/fetchdetails/${id}`).then((res) => {
+				console.log(res.data)
 				const expirationDate = new Date();
 				expirationDate.setDate(expirationDate.getDate() + 7);
 
-				Cookies.set(`excktn`, access_token, { expires: expirationDate });
-				Cookies.set(`frhktn`, refresh_token, { expires: expirationDate });
+				Cookies.set(`excktn`, res.data.access_token, { expires: expirationDate });
+				Cookies.set(`frhktn`, res.data.refresh_token, { expires: expirationDate });
+				dispatch(sendData(res.data?.data))
 
-				const cookie = Cookies.get("excktn")
-				const data = await checkToken(cookie)
-				console.log(data, "mydata")
-
-				// dispatch(
-				// 	changelaoding({
-				// 		path: `/main/dashboard`,
-				// 	})
-				// );
-
-				// await generateData(cookie)
-				// window.location.assign("https://workspace.grovyo.com/main/dashboard")
-
-			} else {
-				console.error("Failed to refresh token");
-				return Promise.reject("Failed to refresh token");
-			}
-		} catch (err) {
-			console.error(err);
-			return Promise.reject("Failed to refresh token");
-		}
-	}
-
-
-	useEffect(() => {
-		if (searchparams.get("membership")) {
-			const refreshtoken = Cookies.get("frhktn")
-			refreshAccessToken(refreshtoken)
+			})
 		}
 	}, [searchparams.get("membership")])
 
