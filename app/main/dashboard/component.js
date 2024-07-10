@@ -25,12 +25,14 @@ import { useGetFetchOrderQuery, useGetRefreshTokenMutation } from "@/app/redux/a
 import { getData } from "@/app/utilsHelper/Useful";
 import Monetization from "../../assets/image/Monetization.png";
 import Link from "next/link";
-import { redirect, useRouter, useSearchParams } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
-import { FcInfo } from "react-icons/fc";
+
 import Hover from "@/app/data/Hover";
-import axios from "axios";
+
 import useTokenAndData from "@/app/utilsHelper/tokens";
+import { changelaoding } from "@/app/redux/slice/userData";
+import { useDispatch } from "react-redux";
 
 // import BlurredComponent from "@/app/componentsWorkSpace/Blur";
 
@@ -42,7 +44,8 @@ function Dashboard() {
 	const [loading, setLoading] = useState(true);
 	const { id, memberships } = getData();
 	const { generateData } = useTokenAndData()
-	const router = useRouter()
+
+	const dispatch = useDispatch()
 	const searchparams = useSearchParams()
 	const [refreshedtokenAgain] = useGetRefreshTokenMutation();
 
@@ -82,9 +85,17 @@ function Dashboard() {
 
 				const cookie = Cookies.get("excktn")
 
-				generateData(cookie)
+				dispatch(
+					changelaoding({
 
-				window.location.href("/main/dashboard")
+						path: `/main/dashboard`,
+					})
+				);
+
+				await generateData(cookie)
+
+			
+
 			} else {
 				console.error("Failed to refresh token");
 				return Promise.reject("Failed to refresh token");

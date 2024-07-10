@@ -95,6 +95,8 @@ const useTokenAndData = () => {
             dispatch(changelaoding({ loading: false }));
             setData(payload);
             dispatch(sendData(payload));
+
+            console.log("kaam hua");
             if (path) {
               router.push(`${path}`);
             }
