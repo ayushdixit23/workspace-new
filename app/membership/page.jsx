@@ -213,9 +213,8 @@ const page = () => {
   const buyMembership = async (
     price,
     mId,
-    dm = 5,
-    tagging = 10,
-    title,
+    dm,
+    tagging,
     deliverylimitcity,
     deliverylimitcountry
   ) => {
@@ -1179,7 +1178,8 @@ const page = () => {
                                 buyMembership(
                                   monthprice ? plus : plusy,
                                   process.env.NEXT_PUBLIC_PLUS,
-                                  "Plus",
+                                  10,
+                                  2,
                                   d.plus,
                                   dc.plus
                                 )
@@ -1713,7 +1713,8 @@ const page = () => {
                                 buyMembership(
                                   monthprice ? pro : proy,
                                   process.env.NEXT_PUBLIC_PRO,
-                                  "Pro",
+                                  27,
+                                  5,
                                   d.pro,
                                   dc.pro
                                 )
@@ -2260,7 +2261,8 @@ const page = () => {
                                 buyMembership(
                                   monthprice ? premium : premiumy,
                                   process.env.NEXT_PUBLIC_PREMIUM,
-                                  "Premium",
+                                  55,
+                                  15,
                                   d.premium,
                                   dc.premium
                                 )
