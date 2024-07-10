@@ -22,7 +22,7 @@ import {
 	useGetAnalyticsThirtyDaysQuery,
 } from "@/app/redux/apiroutes/community";
 import { useGetFetchOrderQuery, useGetRefreshTokenMutation } from "@/app/redux/apiroutes/userLoginAndSetting";
-import { getData } from "@/app/utilsHelper/Useful";
+import { checkToken, getData } from "@/app/utilsHelper/Useful";
 import Monetization from "../../assets/image/Monetization.png";
 import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
@@ -85,17 +85,18 @@ function Dashboard() {
 				Cookies.set(`frhktn`, refresh_token, { expires: expirationDate });
 
 				const cookie = Cookies.get("excktn")
+				const data = await checkToken(cookie)
+				console.log(data, "mydata")
 
-				dispatch(
-					changelaoding({
+				// dispatch(
+				// 	changelaoding({
+				// 		path: `/main/dashboard`,
+				// 	})
+				// );
 
-						path: `/main/dashboard`,
-					})
-				);
+				// await generateData(cookie)
+				// window.location.assign("https://workspace.grovyo.com/main/dashboard")
 
-				await generateData(cookie)
-				window.location.assign("https://workspace.grovyo.com/main/dashboard")
-				setUpdate("update")
 			} else {
 				console.error("Failed to refresh token");
 				return Promise.reject("Failed to refresh token");
