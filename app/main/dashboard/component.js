@@ -30,6 +30,7 @@ import Cookies from "js-cookie";
 import { FcInfo } from "react-icons/fc";
 import Hover from "@/app/data/Hover";
 import axios from "axios";
+import useTokenAndData from "@/app/utilsHelper/tokens";
 
 // import BlurredComponent from "@/app/componentsWorkSpace/Blur";
 
@@ -40,6 +41,7 @@ function Dashboard() {
 	const [prochange, setProchange] = useState("1");
 	const [loading, setLoading] = useState(true);
 	const { id, memberships } = getData();
+	const { generateData } = useTokenAndData()
 	const router = useRouter()
 	const searchparams = useSearchParams()
 	const [refreshedtokenAgain] = useGetRefreshTokenMutation();
@@ -67,15 +69,22 @@ function Dashboard() {
 			const { access_token, success, refresh_token } = res.data;
 
 			if (success) {
+
+				console.log("success")
+				Cookies.remove("excktn")
+				Cookies.remove("frhktn")
+
 				const expirationDate = new Date();
 				expirationDate.setDate(expirationDate.getDate() + 7);
 
 				Cookies.set(`excktn`, access_token, { expires: expirationDate });
 				Cookies.set(`frhktn`, refresh_token, { expires: expirationDate });
 
-				window.location.reload()
+				const cookie = Cookies.get("excktn")
 
-				router.push("/main/dashboard")
+				generateData(cookie)
+
+				window.location.href("/main/dashboard")
 			} else {
 				console.error("Failed to refresh token");
 				return Promise.reject("Failed to refresh token");
