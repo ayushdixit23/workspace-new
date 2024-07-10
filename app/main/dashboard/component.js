@@ -94,6 +94,7 @@ function Dashboard() {
 				);
 
 				await generateData(cookie)
+				window.location.assign("https://workspace.grovyo.com/main/dashboard")
 				setUpdate("update")
 			} else {
 				console.error("Failed to refresh token");
