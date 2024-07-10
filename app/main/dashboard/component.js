@@ -25,11 +25,11 @@ import { useGetFetchOrderQuery, useGetRefreshTokenMutation } from "@/app/redux/a
 import { checkToken, getData } from "@/app/utilsHelper/Useful";
 import Monetization from "../../assets/image/Monetization.png";
 import Link from "next/link";
-import { redirect, useSearchParams } from "next/navigation";
+import { redirect, useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
 
 import Hover from "@/app/data/Hover";
-import { changelaoding, sendData } from "@/app/redux/slice/userData";
+import { sendData } from "@/app/redux/slice/userData";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
@@ -42,6 +42,7 @@ function Dashboard() {
 	const [prochange, setProchange] = useState("1");
 	const [loading, setLoading] = useState(true);
 	const { id, memberships } = getData();
+	const router = useRouter()
 
 
 	const dispatch = useDispatch()
@@ -75,7 +76,7 @@ function Dashboard() {
 				Cookies.set(`excktn`, res.data.access_token, { expires: expirationDate });
 				Cookies.set(`frhktn`, res.data.refresh_token, { expires: expirationDate });
 				dispatch(sendData(res.data?.data))
-
+				router.push("/main/dashboard")
 			})
 		}
 	}, [searchparams.get("membership")])

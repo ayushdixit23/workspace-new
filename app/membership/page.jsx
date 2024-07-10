@@ -219,8 +219,8 @@ const page = () => {
     deliverylimitcountry
   ) => {
     const amount = price + parseInt(price * 0.18);
-    const amounttosend = `₹${1}`;
-    // const amounttosend = `₹${amount}`;
+    // const amounttosend = `₹${1}`;
+    const amounttosend = `₹${amount}`;
 
     try {
       const res = await axios.post(
