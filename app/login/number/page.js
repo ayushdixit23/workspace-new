@@ -37,12 +37,13 @@ function page() {
   const [seconds, setSeconds] = useState(30);
   const [isActive, setIsActive] = useState(true);
   const [come, setCome] = useState(0);
-  const [email, setEmail] = useState("memerdevgamer23@gmail.com");
-  const [password, setPassword] = useState("12345678");
+  // const [email, setEmail] = useState("memerdevgamer23@gmail.com");
+  // const [password, setPassword] = useState("12345678");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [change, setChange] = useState(1);
   const dispatch = useDispatch();
   const [login] = useLoginMutation();
-  const { generateData } = useTokenAndData();
   const otpInputRef = useRef(null);
   const [emailLogin] = useEmailLoginMutation();
 
