@@ -6,6 +6,8 @@ import toast from "react-hot-toast"
 import Loader from "../data/Loader"
 import Cookies from "js-cookie"
 import { encryptaes } from "../utilsHelper/security"
+import { useDispatch } from "react-redux"
+import { sendData } from "../redux/slice/userData"
 
 const Component = () => {
 	const queryParams = useSearchParams()
@@ -16,6 +18,7 @@ const Component = () => {
 	const category = queryParams.get("category")
 	const desc = queryParams.get("desc")
 	const type = queryParams.get("type")
+	const dispatch = useDispatch()
 	const memberscount = queryParams.get("memberscount")
 	const comId = queryParams.get("comId")
 
@@ -39,6 +42,8 @@ const Component = () => {
 
 			Cookies.set(`excktn`, data.access_token, { expires: expirationDate });
 			Cookies.set(`frhktn`, data.refresh_token, { expires: expirationDate });
+
+			dispatch(sendData(data?.data))
 
 			// localStorage.setItem(`excktn`, data.access_token)
 			// localStorage.setItem(`frhktn`, data.refresh_token)

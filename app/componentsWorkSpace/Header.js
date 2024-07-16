@@ -102,7 +102,7 @@ function Header() {
             {/* <div className="p-1 px-3 bg-[#4880FF] text-white text-sm font-semibold rounded-lg">{memberships === "Free" && "Plus"} {memberships === "Plus" && "Pro"} {memberships === "Pro" && "Premium"}</div> */}
           </div>}
 
-          <div className="sm:hidden">
+          <div className="sm:hidden h-10 w-10">
 
             {pic !== null ? (
               <Link href={"/main/settings"} className="relative">
@@ -112,25 +112,25 @@ function Header() {
                   alt="dp"
                   height={100}
                   width={100}
-                  className="h-10 w-10 cursor-pointer flex justify-center items-center rounded-[18px] ring-1 ring-white shadow-[0_3px_10px_2px_rgba(1,1,1,0.1)]"
+                  className=" w-full h-full object-cover cursor-pointer flex justify-center items-center rounded-[18px] ring-1 ring-white shadow-[0_3px_10px_2px_rgba(1,1,1,0.1)]"
                 />
                 {(memberships !== null && memberships !== "Free") && <MdVerified className="text-blue-700 absolute -bottom-1 -right-1 text-[17px] sm:hidden block" />}
               </Link>
             ) : (
               <div
                 onClick={() => setProf(!prof)}
-                className="h-10 w-10 bg-red-600 cursor-pointer flex justify-center items-center rounded-[18px] ring-1 ring-white shadow-[0_3px_10px_2px_rgba(1,1,1,0.1)]"
+                className="h-10 w-10  bg-black cursor-pointer flex justify-center items-center rounded-[18px] ring-1 ring-white shadow-[0_3px_10px_2px_rgba(1,1,1,0.1)]"
               />
             )}
           </div>
-          <div className="pn:max-sm:hidden">
+          <div className="pn:max-sm:hidden h-10 w-10">
             {pic !== null ? (
               <Image
                 src={pic}
                 alt="dp"
                 height={100}
                 width={100}
-                className="h-10 w-10 cursor-pointer flex justify-center items-center rounded-[18px] ring-1 ring-white shadow-[0_3px_10px_2px_rgba(1,1,1,0.1)]"
+                className="w-full h-full object-cover cursor-pointer flex justify-center items-center rounded-[18px] ring-1 ring-white shadow-[0_3px_10px_2px_rgba(1,1,1,0.1)]"
               />
             ) : (
               <div

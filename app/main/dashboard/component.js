@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import p1 from "../../assets/image/Icon.png";
 import p2 from "../../assets/image/p2.png";
 import p3 from "../../assets/image/p3.png";
-import emcom from "../../assets/image/emptycom.png";
+// import emcom from "../../assets/image/emptycom.png";
 import verify from "../../assets/image/verify.png";
 import Image from "next/image";
 import DontHave from "@/app/componentsWorkSpace/DontHave";
@@ -21,7 +21,7 @@ import {
 	useGetAnalyticsQuery,
 	useGetAnalyticsThirtyDaysQuery,
 } from "@/app/redux/apiroutes/community";
-import { useGetFetchOrderQuery, useGetRefreshTokenMutation } from "@/app/redux/apiroutes/userLoginAndSetting";
+import { useGetFetchOrderQuery } from "@/app/redux/apiroutes/userLoginAndSetting";
 import { checkToken, getData } from "@/app/utilsHelper/Useful";
 import Monetization from "../../assets/image/Monetization.png";
 import Link from "next/link";
@@ -43,13 +43,10 @@ function Dashboard() {
 	const [loading, setLoading] = useState(true);
 	const { id, memberships } = getData();
 	const router = useRouter()
-
-
 	const dispatch = useDispatch()
 	const searchparams = useSearchParams()
-	const [refreshedtokenAgain] = useGetRefreshTokenMutation();
 
-	let analyticsdata, isLoading;
+	let analyticsdata, isLoading = true;
 	if (dateValue == 7) {
 		({ data: analyticsdata, isLoading } = useGetAnalyticsQuery(
 			{ id: id },
@@ -126,7 +123,7 @@ function Dashboard() {
 		setLoading(false);
 	}, [analyticsdata]);
 
-	if (isLoading || loading) {
+	if (!analyticsdata || (loading || isLoading)) {
 		return <Loader />;
 	}
 

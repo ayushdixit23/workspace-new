@@ -287,7 +287,11 @@ const page = () => {
     );
   }
 
-  if (isLoading && load) {
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (load) {
     return <Loader />;
   }
 

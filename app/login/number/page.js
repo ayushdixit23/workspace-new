@@ -10,7 +10,7 @@ const DynamicOtpInput = dynamic(() => import("otp-input-react"), {
   ssr: false,
 });
 import { useDispatch } from "react-redux";
-import { changelaoding } from "@/app/redux/slice/userData";
+import { sendData } from "@/app/redux/slice/userData";
 import { encryptaes, decryptaes } from "@/app/utilsHelper/security";
 import {
   useEmailLoginMutation,
@@ -37,8 +37,8 @@ function page() {
   const [seconds, setSeconds] = useState(30);
   const [isActive, setIsActive] = useState(true);
   const [come, setCome] = useState(0);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("memerdevgamer23@gmail.com");
+  const [password, setPassword] = useState("12345678");
   const [change, setChange] = useState(1);
   const dispatch = useDispatch();
   const [login] = useLoginMutation();
@@ -90,6 +90,8 @@ function page() {
 
       Cookies.set(`excktn`, data.access_token, { expires: expirationDate });
       Cookies.set(`frhktn`, data.refresh_token, { expires: expirationDate });
+
+      dispatch(sendData(data?.data))
 
       return true;
     } catch (e) {
@@ -265,7 +267,8 @@ function page() {
 
             setTimeout(async () => {
               if (check === true) {
-                await generateData(res.data.access_token);
+                // await generateData(res.data.access_token);
+                dispatch(sendData(res.data?.data))
                 router.push("/main/dashboard");
               }
               setTimeout(() => {
