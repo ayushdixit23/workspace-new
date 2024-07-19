@@ -67,12 +67,6 @@ const page = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(
-        data?.useDefaultProsite,
-        "data?.useDefaultProsite",
-        !data?.useDefaultProsite,
-        data
-      );
       setIsChecked(!data?.useDefaultProsite);
     }
   }, [data, id]);

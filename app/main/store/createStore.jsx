@@ -39,7 +39,7 @@ const CreateStore = ({
         const res = await axios.get(`
           https://api.postalpincode.in/pincode/${i}
         `);
-        console.log(res.data)
+      
         if (res?.status === 200) {
           setStore({
             ...store,
@@ -89,7 +89,7 @@ const CreateStore = ({
         id: id,
         data: formDataToSend,
       });
-      console.log(result);
+   
       if (result.data?.success) {
         await refetch();
         setLoading(false)

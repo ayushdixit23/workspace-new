@@ -1,7 +1,5 @@
 export const initOTPless = (callback) => {
   const otplessInit = Reflect.get(window, "otplessInit");
-  console.log("runned", otplessInit);
-
   const loadScript = () => {
     const isScriptLoaded = document.getElementById("otpless-sdk");
     if (isScriptLoaded) return;

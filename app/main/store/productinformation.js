@@ -7,8 +7,6 @@ import Cookies from "js-cookie";
 
 function productinformation({ handleDelete, data, userid, collectionid, index }) {
   const [open, setOpen] = useState()
-
-  console.log(data, "products")
   return (
     <>
       <div className={`${open ? "fixed inset-0 w-screen z-50 bg-black/60 h-screen flex justify-center items-center backdrop-blur-md" : "hidden -z-50"}`}>

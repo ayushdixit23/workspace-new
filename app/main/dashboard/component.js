@@ -66,7 +66,7 @@ function Dashboard() {
 	useEffect(() => {
 		if (searchparams.get("membership")) {
 			axios.post(`https://work.grovyo.xyz/api/v1/fetchdetails/${id}`).then((res) => {
-				console.log(res.data)
+
 				const expirationDate = new Date();
 				expirationDate.setDate(expirationDate.getDate() + 7);
 
@@ -496,7 +496,7 @@ function Dashboard() {
 						getorderdata?.storeexistornot &&
 						getorderdata?.isStoreVerified == false && (
 							<div>
-								{console.log("store here")}
+
 								<div className="flex pn:max-sm:mt-2 sm:sticky px-1 sm:top-0 text-sm mb-2 items-center gap-3">
 									<div
 										onClick={() => setChange("community")}

@@ -395,10 +395,6 @@ function page() {
     const token = otplessUser?.token;
 
     const mobile = mobileMap?.identityValue;
-
-    console.log(userinfo, "userinfo");
-
-    // Implement your custom logic here.
   };
   useEffect(() => initOTPless(callback), []);
 

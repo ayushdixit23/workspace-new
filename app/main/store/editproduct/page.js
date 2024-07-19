@@ -116,17 +116,6 @@ function page() {
   const [updation] = useUpdateProductMutation();
   const [updationvariant] = useUpdateProductvariantMutation();
 
-  console.log(getProduct?.data?.product?.isvariant, "isvariant");
-  console.log(getProduct?.data?.product?.variants, "variant");
-
-  console.log(
-    prices,
-    quantities,
-    discountedPrices,
-    images,
-    "all prices and quantities"
-  );
-
   useEffect(() => {
     const p = getProduct?.data?.product?.variants.map((v) =>
       v.category.map((f) => f?.price)

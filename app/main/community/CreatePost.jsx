@@ -194,7 +194,7 @@ const CreatePost = ({ id, comid, open, topicId, setOpen, refetch }) => {
   const editPosts = async () => {
     if (post.image.length === 0 && !thumbnailImage) {
       toast.error("Enter required details");
-      console.log(post, "post");
+
       return;
     }
     try {
