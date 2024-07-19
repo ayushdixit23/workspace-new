@@ -53,4 +53,4 @@ export default function MainLayout({ children }) {
     </div>
   );
 }
-// ${path == "/main/dashboard" ? "pn:max-sm:overflow-y-scroll  pn:max-sm:no-scrollbar" : "overflow-y-scroll no-scrollbar"}
+

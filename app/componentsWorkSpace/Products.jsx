@@ -6,15 +6,7 @@ const Products = ({ data }) => {
     <>
       {data?.length ? (
         <div className="w-full  ">
-          <div className="flex justify-between w-full p-2 items-center ">
-            {/* <div className="text-lg font-semibold">Top Products</div> */}
-            {/* <div className="flex justify-center items-center gap-1 p-2 rounded-xl bg-[#FAFAFA]">
-              <div>This Month</div>
-              <div>
-                <FaAngleDown />
-              </div>
-            </div> */}
-          </div>
+          <div className="flex justify-between w-full p-2 items-center "></div>
 
           <div className="">
             <table className="w-full  rounded-xl border-collapse">
