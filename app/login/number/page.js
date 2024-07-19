@@ -10,7 +10,7 @@ const DynamicOtpInput = dynamic(() => import("otp-input-react"), {
   ssr: false,
 });
 import { useDispatch } from "react-redux";
-import { sendData } from "@/app/redux/slice/userData";
+import { changelaoding, sendData } from "@/app/redux/slice/userData";
 import { encryptaes, decryptaes } from "@/app/utilsHelper/security";
 import {
   useEmailLoginMutation,
@@ -301,7 +301,7 @@ function page() {
       if (event.key === "Enter") {
         event.preventDefault();
         if (number.length === 10) {
-          phoneAuth();
+          phoneAuth(event);
         }
       }
     };
@@ -322,7 +322,7 @@ function page() {
       if (event.key === "Enter") {
         event.preventDefault();
         if (otp.length === 6) {
-          verifyOTP();
+          verifyOTP(event);
         }
       }
     };
